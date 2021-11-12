@@ -23,4 +23,6 @@ public class AppointmentSlot {
 
     @ManyToOne
     private Doctor doctor;
+
+    private boolean isReserved;
 }

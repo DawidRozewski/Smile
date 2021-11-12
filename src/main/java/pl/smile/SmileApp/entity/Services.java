@@ -30,6 +30,6 @@ public class Services {
     private String RTG;
 
     @NotNull
-    private int price;
+    private int amount;
 
 }
