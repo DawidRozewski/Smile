@@ -43,7 +43,7 @@ public class RegisterController {
         }
         patient.setPassword(passwordEncoder.encode(patient.getPassword()));
         patientRepository.save(patient);
-        return "redirect:";
+        return "redirect:/login";
     }
 
     @ModelAttribute("doctors")
