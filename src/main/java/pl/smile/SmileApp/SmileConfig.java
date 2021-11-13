@@ -16,11 +16,9 @@ import java.util.Locale;
 
 @Configuration
 @ComponentScan(basePackages = "pl.smile")
+@EnableJpaRepositories(basePackages = "pl.smile.SmileApp.repository")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "pl.smile")
 public class SmileConfig {
-
-
 
     @Bean(name="localeResolver")
     public LocaleContextResolver getLocaleContextResolver() {
@@ -43,6 +41,5 @@ public class SmileConfig {
         lvfb.setValidationMessageSource(messageSource());
         return lvfb;
     }
-
 
 }
