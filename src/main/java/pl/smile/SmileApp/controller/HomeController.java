@@ -4,12 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
-@RequestMapping("/")
+@RequestMapping("/patient/dashboard")
 public class HomeController {
 
     @GetMapping("")
-    public String showHomePage() {
-        return "homepage";
+    public String showHomePage(HttpSession session) {
+        if (session.getAttribute("patient") != null) {
+            return "homepage";
+        } else {
+            return "redirect:/login";
+        }
     }
 }

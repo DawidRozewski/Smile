@@ -8,12 +8,10 @@ import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.exceptions.UserNotFoundException;
 import pl.smile.SmileApp.repository.PatientRepository;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.net.http.HttpRequest;
 
 @Controller
 @RequestMapping("/login")
+@SessionAttributes("patient")
 public class LoginController {
 
     private final PasswordEncoder passwordEncoder;
@@ -31,12 +29,11 @@ public class LoginController {
 
     @PostMapping("")
     public String login(@RequestParam String email,
-                        @RequestParam String password, HttpServletRequest request) {
+                        @RequestParam String password, Model model) {
         Patient patient = patientRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
 
         if (passwordEncoder.matches(password, patient.getPassword())) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", patient);
+            model.addAttribute("patient", patient);
             return "redirect:/";
         } else {
             return "redirect:/login";
