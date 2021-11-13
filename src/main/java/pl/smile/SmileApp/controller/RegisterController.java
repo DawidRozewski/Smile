@@ -1,5 +1,6 @@
 package pl.smile.SmileApp.controller;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,10 +22,12 @@ public class RegisterController {
 
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public RegisterController(PatientRepository patientRepository, DoctorRepository doctorRepository) {
+    public RegisterController(PatientRepository patientRepository, DoctorRepository doctorRepository, PasswordEncoder passwordEncoder) {
         this.patientRepository = patientRepository;
         this.doctorRepository = doctorRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("")
@@ -38,6 +41,7 @@ public class RegisterController {
         if (result.hasErrors()) {
             return "/form/register";
         }
+        patient.setPassword(passwordEncoder.encode(patient.getPassword()));
         patientRepository.save(patient);
         return "redirect:";
     }
