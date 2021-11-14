@@ -20,11 +20,11 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "Pole nie moze byc puste.")
+    @NotBlank
     @Pattern(regexp = "^[A-Za-z]*$", message = "Wpisz poprawne imie.")
     private String firstName;
 
-    @NotBlank(message = "Pole nie moze byc puste.")
+    @NotBlank
     @Pattern(regexp = "^[A-Za-z]*$", message = "Wpisz poprawne nazwisko.")
     private String lastName;
 
