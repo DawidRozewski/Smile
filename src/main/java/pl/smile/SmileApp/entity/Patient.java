@@ -4,6 +4,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.pl.PESEL;
 import pl.smile.SmileApp.validators.UniqueEmail;
+import pl.smile.SmileApp.validators.UniquePesel;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -37,6 +38,7 @@ public class Patient {
     private String email;
 
     @PESEL
+    @UniquePesel
     private String pesel;
 
     @NotNull
