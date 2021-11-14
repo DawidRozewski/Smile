@@ -3,6 +3,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.pl.PESEL;
+import pl.smile.SmileApp.validators.UniqueEmail;
+import pl.smile.SmileApp.validators.UniquePesel;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -28,18 +31,20 @@ public class Patient {
     @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$", message = "Haslo musi posiadac przynajmniej 1 duza litere, 1 cyfre, 1 znak specjalny oraz minimum 8 znakow dlugosci.")
     private String password;
 
-    @Email(message = "Podany e-mail jest niepoprawny.")
-    @Column(unique = true)
+    @Email
+    @UniqueEmail
+    @NotEmpty
+    @NotNull
     private String email;
 
-    @PESEL(message = "Podany pesel jest niepoprawny.")
-    @Column(unique = true)
+    @PESEL
+    @UniquePesel
     private String pesel;
 
-    @NotNull(message = "Pole nie moze byc puste.")
+    @NotNull //Dodac poprawne wyrazenie
     private int phoneNumber;
 
-    @AssertTrue(message = "Akceptacja zgody na przetwarzanie danych osobowych jest wymagana.")
+    @AssertTrue
     private boolean processingOfPD;
 
     @ManyToOne

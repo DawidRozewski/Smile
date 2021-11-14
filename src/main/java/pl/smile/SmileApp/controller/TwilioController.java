@@ -22,7 +22,7 @@ public class TwilioController {
 
     @GetMapping("/test")
     @ResponseBody
-    @Scheduled(cron = "11 11 * * * *")
+    @Scheduled(cron = "00 7 * * * *")
     public String sensSMS() {
         Twilio.init(
                 twilioAcc.getAccSid(),

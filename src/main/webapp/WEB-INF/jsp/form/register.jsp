@@ -1,7 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/error.css"/>
 <h2>Zarejestruj</h2>
 <head>
     <style>
@@ -11,6 +10,7 @@
     </style>
 </head>
 <form:form modelAttribute="patient">
+    <form:hidden path="id"/>
 
 Imie: <form:input path="firstName"/><br/>
      <form:errors path="firstName" cssClass="errors"/><br/>
@@ -18,7 +18,7 @@ Imie: <form:input path="firstName"/><br/>
 Nazwisko: <form:input path="lastName"/><br/>
 <form:errors path="lastName" cssClass="errors"/><br/>
 
-Hasło: <form:input path="password"/><br/>
+Hasło: <form:password path="password" /><br/>
 <form:errors path="password" cssClass="errors"/><br/>
 
 Email: <form:input path="email"/><br/>
