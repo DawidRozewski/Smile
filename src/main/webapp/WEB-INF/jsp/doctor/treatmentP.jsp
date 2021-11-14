@@ -1,6 +1,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@include file="dashboard.jsp"%>
+<hr>
+
 <head>
     <title>Plan leczenia</title>
     <style>
@@ -39,10 +42,10 @@
         <td>250 zł</td>
 
     </tr>
- <br/>
-    <a href="">Dodaj wizytę</a>
-    <%--    </c:forEach>--%>
 
+    <%--    </c:forEach>--%>
 </table>
+<br/>
+<a href="">Dodaj wizytę</a>
 
 </body>

@@ -1,6 +1,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@include file="dashboard.jsp"%>
+<hr>
 <head>
     <title>Harmonogram pacjentow</title>
     <style>
@@ -18,6 +20,7 @@
 <table>
     <tr>
         <th>Data wizyty</th>
+        <th>Imie i nazwisko</th>
         <th>Opis zabiegu</th>
         <th>Czas</th>
         <th>Przypomnij</th>
@@ -27,6 +30,7 @@
     <%--    <c:forEach var="" items="${}">--%>
     <tr>
         <td>14.11.2021 16:00</td>
+        <td>Jan Kowalski</td>
         <td>Usuwanie kamienia</td>
         <td>60 minut</td>
         <td><a href="">SMS</a> </td>
@@ -34,5 +38,5 @@
     <%--    </c:forEach>--%>
 
 </table>
-
+<p>Posortowane od najblizszych od dnia dzisiejszego.</p>
 </body>

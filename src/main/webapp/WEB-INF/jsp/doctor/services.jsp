@@ -1,6 +1,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@include file="dashboard.jsp"%>
+<hr>
 <head>
     <title>Cennik zabiegów</title>
     <style>
@@ -21,7 +23,8 @@
         <th>Opis zabiegu</th>
         <th>Czas</th>
         <th>Cena</th>
-        <th>Zaplanuj wizyte</th>
+        <th>Edytuj</th>
+        <th>Usuń</th>
     </tr>
 
 
@@ -31,11 +34,12 @@
         <td>Usuwanie kamienia</td>
         <td>60 minut</td>
         <td>200 zł</td>
-        <td><a href="">Zaplanuj wizyte</a> </td>
+        <td><a href="">Edytuj</a> </td>
+        <td><a href="">Usuń</a> </td>
     </tr>
     <%--    </c:forEach>--%>
-<br/>
-    <a href="">Dodaj zabieg</a>
 </table>
+<br/>
+<a href="">Dodaj zabieg</a>
 
 </body>

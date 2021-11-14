@@ -1,6 +1,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@include file="dashboard.jsp"%>
+<hr>
 <head>
     <title>Plan leczenia</title>
     <style>
@@ -28,9 +30,10 @@
 
     <%--    <c:forEach var="" items="${}">--%>
     <tr>
-        <td>Id</td>
+        <td>1</td>
         <td>Jan Kowalski</td>
         <td><a href="">Pokaz</a> </td>
+        <td><a href="">Pokaz historie</a> </td>
         <td>20.11.2020 17:00</td>
         <td><a href="">Usuń</a> </td>
     </tr>

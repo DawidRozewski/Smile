@@ -27,7 +27,7 @@ public class DoctorController {
     }
 
 
-    @GetMapping("/treatment")
+    @GetMapping("/treatment-plan")
     public String treatmentPlan() {
         return "/doctor/treatmentP";
     }

@@ -17,7 +17,7 @@
 
 <table>
     <tr>
-        <th>Data wizyty</th>
+        <th>Kolejność wizyt</th>
         <th>Opis zabiegu</th>
         <th>Czas</th>
         <th>Cena</th>
@@ -30,7 +30,7 @@
             <td>14.11.2021 16:00</td>
             <td>Usuwanie kamienia</td>
             <td>60 minut</td>
-            <td>200 zł}</td>
+            <td>200 zł</td>
             <td>Milena K.</td>
         </tr>
 <%--    </c:forEach>--%>
