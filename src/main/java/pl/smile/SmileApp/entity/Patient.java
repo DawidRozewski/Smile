@@ -41,7 +41,7 @@ public class Patient {
     @UniquePesel
     private String pesel;
 
-    @NotNull
+    @NotNull //Dodac poprawne wyrazenie
     private int phoneNumber;
 
     @AssertTrue
