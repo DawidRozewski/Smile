@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/patient/dashboard")
+@RequestMapping("")
 public class HomeController {
 
     @GetMapping("")

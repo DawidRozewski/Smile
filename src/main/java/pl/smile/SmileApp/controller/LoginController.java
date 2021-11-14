@@ -30,11 +30,11 @@ public class LoginController {
     @PostMapping("")
     public String login(@RequestParam String email,
                         @RequestParam String password, Model model) {
-        Patient patient = patientRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+        Patient patient = patientRepository.getByEmail(email).orElseThrow(UserNotFoundException::new);
 
         if (passwordEncoder.matches(password, patient.getPassword())) {
             model.addAttribute("patient", patient);
-            return "redirect:/";
+            return "/patient/dashboard";
         } else {
             return "redirect:/login";
         }

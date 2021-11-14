@@ -23,6 +23,7 @@ public class Appointment {
     @Future
     private LocalDateTime start;
 
+    @Future
     private LocalDateTime end;
 
     @NotBlank
