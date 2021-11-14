@@ -43,9 +43,5 @@ public class SmileConfig {
         lvfb.setValidationMessageSource(messageSource());
         return lvfb;
     }
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
 
 }

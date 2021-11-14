@@ -5,6 +5,7 @@
 
 <form method="post">
     E-mail: <input type="text" name="email" placeholder="Podaj email"> <br/>
-    Hasło: <input type="text" name="password" placeholder="Podaj hasło"> <br/>
+    Hasło: <input type="password" name="password" placeholder="Podaj hasło"> <br/>
     <input type="submit" value="Zaloguj"> <br/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>

@@ -3,11 +3,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.pl.PESEL;
-import pl.smile.SmileApp.validators.UniqueEmail;
-import pl.smile.SmileApp.validators.UniquePesel;
+//import pl.smile.SmileApp.validators.UniqueEmail;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.Set;
 
 
 @Entity
@@ -32,13 +32,15 @@ public class Patient {
     private String password;
 
     @Email
-    @UniqueEmail
+//    @UniqueEmail
     @NotEmpty
     @NotNull
     private String email;
 
     @PESEL
-    @UniquePesel
+//    @UniquePesel
+    @NotNull
+    @NotEmpty
     private String pesel;
 
     @NotNull //Dodac poprawne wyrazenie
@@ -49,5 +51,12 @@ public class Patient {
 
     @ManyToOne
     private Doctor doctor;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "patient_role", joinColumns = @JoinColumn(name = "patient_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    private int enabled;
 
 }

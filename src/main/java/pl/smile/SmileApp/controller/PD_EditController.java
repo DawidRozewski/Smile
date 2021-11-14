@@ -1,4 +1,4 @@
-package pl.smile.SmileApp.controller.patient;
+package pl.smile.SmileApp.controller;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
