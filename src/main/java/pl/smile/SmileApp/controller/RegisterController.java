@@ -24,6 +24,7 @@ public class RegisterController {
     private final DoctorRepository doctorRepository;
     private final PasswordEncoder passwordEncoder;
 
+
     public RegisterController(PatientRepository patientRepository, DoctorRepository doctorRepository, PasswordEncoder passwordEncoder) {
         this.patientRepository = patientRepository;
         this.doctorRepository = doctorRepository;
@@ -38,38 +39,29 @@ public class RegisterController {
 
     @PostMapping("")
     public String save(@ModelAttribute("patient") @Valid Patient patient, BindingResult result) {
-//        isEmailExist(patient, result);
-        isPeselExist(patient, result);
-
         if (result.hasErrors()) {
             return "/form/register";
         }
-
         patient.setPassword(passwordEncoder.encode(patient.getPassword()));
         patientRepository.save(patient);
         return "redirect:/login";
     }
-
-    //Wydzielic do `service`?
-    private void isEmailExist(Patient patient, BindingResult result) {
-        Patient patientExist = patientRepository.findByEmail(patient.getEmail());
-        if(patientExist != null) {
-            result
-                    .rejectValue("email", "error.patient",
-                    "Podany e-mail istnieje w bazie danych.");
-
-        }
-    }
-
-    //Wydzielic do `service`?
-    private void isPeselExist(Patient patient, BindingResult result) {
-        Patient patientExist = patientRepository.findByPesel(patient.getPesel());
-        if(patientExist != null) {
-            result
-                    .rejectValue("pesel", "error.patient",
-                            "Podany pesel istnieje w bazie danych.");
-        }
-    }
+//
+//    //Wydzielic do `service`?
+//    private void isEmailExist(Patient patient, BindingResult result) {
+//     Patient byEmail = patientRepository.findByEmail(patient.getEmail());
+//        if(byEmail != null) {
+//            result.rejectValue("email", "error.patient", "Podany e- mail istnieje w bzie danych.");
+//        }
+//    }
+//
+//    //Wydzielic do `service`?
+//    private void isPeselExist(Patient patient, BindingResult result) {
+//        Patient patientExist = patientRepository.findByPesel(patient.getPesel());
+//        if(patientExist != null) {
+//            result.rejectValue("pesel", "error.patient", "Podany pesel istnieje w bazie danych.");
+//        }
+//    }
 
     @ModelAttribute("doctors")
     public List<Doctor> doctorList() {

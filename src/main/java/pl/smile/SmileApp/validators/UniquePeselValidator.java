@@ -17,9 +17,6 @@
 //    @Override
 //    public boolean isValid(String pesel, ConstraintValidatorContext constraintValidatorContext) {
 //        Patient patient = patientRepository.findByPesel(pesel);
-//        if (patient != null) {
-//            return !patient.getPesel().equals(pesel);
-//        }
-//        return true;
+//        return patient == null;
 //    }
 //}

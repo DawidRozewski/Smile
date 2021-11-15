@@ -9,8 +9,7 @@
 //
 //@Constraint(validatedBy = UniquePeselValidator.class)
 //@Retention(RetentionPolicy.RUNTIME)
-//@Target({ElementType.METHOD, ElementType.FIELD})
-//
+//@Target({ElementType.FIELD, ElementType.METHOD})
 //public @interface UniquePesel {
 //    String message() default "Podany pesel już istnieje.";
 //

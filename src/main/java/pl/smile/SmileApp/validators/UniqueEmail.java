@@ -14,6 +14,7 @@
 //
 //public @interface UniqueEmail {
 //
+//
 //     String message() default "Podany adres e-mail już istnieje.";
 //
 //     Class<?>[] groups() default {};

@@ -15,12 +15,13 @@
 //    }
 //
 //    @Override
+//    public void initialize(UniqueEmail constraintAnnotation) {
+//    }
+//
+//    @Override
 //    public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
 //        Patient patient = patientRepository.findByEmail(email);
-//        if(patient == null) {
-//            return true;
-//        }
-//        return patient.getEmail().equals(email);
+//        return patient == null;
 //
 //    }
 //

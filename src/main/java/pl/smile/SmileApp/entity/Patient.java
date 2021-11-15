@@ -1,19 +1,22 @@
 package pl.smile.SmileApp.entity;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.validator.constraints.pl.PESEL;
+import pl.smile.SmileApp.validators.PasswordMatches;
 //import pl.smile.SmileApp.validators.UniqueEmail;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.Set;
+
 
 
 @Entity
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@PasswordMatches
 public class Patient {
 
     @Id
@@ -31,32 +34,28 @@ public class Patient {
     @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$", message = "Haslo musi posiadac przynajmniej 1 duza litere, 1 cyfre, 1 znak specjalny oraz minimum 8 znakow dlugosci.")
     private String password;
 
+    @Transient
+    private String repassword;
+
     @Email
+    @NotBlank
 //    @UniqueEmail
-    @NotEmpty
-    @NotNull
     private String email;
 
     @PESEL
-//    @UniquePesel
-    @NotNull
-    @NotEmpty
+//    @UniquePesel ???????????
     private String pesel;
 
-    @NotNull //Dodac poprawne wyrazenie
-    private int phoneNumber;
+    @Pattern(regexp = "^[5-8]\\d{8}$", message = "Podaj prawidlowy numer telefonu.")
+    @NotNull
+    @Min(9)
+    private String phoneNumber;
 
     @AssertTrue
-    private boolean processingOfPD;
+    private boolean confirmed;
 
     @ManyToOne
     private Doctor doctor;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "patient_role", joinColumns = @JoinColumn(name = "patient_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
-
-    private int enabled;
 
 }

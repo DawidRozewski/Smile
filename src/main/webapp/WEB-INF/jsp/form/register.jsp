@@ -21,6 +21,9 @@ Nazwisko: <form:input path="lastName"/><br/>
 Hasło: <form:password path="password" /><br/>
 <form:errors path="password" cssClass="errors"/><br/>
 
+Powtórz hasło: <form:password path="repassword" /><br/>
+<form:errors path="repassword" cssClass="errors"/><br/>
+
 Email: <form:input path="email"/><br/>
 <form:errors path="email" cssClass="errors"/><br/>
 
@@ -33,9 +36,9 @@ Nr. kontaktowy: <form:input path="phoneNumber"/><br/>
 Wybierz doktora: <form:select path="doctor.id" items="${doctors}" itemLabel="fullName" itemValue="id"/><br/>
      <form:errors path="doctor" cssClass="errors"/><br/>
 
- <form:checkbox path="processingOfPD" id="confirm"/><br/>
-     <label for="confirm">Zgoda na przetwarzanie danych osobowych.</label><br/>
-<form:errors path="processingOfPD" cssClass="errors"/><br/>
+ <form:checkbox path="confirmed" id="confirmed"/><br/>
+     <label for="confirmed">Zgoda na przetwarzanie danych osobowych.</label><br/>
+<form:errors path="confirmed" cssClass="errors"/><br/>
 
 <input type="submit" value="Zarejestruj">
 

@@ -1,11 +1,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<style>
+    .home {
+        padding: 26px;
+    }
+</style>
 
-<h2>Strona główna</h2>
-<h2>Zabiegi</h2>
-<h2>Zaplanuj wizytę</h2>
-<h2><a href="/login">Zaloguj</a></h2>
-<h2><a href="/register">Zarejestruj</a></h2>
-<h2>O mnie</h2>
-<h2>Kontakt</h2>
+<strong><a href="" class="home">Strona główna</a></strong>
+<strong><a href="/services" class="home">Cennik zabiegów</a></strong>
+<strong><a href="/patient/appointment" class="home">Zaplanuj wizytę</a></strong>
+<strong><a href="/login" class="home">Zaloguj</a></strong>
+<strong><a href="/register" class="home">Zarejestruj</a></strong>
+<strong><a href="/about" class="home">O mnie</a></strong>
+<strong><a href="/contact" class="home">Kontakt</a></strong>

@@ -5,11 +5,11 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -27,6 +27,12 @@ public class Doctor {
     @NotBlank
     @Pattern(regexp = "^[A-Za-z]*$", message = "Wpisz poprawne nazwisko.")
     private String lastName;
+
+    @Email
+//    @UniqueEmail
+    @NotEmpty
+    @NotNull
+    private String email;
 
     @NotNull
     private int phoneNumber;
