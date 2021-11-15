@@ -11,10 +11,7 @@
 //@Constraint(validatedBy = UniqueEmailValidator.class)
 //@Retention(RetentionPolicy.RUNTIME)
 //@Target({ElementType.METHOD, ElementType.FIELD})
-//
 //public @interface UniqueEmail {
-//
-//
 //     String message() default "Podany adres e-mail już istnieje.";
 //
 //     Class<?>[] groups() default {};

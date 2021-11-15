@@ -1,14 +1,9 @@
 package pl.smile.SmileApp.entity;
 import lombok.*;
 import org.hibernate.validator.constraints.pl.PESEL;
-import pl.smile.SmileApp.validators.PasswordMatches;
-//import pl.smile.SmileApp.validators.UniqueEmail;
-
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-
-
 
 @Entity
 @Getter
@@ -16,7 +11,7 @@ import javax.validation.constraints.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@PasswordMatches
+//@PasswordMatches
 public class Patient {
 
     @Id

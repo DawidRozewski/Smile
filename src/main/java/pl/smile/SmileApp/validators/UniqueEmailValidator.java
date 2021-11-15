@@ -1,8 +1,6 @@
 //package pl.smile.SmileApp.validators;
-//
 //import pl.smile.SmileApp.entity.Patient;
 //import pl.smile.SmileApp.repository.PatientRepository;
-//
 //import javax.validation.ConstraintValidator;
 //import javax.validation.ConstraintValidatorContext;
 //
@@ -20,9 +18,8 @@
 //
 //    @Override
 //    public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
-//        Patient patient = patientRepository.findByEmail(email);
-//        return patient == null;
-//
+//        Patient byEmail = patientRepository.findByEmail(email);
+//        return byEmail != null;
 //    }
 //
 //}
