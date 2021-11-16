@@ -11,15 +11,12 @@
 </head>
 
 <form:form modelAttribute="patient">
-<%--    <form:hidden path="id"/>--%>
+    <form:hidden path="id"/>
     Imie: <form:input path="firstName"/><br/>
     <form:errors path="firstName" cssClass="errors"/><br/>
 
     Nazwisko: <form:input path="lastName"/><br/>
     <form:errors path="lastName" cssClass="errors"/><br/>
-
-    Hasło: <form:password path="password" /><br/>
-    <form:errors path="password" cssClass="errors"/><br/>
 
     Email: <form:input path="email"/><br/>
     <form:errors path="email" cssClass="errors"/><br/>
@@ -30,3 +27,5 @@
     <input type="submit" value="Zapisz zmiany">
 
 </form:form>
+<br/>
+<a href="/changePassword">Zmień hasło</a>

@@ -1,5 +1,6 @@
 package pl.smile.SmileApp.entity;
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.pl.PESEL;
 
 import javax.persistence.*;
@@ -37,7 +38,8 @@ public class Patient {
 //    @UniqueEmail
     private String email;
 
-    @PESEL
+    @PESEL()
+
 //    @UniquePesel ???????????
     private String pesel;
 

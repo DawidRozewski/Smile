@@ -2,9 +2,12 @@ package pl.smile.SmileApp.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.repository.PatientRepository;
+
+import javax.servlet.http.HttpSession;
 
 @Service
 public class PatientServiceImpl implements PatientService {
@@ -24,8 +27,17 @@ public class PatientServiceImpl implements PatientService {
         } else {
            result.rejectValue("repassword", "error.patient", "Podane hasła nie są zgodne.");
         }
-
         return "/form/login";
+    }
+
+    @Override
+    public void update(Patient patient, HttpSession session, Model model) {
+        Patient sessionPatient = (Patient) session.getAttribute("patient");
+        patient.setPassword(sessionPatient.getPassword());
+        patient.setPesel(sessionPatient.getPesel());
+        patient.setConfirmed(sessionPatient.isConfirmed());
+        model.addAttribute("patient", patient);
+        patientRepository.save(patient);
     }
 
 

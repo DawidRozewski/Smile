@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.Patient;
-import pl.smile.SmileApp.exceptions.UserNotFoundException;
 import pl.smile.SmileApp.repository.PatientRepository;
 
 

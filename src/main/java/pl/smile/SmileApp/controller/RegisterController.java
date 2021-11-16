@@ -26,7 +26,6 @@ public class RegisterController {
     private final PasswordEncoder passwordEncoder;
     private final PatientServiceImpl patientService;
 
-
     public RegisterController(PatientRepository patientRepository, DoctorRepository doctorRepository, PasswordEncoder passwordEncoder, PatientServiceImpl patientService) {
         this.patientRepository = patientRepository;
         this.doctorRepository = doctorRepository;
@@ -46,7 +45,7 @@ public class RegisterController {
             return "/form/register";
         }
         patientService.save(patient,result);
-        return "/form/login";
+        return "redirect:/login";
     }
 
 //    Patient byEmail = patientRepository.findByEmail(patient.getEmail());
