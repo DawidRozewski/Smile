@@ -25,7 +25,7 @@ public class PatientServiceImpl implements PatientService {
             patient.setPassword(passwordEncoder.encode(patient.getPassword()));
             patientRepository.save(patient);
         } else {
-           result.rejectValue("repassword", "error.patient", "Podane hasła nie są zgodne.");
+            result.rejectValue("repassword", "error.patient", "Podane hasła nie są zgodne.");
         }
         return "/form/login";
     }
@@ -38,6 +38,7 @@ public class PatientServiceImpl implements PatientService {
         patient.setConfirmed(sessionPatient.isConfirmed());
         model.addAttribute("patient", patient);
         patientRepository.save(patient);
+
     }
 
 

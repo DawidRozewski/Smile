@@ -7,22 +7,30 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
+import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.entity.Patient;
+import pl.smile.SmileApp.entity.Services;
 import pl.smile.SmileApp.repository.PatientRepository;
+import pl.smile.SmileApp.repository.ServicesRepository;
 import pl.smile.SmileApp.service.PatientServiceImpl;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/patient")
+@SessionAttributes("patient")
 public class PatientController {
 
     private final PatientRepository patientRepository;
     private final PatientServiceImpl patientService;
     private final PasswordEncoder passwordEncoder;
+    private final ServicesRepository servicesRepository;
 
-    public PatientController(PatientRepository patientRepository, PatientServiceImpl patientService, PasswordEncoder passwordEncoder) {
+    public PatientController(PatientRepository patientRepository, PatientServiceImpl patientService, PasswordEncoder passwordEncoder, ServicesRepository servicesRepository) {
         this.patientRepository = patientRepository;
         this.patientService = patientService;
         this.passwordEncoder = passwordEncoder;
+        this.servicesRepository = servicesRepository;
     }
 
     @GetMapping("/dashboard")
@@ -37,7 +45,8 @@ public class PatientController {
     }
 
     @GetMapping("/services")
-    public String services() {
+    public String services(Model model) {
+        model.addAttribute("services", servicesRepository.findAll());
         return "/patient/services";
     }
 
@@ -47,24 +56,27 @@ public class PatientController {
     }
 
     @GetMapping("/appointment")
-    public String appointment() {
+    public String prepToAppointment(Model model) {
+        model.addAttribute("appointment", new Appointment());
         return "/patient/appointment";
     }
 
-//
+
     @GetMapping("/edit")
-    public String prepareToEdit(HttpSession session, Model model) {
-        Patient patient = (Patient) session.getAttribute("patient");
-        model.addAttribute("patient", patientRepository.getById(patient.getId()));
+    public String prepareToEdit() {
         return "/form/edit";
     }
 
     @PostMapping("/edit")
-    public String merge(@ModelAttribute("patient") Patient patient, HttpSession session, Model model) {
-        patientService.update(patient,session,model);
+    public String updatePersonalData(@ModelAttribute("patient") Patient patient, HttpSession session, Model model) {
+        patientService.update(patient, session, model);
         return "redirect:/patient/dashboard";
     }
 
+    @ModelAttribute("services")
+    public List<Services> servicesList() {
+        return servicesRepository.findAll();
+    }
 
 }
 

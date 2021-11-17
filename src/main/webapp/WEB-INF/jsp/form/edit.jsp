@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@include file="../patient/dashboard.jsp" %>
 <h2>Edytuj dane</h2>
 <head>
     <style>
@@ -28,4 +29,5 @@
 
 </form:form>
 <br/>
-<a href="/changePassword">Zmień hasło</a>
+<a href="/patient/changePw">Zmień hasło</a><br/>
+<a href="/patient/delete">Usuń konto</a>

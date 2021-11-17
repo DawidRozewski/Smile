@@ -26,9 +26,10 @@
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/patient/**").hasRole("USER")
-//                .antMatchers("/doctor/**").hasRole("ADMIN")
+//                 .antMatchers("/app/admin/**").hasRole("ADMIN")
+//                .antMatchers("/app/doctor/**").hasRole("ADMIN")
+//                .antMatchers("/app/patient/**").hasRole("USER")
+//                .antMatchers("/**").permitAll()
 //                .and().formLogin().loginPage("/login")
 //                .and().logout().logoutSuccessUrl("/").deleteCookies("JSESSIONID")
 //                .permitAll();

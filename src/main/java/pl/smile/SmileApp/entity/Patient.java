@@ -54,5 +54,9 @@ public class Patient {
     @ManyToOne
     private Doctor doctor;
 
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
 
 }

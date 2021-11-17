@@ -21,22 +21,24 @@
     <tr>
         <th>Id</th>
         <th>Opis zabiegu</th>
+        <th>RTG</th>
         <th>Czas</th>
         <th>Cena</th>
         <th>Zaplanuj wizyte</th>
     </tr>
 
-
-    <%--    <c:forEach var="" items="${}">--%>
+        <c:forEach var="s" items="${services}">
     <tr>
-        <td>1</td>
-        <td>Usuwanie kamienia</td>
-        <td>60 minut</td>
-        <td>200 zł</td>
+        <td>${s.id}</td>
+        <td>${s.description}a</td>
+        <td>${s.RTG}</td>
+        <td>${s.time}</td>
+        <td>${s.amount}</td>
         <td><a href="">Zaplanuj wizyte</a> </td>
     </tr>
-    <%--    </c:forEach>--%>
-<p>Dla widoku doktora bedzie mozliwosc dodania zabiegu do cennika.</p>
+        </c:forEach>
 </table>
+<br/>
+<p>Dla widoku doktora bedzie mozliwosc dodania zabiegu do cennika.</p>
 
 </body>

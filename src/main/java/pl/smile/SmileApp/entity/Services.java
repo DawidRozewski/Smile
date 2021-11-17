@@ -21,7 +21,7 @@ public class Services {
     private long id;
 
     @NotBlank
-    private String name;
+    private int time;
 
     @NotBlank
     private String description;
