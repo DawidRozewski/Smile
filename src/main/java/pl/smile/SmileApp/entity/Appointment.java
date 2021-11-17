@@ -32,8 +32,8 @@ public class Appointment {
     @NotNull
     private int price;
 
-    @ManyToOne
-    private Doctor doctor;
+    @OneToOne
+    private AppointmentSlot appointmentSlot;
 
     @ManyToOne
     private Patient patient;

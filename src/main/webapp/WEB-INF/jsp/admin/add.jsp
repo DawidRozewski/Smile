@@ -1,8 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@include file="../patient/dashboard.jsp" %>
-<h2>Edytuj dane</h2>
+<h2>Dodaj doktora</h2>
 <head>
     <style>
         .errors {
@@ -10,24 +9,29 @@
         }
     </style>
 </head>
-
-<form:form modelAttribute="patient">
+<body>
+<form:form modelAttribute="doctor">
     <form:hidden path="id"/>
+
     Imie: <form:input path="firstName"/><br/>
     <form:errors path="firstName" cssClass="errors"/><br/>
 
     Nazwisko: <form:input path="lastName"/><br/>
     <form:errors path="lastName" cssClass="errors"/><br/>
 
+    Hasło: <form:password path="password" /><br/>
+    <form:errors path="password" cssClass="errors"/><br/>
+
+    Powtórz hasło: <form:password path="repassword" /><br/>
+    <form:errors path="repassword" cssClass="errors"/><br/>
+
     Email: <form:input path="email"/><br/>
     <form:errors path="email" cssClass="errors"/><br/>
 
-    Nr. kontaktowy: <form:input path="phoneNumber"/><br/>
+    Nr. telefonu: <form:input path="phoneNumber"/><br/>
     <form:errors path="phoneNumber" cssClass="errors"/><br/>
 
-    <input type="submit" value="Zapisz zmiany">
+    <input type="submit" value="Dodaj doktora">
 
 </form:form>
-<br/>
-<a href="/patient/changePw">Zmień hasło</a><br/></br/>
-<a href="/patient/delete">Usuń konto</a>
+</body>

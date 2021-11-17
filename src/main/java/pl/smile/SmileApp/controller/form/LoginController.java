@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.Patient;
+import pl.smile.SmileApp.repository.DoctorRepository;
 import pl.smile.SmileApp.repository.PatientRepository;
 
 
@@ -15,10 +16,12 @@ public class LoginController {
 
     private final PasswordEncoder passwordEncoder;
     private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
 
-    public LoginController(PasswordEncoder passwordEncoder, PatientRepository patientRepository) {
+    public LoginController(PasswordEncoder passwordEncoder, PatientRepository patientRepository, DoctorRepository doctorRepository) {
         this.passwordEncoder = passwordEncoder;
         this.patientRepository = patientRepository;
+        this.doctorRepository = doctorRepository;
     }
 
     @GetMapping("")

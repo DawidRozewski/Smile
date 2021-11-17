@@ -28,17 +28,21 @@ public class Doctor {
     @Pattern(regexp = "^[A-Za-z]*$", message = "Wpisz poprawne nazwisko.")
     private String lastName;
 
+    @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$", message = "Haslo musi posiadac przynajmniej 1 duza litere, 1 cyfre, 1 znak specjalny oraz minimum 8 znakow dlugosci.")
+    private String password;
+
+    @Transient
+    private String repassword;
+
     @Email
-//    @UniqueEmail
     @NotEmpty
     @NotNull
     private String email;
 
+    @Pattern(regexp = "^[5-8]\\d{8}$", message = "Podaj prawidlowy numer telefonu.")
     @NotNull
-    private int phoneNumber;
-
-    @OneToMany
-    List<Patient> patients = new ArrayList<>();
+    @Min(9)
+    private String phoneNumber;
 
     public String getFullName() {
         return firstName + " " + lastName;

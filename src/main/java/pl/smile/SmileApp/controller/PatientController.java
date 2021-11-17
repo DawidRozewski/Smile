@@ -67,6 +67,9 @@ public class PatientController {
         return "/form/edit";
     }
 
+
+    //Ze względu na nie edytowanie wszystkich danych z Pacjenta,
+    // nie jest mozliwe wykonanie odpowiedniej walidacji tak jak przy rejestracji?
     @PostMapping("/edit")
     public String updatePersonalData(@ModelAttribute("patient") Patient patient, HttpSession session, Model model) {
         patientService.update(patient, session, model);
