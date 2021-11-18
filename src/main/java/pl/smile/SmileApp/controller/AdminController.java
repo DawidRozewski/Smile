@@ -1,6 +1,5 @@
 package pl.smile.SmileApp.controller;
 
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,13 +12,13 @@ import pl.smile.SmileApp.service.DoctorServiceImpl;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/app/admin")
 public class AdminController {
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
     private final DoctorServiceImpl doctorService;
 
-    public AdminController(PatientRepository patientRepository, DoctorRepository doctorRepository, DoctorServiceImpl doctorService) {
+    public AdminController(PatientRepository patientRepository, DoctorRepository doctorRepository, DoctorServiceImpl doctorService, DoctorController doctorController) {
         this.patientRepository = patientRepository;
         this.doctorRepository = doctorRepository;
         this.doctorService = doctorService;
@@ -43,9 +42,8 @@ public class AdminController {
         if ("yes".equals(confirmed)) {
             patientRepository.deleteById(id);
         }
-        return "redirect:/admin/patients";
+        return "redirect:/app/admin/patients";
     }
-
 
     @GetMapping("/doctors")
     public String showDoctors(Model model) {
@@ -65,7 +63,7 @@ public class AdminController {
         if ("yes".equals(confirmed)) {
             doctorRepository.deleteById(id);
         }
-        return "redirect:/admin/doctors";
+        return "redirect:/app/admin/doctors";
     }
 
     @GetMapping("/doctors/add")
@@ -80,6 +78,6 @@ public class AdminController {
             return "/admin/add";
         }
         doctorService.save(doctor, result);
-        return "redirect:/admin/doctors";
+        return "redirect:/app/admin/doctors";
     }
 }

@@ -1,9 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <div id="menu">
-    <strong><a href="/admin/patients">Pacjenci</a></strong>&nbsp;&nbsp;&nbsp;
-    <strong><a href="/admin/doctors">Doktorzy</a></strong>&nbsp;&nbsp;&nbsp;
-    <strong><a href="/admin/logout">Wyloguj</a></strong>&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/admin/patients">Pacjenci</a></strong>&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/admin/doctors">Doktorzy</a></strong>&nbsp;&nbsp;&nbsp;
+    <strong><a href="/logout">Wyloguj</a></strong>&nbsp;&nbsp;&nbsp;
 </div>
 <br/>
 <hr/>
@@ -38,7 +38,7 @@
             <td>${p.email}</td>
             <td>${p.pesel}</td>
             <td>${p.phoneNumber}</td>
-            <td><a href="/admin/patients/remove/${p.id}">Usuń</a></td>
+            <td><a href="/app/admin/patients/remove/${p.id}">Usuń</a></td>
         </tr>
     </c:forEach>
 </table>

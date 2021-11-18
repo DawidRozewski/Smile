@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
     @GetMapping("")
-    @ResponseBody
     public String showHomePage() {
             return "homepage";
     }
 
     @GetMapping("/appointment")
+    @Secured({"ROLE_ADMIN", "ROLE_DOCTOR", "ROLE_PATIENT"})
     @ResponseBody
     public String prepToAppointment() {
         return "witam pacjenta";

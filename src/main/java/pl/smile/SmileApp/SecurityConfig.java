@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,6 +17,7 @@ import pl.smile.SmileApp.security.PatientDetailsService;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -28,13 +30,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/app/doctor/**").hasRole("DOCTOR")
                 .antMatchers("/app/patient/**").hasRole("PATIENT")
                 .antMatchers("/app/**").permitAll()
-                .and().formLogin();
+                .and().formLogin()
+                .and().logout().logoutSuccessUrl("/app").deleteCookies("JSESSIONID")
+                .and().exceptionHandling().accessDeniedPage("/403");
+
 
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+        auth.inMemoryAuthentication()
+                .withUser("admin")
+                .password(passwordEncoder().encode("admin123"))
+                .roles("ADMIN");
+
     }
 
     @Bean
@@ -47,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    protected PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
