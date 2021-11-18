@@ -8,9 +8,9 @@
 </style>
 
 <strong><a href="" class="home">Strona główna</a></strong>
-<strong><a href="/services" class="home">Cennik zabiegów</a></strong>
+<strong><a href="/app/services" class="home">Cennik zabiegów</a></strong>
 <strong><a href="/patient/appointment" class="home">Zaplanuj wizytę</a></strong>
 <strong><a href="/login" class="home">Zaloguj</a></strong>
-<strong><a href="/register" class="home">Zarejestruj</a></strong>
-<strong><a href="/about" class="home">O mnie</a></strong>
-<strong><a href="/contact" class="home">Kontakt</a></strong>
+<strong><a href="/app/register" class="home">Zarejestruj</a></strong>
+<strong><a href="/app/about" class="home">O mnie</a></strong>
+<strong><a href="/app/contact" class="home">Kontakt</a></strong>

@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/app/register")
 public class RegisterController {
 
     private final PatientRepository patientRepository;

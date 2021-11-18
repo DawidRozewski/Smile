@@ -14,15 +14,15 @@
 </style>
 
 <head>
-<strong><a href="/login" class="test">Strona główna</a></strong>
-<strong><a href="/patient/dashboard" class="test">Dashboard</a></strong>
-<strong><a href="/patient/my-treatment"class="test">Plan leczenia</a></strong>
-<strong><a href="/patient/history"class="test">Historia wizyt</a></strong>
-<strong><a href="/patient/services" class="test">Cennik zabiegów</a></strong>
-<strong><a href="/patient/appointment"class="test">Zaplanuj wizytę</a></strong>
-<strong><a href="/patient/edit"class="test">Edytuj dane</a></strong>
-<strong><a href="/patient/login"class="test">Kontakt</a></strong>
-<strong><a href="/patient/logout"class="test">Wyloguj</a></strong>
+<strong><a href="/app/login" class="test">Strona główna</a></strong>
+<strong><a href="/app/patient/dashboard" class="test">Dashboard</a></strong>
+<strong><a href="/app/patient/my-treatment"class="test">Plan leczenia</a></strong>
+<strong><a href="/app/patient/history"class="test">Historia wizyt</a></strong>
+<strong><a href="/app/patient/services" class="test">Cennik zabiegów</a></strong>
+<strong><a href="/app/patient/appointment"class="test">Zaplanuj wizytę</a></strong>
+<strong><a href="/app/patient/edit"class="test">Edytuj dane</a></strong>
+<strong><a href="/app/patient/login"class="test">Kontakt</a></strong>
+<strong><a href="/app/patient/logout"class="test">Wyloguj</a></strong>
 </head>
 <body class="back">
 

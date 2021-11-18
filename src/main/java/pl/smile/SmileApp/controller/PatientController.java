@@ -17,7 +17,7 @@ import pl.smile.SmileApp.service.PatientServiceImpl;
 import java.util.List;
 
 @Controller
-@RequestMapping("/patient")
+@RequestMapping("/app/patient")
 @SessionAttributes("patient")
 public class PatientController {
 
@@ -37,7 +37,6 @@ public class PatientController {
     public String dashboard() {
         return "/patient/dashboard";
     }
-
 
     @GetMapping("/history")
     public String history() {

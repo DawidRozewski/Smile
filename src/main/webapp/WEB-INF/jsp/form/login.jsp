@@ -7,5 +7,5 @@
     E-mail: <input type="text" name="email" placeholder="Podaj email"> <br/>
     Hasło: <input type="password" name="password" placeholder="Podaj hasło"> <br/>
     <input type="submit" value="Zaloguj"> <br/>
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+<%--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
 </form>

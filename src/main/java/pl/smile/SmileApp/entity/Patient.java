@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.pl.PESEL;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -57,6 +59,9 @@ public class Patient {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> roles = new HashSet<>();
 
 
 }
