@@ -14,3 +14,13 @@
 <strong><a href="/app/register" class="home">Zarejestruj</a></strong>
 <strong><a href="/app/about" class="home">O mnie</a></strong>
 <strong><a href="/app/contact" class="home">Kontakt</a></strong>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<h3><a href="http://localhost:8080/app/patient/dashboard">Pacjent</a></h3><br/><br/>
+<h3><a href="http://localhost:8080/app/doctor/dashboard">Doktor</a></h3><br/><br/>
+<h3><a href="http://localhost:8080/app/admin/patients">Admin</a></h3>

@@ -34,7 +34,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutSuccessUrl("/app").deleteCookies("JSESSIONID")
                 .and().exceptionHandling().accessDeniedPage("/403");
 
-
     }
 
     @Override
@@ -43,7 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password(passwordEncoder().encode("admin123"))
                 .roles("ADMIN");
-
     }
 
     @Bean
