@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/doctor")
+@RequestMapping("/app/doctor")
 public class DoctorController {
 
 

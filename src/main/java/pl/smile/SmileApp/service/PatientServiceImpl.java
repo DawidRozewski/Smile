@@ -25,11 +25,11 @@ public class PatientServiceImpl implements PatientService {
             patient.setPassword(passwordEncoder.encode(patient.getPassword()));
             patient.setRoles(Set.of("ROLE_PATIENT"));
             patientRepository.save(patient);
-
         } else {
             result.rejectValue("repassword", "error.patient", "Podane hasła nie są zgodne.");
+                return "/form/register";
         }
-        return "/form/login";
+        return "/form/register";
     }
 
     @Override

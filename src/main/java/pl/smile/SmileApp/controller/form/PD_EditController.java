@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/edit")
+@RequestMapping("/app/edit")
 public class PD_EditController {
 
     private final PatientRepository patientRepository;

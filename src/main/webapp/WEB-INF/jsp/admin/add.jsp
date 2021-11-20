@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <h2>Dodaj doktora</h2>
+<hr>
 <head>
     <style>
         .errors {

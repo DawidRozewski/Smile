@@ -4,22 +4,23 @@
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 //import org.springframework.stereotype.Component;
-//import pl.smile.SmileApp.repository.PatientRepository;
+//import pl.smile.SmileApp.repository.DoctorRepository;
 //
 //@Component
-//public class PatientDetailsService implements UserDetailsService {
+//public class DoctorDetailsService implements UserDetailsService {
 //
-//    private final PatientRepository patientRepository;
+//    private final DoctorRepository doctorRepository;
 //
-//    public PatientDetailsService(PatientRepository patientRepository) {
-//        this.patientRepository = patientRepository;
+//    public DoctorDetailsService(DoctorRepository doctorRepository) {
+//        this.doctorRepository = doctorRepository;
 //    }
+//
 //
 //    @Override
 //    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//        return patientRepository
+//        return doctorRepository
 //                .findByEmail(email)
-//                .map(PatientEntityDetails::new)
+//                .map(DoctorEntityDetails::new)
 //                .orElseThrow(() -> new UsernameNotFoundException(email));
 //    }
 //}

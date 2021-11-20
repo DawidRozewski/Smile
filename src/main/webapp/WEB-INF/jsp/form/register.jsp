@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <h2>Zarejestruj</h2>
-<head FKmer5utvy1hiff7ovs6f4bjtnw INDEX patient (doctor_id ASC)>
+<head >
     <style>
         .errors {
             color: red;

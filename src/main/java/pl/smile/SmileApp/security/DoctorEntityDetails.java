@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import pl.smile.SmileApp.entity.Patient;
+import pl.smile.SmileApp.entity.Doctor;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -13,13 +13,13 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class PatientEntityDetails implements UserDetails {
+public class DoctorEntityDetails implements UserDetails {
 
-    private Patient patient;
+    private Doctor doctor;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return patient.getRoles()
+        return doctor.getRoles()
                 .stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());
@@ -27,12 +27,12 @@ public class PatientEntityDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return patient.getPassword();
+        return doctor.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return patient.getEmail();
+        return doctor.getEmail();
     }
 
     @Override

@@ -6,12 +6,12 @@
 <form method="post" action="/app/login">
     <div class="form-group ${error != null ? 'has-error' : ''}">
              <span>${msg}</span>
-    E-mail: <input type="text" name="username" placeholder="Podaj email"> <br/>
+         E-mail: <input type="text" name="email" placeholder="Podaj email"> <br/>
 
         Hasło: <input type="password" name="password" placeholder="Podaj hasło"> <br/>
                 <span>${errorMsg}</span>
     <input type="submit" value="Zaloguj"> <br/>
     </div>
-<%--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 </body>

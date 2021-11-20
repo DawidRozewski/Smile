@@ -37,12 +37,9 @@ public class Patient {
 
     @Email
     @NotBlank
-//    @UniqueEmail
     private String email;
 
     @PESEL()
-
-//    @UniquePesel ???????????
     private String pesel;
 
     @Pattern(regexp = "^[5-8]\\d{8}$", message = "Podaj prawidlowy numer telefonu.")

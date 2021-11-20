@@ -1,6 +1,5 @@
 package pl.smile.SmileApp;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -12,16 +11,22 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import pl.smile.SmileApp.repository.DoctorRepository;
 import pl.smile.SmileApp.repository.PatientRepository;
-import pl.smile.SmileApp.security.PatientDetailsService;
+import pl.smile.SmileApp.security.UserFind;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    PatientRepository patientRepository;
+   private final PatientRepository patientRepository;
+   private final DoctorRepository doctorRepository;
+
+    public SecurityConfig(PatientRepository patientRepository, DoctorRepository doctorRepository) {
+        this.patientRepository = patientRepository;
+        this.doctorRepository = doctorRepository;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -36,19 +41,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password(passwordEncoder().encode("admin123"))
-                .roles("ADMIN");
-    }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("admin")
+//                .password(passwordEncoder().encode("admin123"))
+//                .roles("ADMIN");
+//
+//    }
 
     @Bean
-    protected AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        PatientDetailsService patientDetailsService = new PatientDetailsService(patientRepository);
-        provider.setUserDetailsService(patientDetailsService);
+        UserFind userFind = new UserFind(patientRepository, doctorRepository);
+        provider.setUserDetailsService(userFind);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }

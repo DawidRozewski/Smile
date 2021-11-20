@@ -1,5 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<head>
+    <style>
+        .test {
+            border: blue 2px;
+        }
+    </style>
+</head>
+
+
+
+
 <div id="menu">
     <strong><a href="/app/admin/patients">Pacjenci</a></strong>&nbsp;&nbsp;&nbsp;
     <strong><a href="/app/admin/doctors">Doktorzy</a></strong>&nbsp;&nbsp;&nbsp;
@@ -8,7 +19,7 @@
 <br/>
 <hr/>
 <br/>
-<a href="/admin/doctors/add">Dodaj doktora</a><br/>
+<a href="/app/admin/doctors/add" class="test">Dodaj doktora</a><br/>
 <head>
     <title>Doktorzy</title>
     <style>
@@ -44,3 +55,4 @@
 <br/>
 <%--onclick="return confirm('Na pewno chcesz usunąć tego pacjenta?')--%>
 </body>
+<inpu>

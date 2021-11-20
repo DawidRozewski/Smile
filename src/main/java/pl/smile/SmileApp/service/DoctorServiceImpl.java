@@ -6,6 +6,8 @@ import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.repository.DoctorRepository;
 
+import java.util.Set;
+
 @Service
 public class DoctorServiceImpl implements DoctorService{
     private final DoctorRepository doctorRepository;
@@ -20,11 +22,13 @@ public class DoctorServiceImpl implements DoctorService{
     public String save(Doctor doctor, BindingResult result) {
         if (checkPassword(doctor.getPassword(), doctor.getRepassword())) {
             doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
+            doctor.setRoles(Set.of("ROLE_DOCTOR"));
             doctorRepository.save(doctor);
         } else {
             result.rejectValue("repassword", "error.doctor", "Podane hasła nie są zgodne.");
+            return "/admin/add";
         }
-        return "/admin/doctors/add";
+        return "/admin/doctors";
     }
 
     private boolean checkPassword(String pass, String pass2) {

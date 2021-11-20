@@ -1,5 +1,4 @@
 package pl.smile.SmileApp.controller;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,7 +7,6 @@ import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.repository.DoctorRepository;
 import pl.smile.SmileApp.repository.PatientRepository;
 import pl.smile.SmileApp.service.DoctorServiceImpl;
-
 import javax.validation.Valid;
 
 @Controller
@@ -18,7 +16,7 @@ public class AdminController {
     private final DoctorRepository doctorRepository;
     private final DoctorServiceImpl doctorService;
 
-    public AdminController(PatientRepository patientRepository, DoctorRepository doctorRepository, DoctorServiceImpl doctorService, DoctorController doctorController) {
+    public AdminController(PatientRepository patientRepository, DoctorRepository doctorRepository, DoctorServiceImpl doctorService) {
         this.patientRepository = patientRepository;
         this.doctorRepository = doctorRepository;
         this.doctorService = doctorService;

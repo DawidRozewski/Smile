@@ -9,16 +9,18 @@
     </style>
 
 <div id="menu">
-<strong><a href="/doctor/login">Strona główna</a></strong>
-<strong><a href="/doctor/dashboard">Dashboard</a></strong>
-<strong><a href="/doctor/schedule">Grafik</a></strong>
-<strong><a href="/doctor/patients">Lista pacjentów</a></strong>
-<strong><a href="/doctor/treatment-plan">Plan leczenia</a></strong>
-<strong><a href="/doctor/services">Cennik zabiegów</a></strong>
-<strong><a href="/doctor/edit">Edytuj dane</a></strong>
-<strong><a href="/doctor/dashboard">Kontakt</a></strong>
-<strong><a href="/doctor/dashboard">Wyloguj</a></strong>
+<strong><a href="/app">Strona główna</a></strong>
+<strong><a href="/app/doctor/dashboard">Dashboard</a></strong>
+<strong><a href="/app/doctor/schedule">Grafik</a></strong>
+<strong><a href="/app/doctor/patients">Lista pacjentów</a></strong>
+<strong><a href="/app/doctor/treatment-plan">Plan leczenia</a></strong>
+<strong><a href="/app/doctor/services">Cennik zabiegów</a></strong>
+<strong><a href="/app/doctor/edit">Edytuj dane</a></strong>
+<strong><a href="/app/doctor/dashboard">Kontakt</a></strong>
+<strong><a href="/logout">Wyloguj</a></strong>
 </div>
+
+<hr>
 
 <head>
     <title>Harmonogram pacjentow</title>
@@ -56,4 +58,11 @@
 
 </table>
 <p>Posortowane od najblizszych od dnia dzisiejszego.</p>
+
+
+<sec:authorize access="isAuthenticated()">
+    <p>Zalogowany jako: <sec:authentication property="principal.username"/></p>
+    <p>Posiada role: <sec:authentication property="authorities"/></p>
+</sec:authorize>
+
 </body>
