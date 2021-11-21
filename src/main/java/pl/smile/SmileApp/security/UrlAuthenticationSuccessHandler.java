@@ -35,7 +35,6 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
         if (response.isCommitted()) {
             return;
         }
-
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 

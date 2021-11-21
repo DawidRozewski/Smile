@@ -1,36 +1,33 @@
 package pl.smile.SmileApp.controller;
 
+import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import pl.smile.SmileApp.entity.Patient;
+import pl.smile.SmileApp.repository.AdminRepository;
 import pl.smile.SmileApp.repository.DoctorRepository;
 import pl.smile.SmileApp.repository.PatientRepository;
-import pl.smile.SmileApp.security.UserFind;
-
-import java.security.Principal;
-
+import pl.smile.SmileApp.security.CurrentUser;
 
 @Controller
 @RequestMapping("/app")
+@AllArgsConstructor
 public class HomeController {
 
-    private final UserFind userFind;
+    private final CurrentUser currentUser;
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
+    private final AdminRepository adminRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public HomeController(UserFind userFind, PatientRepository patientRepository, DoctorRepository doctorRepository) {
-        this.userFind = userFind;
-        this.patientRepository = patientRepository;
-        this.doctorRepository = doctorRepository;
-    }
 
     @GetMapping("")
-    public String showHomePage() {
-            return "homepage";
+    public String homePage() {
+        return "homepage";
     }
-
 
 
 }
+
+

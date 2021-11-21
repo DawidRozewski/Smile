@@ -22,7 +22,6 @@ public class DoctorServiceImpl implements DoctorService{
     public String save(Doctor doctor, BindingResult result) {
         if (checkPassword(doctor.getPassword(), doctor.getRepassword())) {
             doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
-            doctor.setRoles(Set.of("ROLE_DOCTOR"));
             doctorRepository.save(doctor);
         } else {
             result.rejectValue("repassword", "error.doctor", "Podane hasła nie są zgodne.");

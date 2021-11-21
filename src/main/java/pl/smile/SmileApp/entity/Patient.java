@@ -48,6 +48,7 @@ public class Patient {
     private String phoneNumber;
 
     @AssertTrue
+    @Transient
     private boolean confirmed;
 
     @ManyToOne
@@ -57,8 +58,6 @@ public class Patient {
         return firstName + " " + lastName;
     }
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<String> roles = new HashSet<>();
-
+    private final String ROLE = "ROLE_PATIENT";
 
 }

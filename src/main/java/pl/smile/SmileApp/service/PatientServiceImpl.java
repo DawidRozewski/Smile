@@ -23,7 +23,6 @@ public class PatientServiceImpl implements PatientService {
     public String save(Patient patient, BindingResult result) {
         if (checkPassword(patient.getPassword(), patient.getRepassword())) {
             patient.setPassword(passwordEncoder.encode(patient.getPassword()));
-            patient.setRoles(Set.of("ROLE_PATIENT"));
             patientRepository.save(patient);
         } else {
             result.rejectValue("repassword", "error.patient", "Podane hasła nie są zgodne.");

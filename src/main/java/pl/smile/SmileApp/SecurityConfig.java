@@ -1,11 +1,9 @@
 package pl.smile.SmileApp;
 
-import org.apache.jasper.tagplugins.jstl.core.Url;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,22 +11,25 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import pl.smile.SmileApp.repository.AdminRepository;
 import pl.smile.SmileApp.repository.DoctorRepository;
 import pl.smile.SmileApp.repository.PatientRepository;
 import pl.smile.SmileApp.security.UrlAuthenticationSuccessHandler;
-import pl.smile.SmileApp.security.UserFind;
+import pl.smile.SmileApp.security.CurrentUser;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-   private final PatientRepository patientRepository;
-   private final DoctorRepository doctorRepository;
+    private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
+    private final AdminRepository adminRepository;
 
-    public SecurityConfig(PatientRepository patientRepository, DoctorRepository doctorRepository) {
+    public SecurityConfig(PatientRepository patientRepository, DoctorRepository doctorRepository, AdminRepository adminRepository) {
         this.patientRepository = patientRepository;
         this.doctorRepository = doctorRepository;
+        this.adminRepository = adminRepository;
     }
 
     @Override
@@ -41,30 +42,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().successHandler(myAuthenticationSuccessHandler())
                 .and().logout().logoutSuccessUrl("/app").deleteCookies("JSESSIONID")
                 .and().exceptionHandling().accessDeniedPage("/403");
+        http.csrf().disable();
 
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("admin")
-//                .password(passwordEncoder().encode("admin123"))
-//                .roles("ADMIN");
-//
-//    }
-
     @Bean
-    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
         return new UrlAuthenticationSuccessHandler();
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        UserFind userFind = new UserFind(patientRepository, doctorRepository);
-        provider.setUserDetailsService(userFind);
-        provider.setPasswordEncoder(passwordEncoder());
-        return provider;
+    public CurrentUser currentUser() {
+        return new CurrentUser();
     }
 
     @Bean
