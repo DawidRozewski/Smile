@@ -48,8 +48,7 @@ public class Patient {
     private String phoneNumber;
 
     @AssertTrue
-    @Transient
-    private boolean confirmed;
+    private boolean processingOfPersonalData;
 
     @ManyToOne
     private Doctor doctor;

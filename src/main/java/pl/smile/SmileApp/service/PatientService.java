@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 public interface PatientService {
 
     String save(Patient patient, BindingResult result);
-    void update(Patient patient, HttpSession session, Model model);
+    void update(Patient patient);
 
 
 }

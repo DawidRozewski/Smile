@@ -3,9 +3,11 @@ package pl.smile.SmileApp.controller;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.entity.Patient;
@@ -14,11 +16,12 @@ import pl.smile.SmileApp.repository.PatientRepository;
 import pl.smile.SmileApp.repository.ServicesRepository;
 import pl.smile.SmileApp.service.PatientServiceImpl;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
 @RequestMapping("/app/patient")
-@SessionAttributes("patient")
+//@SessionAttributes("patient")
 public class PatientController {
 
     private final PatientRepository patientRepository;
@@ -62,17 +65,20 @@ public class PatientController {
 
 
     @GetMapping("/edit")
-    public String prepareToEdit() {
+    public String prepareToEdit(Principal principal, Model model) {
+        String email = principal.getName();
+        Patient byEmail = patientRepository.getByEmail(email);
+        model.addAttribute("patient", byEmail);
         return "/form/edit";
     }
 
-
-    //Ze względu na nie edytowanie wszystkich danych z Pacjenta,
-    // nie jest mozliwe wykonanie odpowiedniej walidacji tak jak przy rejestracji?
     @PostMapping("/edit")
-    public String updatePersonalData(@ModelAttribute("patient") Patient patient, HttpSession session, Model model) {
-        patientService.update(patient, session, model);
-        return "redirect:/patient/dashboard";
+    public String updatePersonalData(@ModelAttribute("patient") Patient patient, BindingResult result) {
+        if(result.hasErrors()) {
+            return "/form/edit";
+        }
+        patientService.update(patient);
+        return "redirect:/app/patient/dashboard";
     }
 
     @ModelAttribute("services")

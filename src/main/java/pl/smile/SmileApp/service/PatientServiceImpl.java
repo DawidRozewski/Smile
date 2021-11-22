@@ -32,12 +32,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void update(Patient patient, HttpSession session, Model model) {
-        Patient sessionPatient = (Patient) session.getAttribute("patient");
-        patient.setPassword(sessionPatient.getPassword());
-        patient.setPesel(sessionPatient.getPesel());
-        patient.setConfirmed(sessionPatient.isConfirmed());
-        model.addAttribute("patient", patient);
+    public void update(Patient patient) {
         patientRepository.save(patient);
 
     }

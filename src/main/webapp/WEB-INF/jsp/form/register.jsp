@@ -36,9 +36,9 @@ Nr. kontaktowy: <form:input path="phoneNumber"/><br/>
 Wybierz doktora: <form:select path="doctor.id" items="${doctors}" itemLabel="fullName" itemValue="id"/><br/>
      <form:errors path="doctor" cssClass="errors"/><br/>
 
- <form:checkbox path="confirmed" id="confirmed"/><br/>
-     <label for="confirmed">Zgoda na przetwarzanie danych osobowych.</label><br/>
-<form:errors path="confirmed" cssClass="errors"/><br/>
+ <form:checkbox path="processingOfPersonalData" id="processingOfPersonalData"/><br/>
+     <label for="processingOfPersonalData">Zgoda na przetwarzanie danych osobowych.</label><br/>
+<form:errors path="processingOfPersonalData" cssClass="errors"/><br/>
 
 <input type="submit" value="Zarejestruj">
 
