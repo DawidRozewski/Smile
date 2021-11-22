@@ -25,35 +25,12 @@
         }
     </style>
 </head>
-<h2>Dane pacjenta</h2>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Imie i nazwisko</th>
-        <th>Pesel</th>
-        <th>Email</th>
-        <th>Nr. kontaktowy</th>
-        <th>Historia wizyt</th>
-    </tr>
-    <tr>
-        <td>${patient.id}</td>
-        <td>${patient.fullName}</td>
-        <td>${patient.pesel}</td>
-        <td>${patient.email}</td>
-        <td>${patient.phoneNumber}</td>
-        <td><a href="/app/doctor/history/${patient.id}">Pokaż</a></td>
-    </tr>
-</table>
-<hr/>
 
-<hr/>
-<h2>Plan leczenia</h2>
+<h2>Historia wizyt</h2>
 <table>
     <tr>
-        <th>Kolejność wizyt</th>
-        <th>Opis</th>
-        <th>Czas</th>
         <th>Data wizyty</th>
+        <th>Opis</th>
     </tr>
     <c:forEach var="a" items="${appointments}">
         <tr>
@@ -62,5 +39,3 @@
         </tr>
     </c:forEach>
 </table>
-
-</body>

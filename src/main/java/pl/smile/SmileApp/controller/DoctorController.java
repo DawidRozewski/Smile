@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.smile.SmileApp.entity.Doctor;
+import pl.smile.SmileApp.entity.TreatmentPlan;
 import pl.smile.SmileApp.repository.AppointmentRepository;
 import pl.smile.SmileApp.repository.DoctorRepository;
 import pl.smile.SmileApp.repository.PatientRepository;
@@ -35,38 +36,31 @@ public class DoctorController {
         return "/doctor/dashboard";
     }
 
+
+    @GetMapping("/patient/{id}")
+    public String patients(@PathVariable long id, Model model) {
+        model.addAttribute("patient", patientRepository.getById(id));
+        model.addAttribute("appointments", appointmentRepository.findAllByPatientId(id));
+        return "/doctor/patient";
+    }
+
+
+    @GetMapping("/history/{id}")
+    public String showPatientHistory(@PathVariable long id, Model model) {
+        model.addAttribute("appointments", appointmentRepository.findAllByPatientId(id));
+        return "/doctor/history";
+    }
+
+
     @GetMapping("/schedule")
     public String schedule() {
         return "/doctor/schedule";
     }
 
-
-    @GetMapping("/patient/{id}")
-    public String patients(@PathVariable long id, Model model) {
-        model.addAttribute("patient", patientRepository.getById(id));
-       model.addAttribute("appointments",appointmentRepository.findAllByPatientId(id));
-        return "/doctor/patient";
-    }
-
-
-    @GetMapping("/treatment-plan")
-    public String treatmentPlan() {
-        return "/doctor/treatmentP";
-    }
-
-
     @GetMapping("/services")
     public String services() {
         return "/doctor/services";
     }
-
-
-
-
-
-
-
-
 
 
 }
