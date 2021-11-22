@@ -48,15 +48,6 @@ public class RegisterController {
         return "redirect:/login";
     }
 
-//    Patient byEmail = patientRepository.findByEmail(patient.getEmail());
-//        if(byEmail != null) {
-//        result.rejectValue("email", "error.patient", "Podany e-mail istnieje już w bazie.");
-//    }
-//    Patient byPesel = patientRepository.findByPesel(patient.getPesel());
-//        if(byPesel != null) {
-//        result.rejectValue("pesel", "error.patient", "Podany pesel istnieje już w bazie.");
-//    }
-
     @ModelAttribute("doctors")
     public List<Doctor> doctorList() {
         return doctorRepository.findAll();
