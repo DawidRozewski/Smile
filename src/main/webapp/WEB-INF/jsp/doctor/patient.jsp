@@ -14,7 +14,6 @@
 </div>
 <hr>
 <head>
-    <title>Plan leczenia</title>
     <style>
         table, th, td {
             border-collapse: collapse;
@@ -26,29 +25,38 @@
         }
     </style>
 </head>
-
+<h2>Dane pacjenta</h2>
 <table>
     <tr>
         <th>Id</th>
         <th>Imie i nazwisko</th>
-        <th>Pokaz dane</th>
-        <th>Historia leczenia</th>
-        <th>Kolejna wizyta</th>
-        <th>Usun</th>
+        <th>Pesel</th>
+        <th>Email</th>
+        <th>Nr. kontaktowy</th>
+        <th>Plan leczenia</th>
     </tr>
-
-
-    <%--    <c:forEach var="" items="${}">--%>
     <tr>
-        <td>1</td>
-        <td>Jan Kowalski</td>
-        <td><a href="">Pokaz</a> </td>
-        <td><a href="">Pokaz historie</a> </td>
-        <td>20.11.2020 17:00</td>
-        <td><a href="">Usuń</a> </td>
+        <td>${patient.id}</td>
+        <td>${patient.fullName}</td>
+        <td>${patient.pesel}</td>
+        <td>${patient.email}</td>
+        <td>${patient.phoneNumber}</td>
+        <td><a href="/app/doctor/treatment-plan/${patient.id}">Dodaj</a></td>
     </tr>
-    <%--    </c:forEach>--%>
-
+</table>
+<hr/>
+<h2>Historia wizyt</h2>
+<table>
+    <tr>
+        <th>Data wizyty</th>
+        <th>Opis</th>
+    </tr>
+    <c:forEach var="a" items="${appointments}">
+        <tr>
+            <td>${a.start}</td>
+            <td>${a.treatmentDescription}</td>
+        </tr>
+    </c:forEach>
 </table>
 
 </body>

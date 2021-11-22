@@ -1,6 +1,7 @@
 package pl.smile.SmileApp.entity;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
@@ -21,9 +22,11 @@ public class Appointment {
     private long id;
 
     @Future
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private LocalDateTime start;
 
     @Future
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private LocalDateTime end;
 
     @NotBlank

@@ -1,21 +1,22 @@
 package pl.smile.SmileApp.repository;
 
-import com.mysql.cj.jdbc.exceptions.PacketTooBigException;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
 
-import java.util.Optional;
+import java.util.List;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
-    Optional<Patient> findByEmail(String email);
-
     Patient getByEmail(String email);
 
+    List<Patient> findAllByDoctor(Doctor doctorId);
 
-    Patient findByPesel(String pesel);
+
+
 
 
 }

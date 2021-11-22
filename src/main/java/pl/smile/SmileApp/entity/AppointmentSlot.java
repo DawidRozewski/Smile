@@ -1,10 +1,9 @@
 package pl.smile.SmileApp.entity;
 
 import lombok.*;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
@@ -15,11 +14,14 @@ import java.time.LocalDateTime;
 @ToString
 public class AppointmentSlot {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private LocalDateTime start;
-    private LocalDate end;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+    private LocalDateTime end;
 
     @ManyToOne
     private Doctor doctor;
