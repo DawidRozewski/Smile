@@ -67,8 +67,7 @@ public class PatientController {
     @GetMapping("/edit")
     public String prepareToEdit(Principal principal, Model model) {
         String email = principal.getName();
-        Patient byEmail = patientRepository.getByEmail(email);
-        model.addAttribute("patient", byEmail);
+        model.addAttribute("patient", patientRepository.getByEmail(email));
         return "/form/edit";
     }
 

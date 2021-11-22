@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.repository.PatientRepository;
+
 import javax.servlet.http.HttpSession;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class PatientServiceImpl implements PatientService {
             patientRepository.save(patient);
         } else {
             result.rejectValue("repassword", "error.patient", "Podane hasła nie są zgodne.");
-                return "/form/register";
+            return "/form/register";
         }
         return "/form/register";
     }
@@ -34,8 +35,8 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public void update(Patient patient) {
         patientRepository.save(patient);
-
     }
+
     private boolean checkPassword(String pass, String pass2) {
         return pass.equals(pass2);
     }
