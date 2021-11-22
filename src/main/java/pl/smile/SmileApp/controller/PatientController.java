@@ -80,6 +80,7 @@ public class PatientController {
         return "redirect:/app/patient/dashboard";
     }
 
+
     @ModelAttribute("services")
     public List<Services> servicesList() {
         return servicesRepository.findAll();

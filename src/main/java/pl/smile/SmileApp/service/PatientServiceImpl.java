@@ -21,7 +21,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public String save(Patient patient, BindingResult result) {
+    public String savePatient(Patient patient, BindingResult result) {
         if (checkPassword(patient.getPassword(), patient.getRepassword())) {
             patient.setPassword(passwordEncoder.encode(patient.getPassword()));
             patientRepository.save(patient);

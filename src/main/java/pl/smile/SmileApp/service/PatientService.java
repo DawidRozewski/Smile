@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public interface PatientService {
 
-    String save(Patient patient, BindingResult result);
+    String savePatient(Patient patient, BindingResult result);
     void update(Patient patient);
 
 
