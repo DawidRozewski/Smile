@@ -23,6 +23,10 @@
         th {
             background-color: #ccc;
         }
+
+        .errors {
+            color: red;
+        }
     </style>
 </head>
 <h2>Dane pacjenta</h2>
@@ -46,7 +50,6 @@
 </table>
 <hr/>
 
-<hr/>
 <h2>Plan leczenia</h2>
 <table>
     <tr>
@@ -55,12 +58,33 @@
         <th>Czas</th>
         <th>Data wizyty</th>
     </tr>
-    <c:forEach var="a" items="${appointments}">
+    <c:forEach var="t" items="${treatmentList}">
         <tr>
-            <td>${a.start}</td>
-            <td>${a.treatmentDescription}</td>
+            <td>${t.id}</td>
+            <td>${t.description}</td>
+            <td>${t.time}</td>
+            <td>${t.visitDate}</td>
         </tr>
     </c:forEach>
 </table>
+<h2>Dodaj</h2>
+<form:form modelAttribute="treatment">
+    <form:hidden path="id"/>
+
+    Opis: <form:textarea path="description" cols="80" rows="10"/><br>
+    <form:errors path="description" cssClass="error"/> <br>
+
+    Czas: <form:input path="time"/><br/>
+    <form:errors path="time" cssClass="errors"/><br/>
+
+    Wizyta: <form:input path="visitDate" type="date"/><br/>
+    <form:errors path="visitDate" cssClass="errors"/><br/>
+
+    <form:hidden path="patient" value="${patient.id}" name="patient"/> <br/>
+
+    <form:hidden path="doctor" value="${doctor.id}"  name="doctor"/><br/>
+
+    <input type="submit" value="Dodaj">
+</form:form>
 
 </body>

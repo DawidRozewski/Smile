@@ -21,11 +21,9 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Future
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private LocalDateTime start;
 
-    @Future
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private LocalDateTime end;
 
