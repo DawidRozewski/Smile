@@ -24,9 +24,8 @@
         <th>Opis zabiegu</th>
         <th>Czas</th>
         <th>Data</th>
-        <th>Lekarz</th>
+        <th>Zarezerwuj wizytę</th>
     </tr>
-
 
     <c:forEach var="t" items="${treatmentPlan}">
         <tr>
@@ -34,9 +33,9 @@
             <td>${t.description}</td>
             <td>${t.time}</td>
             <td>${t.visitDate}</td>
+            <td><a href="/}">Rezerwuj termin</a></td>
         </tr>
     </c:forEach>
-<p>Dla pacjenta bedzie to tylko dla odczytu, natomiast caly plan bedzie mogl dodac lekarz, dodajac pojedyncze wiersze.</p>
 </table>
 
 </body>

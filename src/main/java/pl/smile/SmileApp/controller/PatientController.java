@@ -52,7 +52,6 @@ public class PatientController {
         return "/patient/services";
     }
 
-    //Tutaj moze poprawic?
     @GetMapping("/my-treatment")
     public String treatment(Principal principal, Model model) {
         String email = principal.getName();
@@ -61,12 +60,34 @@ public class PatientController {
         return "/patient/treatment";
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @GetMapping("/appointment")
     public String prepToAppointment(Model model) {
         model.addAttribute("appointment", new Appointment());
         return "/patient/appointment";
     }
-
 
     @GetMapping("/edit")
     public String prepareToEdit(Principal principal, Model model) {

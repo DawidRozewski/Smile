@@ -21,6 +21,9 @@ public class TreatmentPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
+    private int visitNumber;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Future
     private LocalDate visitDate;
@@ -31,10 +34,10 @@ public class TreatmentPlan {
     @NotNull
     private int time;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Patient patient;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Doctor doctor;
 
 }

@@ -53,6 +53,4 @@
     </c:forEach>
 </table>
 <br/>
-<%--onclick="return confirm('Na pewno chcesz usunąć tego pacjenta?')--%>
 </body>
-<inpu>

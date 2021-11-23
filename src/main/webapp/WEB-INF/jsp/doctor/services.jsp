@@ -38,8 +38,7 @@
         <th>Usuń</th>
     </tr>
 
-
-    <%--    <c:forEach var="" items="${}">--%>
+        <c:forEach var="s" items="${services}">
     <tr>
         <td>1</td>
         <td>Usuwanie kamienia</td>
@@ -48,7 +47,7 @@
         <td><a href="">Edytuj</a> </td>
         <td><a href="">Usuń</a> </td>
     </tr>
-    <%--    </c:forEach>--%>
+        </c:forEach>
 </table>
 <br/>
 <a href="">Dodaj zabieg</a>

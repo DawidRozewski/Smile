@@ -20,7 +20,7 @@ public class Services {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank
+    @NotNull
     private int time;
 
     @NotBlank

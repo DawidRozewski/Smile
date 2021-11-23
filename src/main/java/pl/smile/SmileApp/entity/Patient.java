@@ -1,12 +1,8 @@
 package pl.smile.SmileApp.entity;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.pl.PESEL;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -14,6 +10,7 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 //@PasswordMatches
 public class Patient {
 
@@ -35,15 +32,19 @@ public class Patient {
     @Transient
     private String repassword;
 
-    @Email
+
+    @Email()
     @NotBlank
+//    @UniqueEmail
     private String email;
 
+
+//    @UniqueElements No validator could be found for constraint 'org.hibernate.validator.constraints.UniqueElements' validating type 'java.lang.String'
     @PESEL()
     private String pesel;
 
     @Pattern(regexp = "^[5-8]\\d{8}$", message = "Podaj prawidlowy numer telefonu.")
-    @NotNull
+    @NotBlank
     @Min(9)
     private String phoneNumber;
 
@@ -52,7 +53,6 @@ public class Patient {
 
     @ManyToOne
     private Doctor doctor;
-
 
     public String getFullName() {
         return firstName + " " + lastName;
