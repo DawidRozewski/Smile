@@ -25,6 +25,10 @@
         th {
             background-color: #ccc;
         }
+
+        .error {
+            color: red;
+        }
     </style>
 </head>
 
@@ -32,6 +36,7 @@
     <tr>
         <th>Id</th>
         <th>Opis zabiegu</th>
+        <th>RTG</th>
         <th>Czas</th>
         <th>Cena</th>
         <th>Edytuj</th>
@@ -40,16 +45,35 @@
 
         <c:forEach var="s" items="${services}">
     <tr>
-        <td>1</td>
-        <td>Usuwanie kamienia</td>
-        <td>60 minut</td>
-        <td>200 zł</td>
+        <td>${s.id}</td>
+        <td>${s.description}</td>
+        <td>${s.RTG}</td>
+        <td>${s.time}</td>
+        <td>${s.amount}</td>
         <td><a href="">Edytuj</a> </td>
         <td><a href="">Usuń</a> </td>
     </tr>
         </c:forEach>
 </table>
 <br/>
-<a href="">Dodaj zabieg</a>
+<h2>Dodaj zabieg</h2> <br/>
+
+<form:form modelAttribute="service">
+    <form:hidden path="id"/>
+
+    Opis: <form:textarea path="description" cols="50" rows="10"/><br>
+    <form:errors path="description" cssClass="error"/> <br>
+    RTG: <form:radiobutton path="RTG" value="Tak"/>Tak
+    <form:radiobutton path="RTG" value="Nie"/>Nie<br>
+    <form:errors path="RTG" cssClass="error"/> <br>
+
+    Czas: <form:input type="number" path="time"/><br/>
+    <form:errors path="time" cssClass="error"/><br/>
+
+    Cena: <form:input path="amount" type="number"/><br/>
+    <form:errors path="amount" cssClass="error"/><br/>
+
+    <input type="submit" value="Dodaj">
+</form:form>
 
 </body>

@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.entity.Patient;
-import pl.smile.SmileApp.entity.Services;
+import pl.smile.SmileApp.entity.Service;
 import pl.smile.SmileApp.repository.PatientRepository;
-import pl.smile.SmileApp.repository.ServicesRepository;
+import pl.smile.SmileApp.repository.ServiceRepository;
 import pl.smile.SmileApp.repository.TreatmentPlanRepository;
 import pl.smile.SmileApp.service.PatientServiceImpl;
 
@@ -25,14 +25,14 @@ public class PatientController {
     private final PatientRepository patientRepository;
     private final PatientServiceImpl patientService;
     private final PasswordEncoder passwordEncoder;
-    private final ServicesRepository servicesRepository;
+    private final ServiceRepository serviceRepository;
     private final TreatmentPlanRepository treatmentPlanRepository;
 
-    public PatientController(PatientRepository patientRepository, PatientServiceImpl patientService, PasswordEncoder passwordEncoder, ServicesRepository servicesRepository, TreatmentPlanRepository treatmentPlanRepository) {
+    public PatientController(PatientRepository patientRepository, PatientServiceImpl patientService, PasswordEncoder passwordEncoder, ServiceRepository serviceRepository, TreatmentPlanRepository treatmentPlanRepository) {
         this.patientRepository = patientRepository;
         this.patientService = patientService;
         this.passwordEncoder = passwordEncoder;
-        this.servicesRepository = servicesRepository;
+        this.serviceRepository = serviceRepository;
         this.treatmentPlanRepository = treatmentPlanRepository;
     }
 
@@ -48,7 +48,7 @@ public class PatientController {
 
     @GetMapping("/services")
     public String services(Model model) {
-        model.addAttribute("services", servicesRepository.findAll());
+        model.addAttribute("services", serviceRepository.findAll());
         return "/patient/services";
     }
 
@@ -107,8 +107,8 @@ public class PatientController {
 
 
     @ModelAttribute("services")
-    public List<Services> servicesList() {
-        return servicesRepository.findAll();
+    public List<Service> servicesList() {
+        return serviceRepository.findAll();
     }
 
 }

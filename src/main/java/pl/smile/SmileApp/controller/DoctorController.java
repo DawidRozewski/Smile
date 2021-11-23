@@ -5,11 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.Doctor;
+import pl.smile.SmileApp.entity.Service;
 import pl.smile.SmileApp.entity.TreatmentPlan;
-import pl.smile.SmileApp.repository.AppointmentRepository;
-import pl.smile.SmileApp.repository.DoctorRepository;
-import pl.smile.SmileApp.repository.PatientRepository;
-import pl.smile.SmileApp.repository.TreatmentPlanRepository;
+import pl.smile.SmileApp.repository.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -22,12 +20,14 @@ public class DoctorController {
     private final PatientRepository patientRepository;
     private final AppointmentRepository appointmentRepository;
     private final TreatmentPlanRepository treatmentPlanRepository;
+    private final ServiceRepository serviceRepository;
 
-    public DoctorController(DoctorRepository doctorRepository, PatientRepository patientRepository, AppointmentRepository appointmentRepository, TreatmentPlanRepository treatmentPlanRepository) {
+    public DoctorController(DoctorRepository doctorRepository, PatientRepository patientRepository, AppointmentRepository appointmentRepository, TreatmentPlanRepository treatmentPlanRepository, ServiceRepository serviceRepository) {
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
         this.appointmentRepository = appointmentRepository;
         this.treatmentPlanRepository = treatmentPlanRepository;
+        this.serviceRepository = serviceRepository;
     }
 
     @GetMapping("/dashboard")
@@ -84,7 +84,6 @@ public class DoctorController {
         return "redirect:/app/doctor/patient/" + patientID;
     }
 
-
     @GetMapping("/remove/{patientID}/{id}")
     public String prepToRemoveTreatment(@PathVariable long id, Model model) {
         model.addAttribute("treatment", treatmentPlanRepository.getById(id));
@@ -101,20 +100,27 @@ public class DoctorController {
         return "redirect:/app/doctor/patient/" + patientID;
     }
 
+    @GetMapping("/services")
+    public String prepToAddService(Model model) {
+        model.addAttribute("service", new Service());
+        model.addAttribute("services", serviceRepository.findAll());
+        return "/doctor/services";
+    }
+
+    @PostMapping("/services")
+    public String addService(@ModelAttribute("service") @Valid Service service,
+                             BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            return "/doctor/services";
+        }
+        serviceRepository.save(service);
+        return "redirect:/app/doctor/services";
+    }
+
+
     @GetMapping("/history/{id}")
     public String showPatientHistory(@PathVariable long id, Model model) {
         model.addAttribute("appointments", appointmentRepository.findAllByPatientId(id));
         return "/doctor/history";
     }
-
-    @GetMapping("/schedule")
-    public String schedule() {
-        return "/doctor/schedule";
-    }
-
-    @GetMapping("/services")
-    public String services() {
-        return "/doctor/services";
-    }
-
 }
