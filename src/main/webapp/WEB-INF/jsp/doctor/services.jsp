@@ -50,7 +50,7 @@
         <td>${s.RTG}</td>
         <td>${s.time}</td>
         <td>${s.amount}</td>
-        <td><a href="">Edytuj</a> </td>
+        <td><a href="/app/doctor/edit-service/${s.id}">Edytuj</a> </td>
         <td><a href="">Usuń</a> </td>
     </tr>
         </c:forEach>

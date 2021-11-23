@@ -9,6 +9,7 @@ import pl.smile.SmileApp.entity.Service;
 import pl.smile.SmileApp.entity.TreatmentPlan;
 import pl.smile.SmileApp.repository.*;
 
+import javax.naming.Binding;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -116,6 +117,25 @@ public class DoctorController {
         serviceRepository.save(service);
         return "redirect:/app/doctor/services";
     }
+
+    @GetMapping("/edit-service/{id}")
+    public String prepToEditService(@PathVariable long id, Model model) {
+        model.addAttribute("service", serviceRepository.getById(id));
+        model.addAttribute("services", serviceRepository.findAll());
+        return "/doctor/services";
+    }
+
+    @PostMapping("/edit-service/{id}")
+    public String editService(@ModelAttribute("service") @Valid Service service, BindingResult result) {
+        if(result.hasErrors()) {
+            return "/doctor/services";
+        }
+        serviceRepository.save(service);
+        return "redirect:/app/doctor/services";
+    }
+
+
+
 
 
     @GetMapping("/history/{id}")
