@@ -1,5 +1,6 @@
 package pl.smile.SmileApp.controller;
 
+import org.springframework.boot.autoconfigure.data.ConditionalOnRepositoryType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,7 +10,6 @@ import pl.smile.SmileApp.entity.Service;
 import pl.smile.SmileApp.entity.TreatmentPlan;
 import pl.smile.SmileApp.repository.*;
 
-import javax.naming.Binding;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -111,7 +111,7 @@ public class DoctorController {
     @PostMapping("/services")
     public String addService(@ModelAttribute("service") @Valid Service service,
                              BindingResult result, Model model) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "/doctor/services";
         }
         serviceRepository.save(service);
@@ -127,17 +127,27 @@ public class DoctorController {
 
     @PostMapping("/edit-service/{id}")
     public String editService(@ModelAttribute("service") @Valid Service service, BindingResult result) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "/doctor/services";
         }
         serviceRepository.save(service);
         return "redirect:/app/doctor/services";
     }
 
+    @GetMapping("/remove-service/{id}")
+    public String prepToDeleteService(@PathVariable long id, Model model) {
+        model.addAttribute("service", serviceRepository.getById(id));
+        return "/doctor/remove_service";
+    }
 
-
-
-
+    @PostMapping("/remove-service/{id}")
+    public String deleteService(@PathVariable long id, @RequestParam String confirmed) {
+        if ("yes".equals(confirmed)) {
+            serviceRepository.deleteById(id);
+        }
+        return "redirect:/app/doctor/services";
+    }
+    
     @GetMapping("/history/{id}")
     public String showPatientHistory(@PathVariable long id, Model model) {
         model.addAttribute("appointments", appointmentRepository.findAllByPatientId(id));

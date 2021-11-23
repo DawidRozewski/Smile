@@ -1,9 +1,5 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@include file="dashboard.jsp"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<hr>
+<%@include file="temps/header.jsp" %>
 <head>
     <title>Cennik zabiegów</title>
     <style>
@@ -12,6 +8,7 @@
             border: 1px solid black;
             padding: 5px;
         }
+
         th {
             background-color: #ccc;
         }
@@ -28,16 +25,16 @@
         <th>Zaplanuj wizyte</th>
     </tr>
 
-        <c:forEach var="s" items="${services}">
-    <tr>
-        <td>${s.id}</td>
-        <td>${s.description}a</td>
-        <td>${s.RTG}</td>
-        <td>${s.time}</td>
-        <td>${s.amount}</td>
-        <td><a href="">Zaplanuj wizyte</a> </td>
-    </tr>
-        </c:forEach>
+    <c:forEach var="s" items="${services}">
+        <tr>
+            <td>${s.id}</td>
+            <td>${s.description}a</td>
+            <td>${s.RTG}</td>
+            <td>${s.time}</td>
+            <td>${s.amount}</td>
+            <td><a href="">Zaplanuj wizyte</a></td>
+        </tr>
+    </c:forEach>
 </table>
 <br/>
 <p>Dla widoku doktora bedzie mozliwosc dodania zabiegu do cennika.</p>

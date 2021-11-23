@@ -1,19 +1,5 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-
-<div id="menu">
-    <strong><a href="/app">Strona główna</a></strong>
-    <strong><a href="/app/doctor/dashboard">Dashboard</a></strong>
-    <strong><a href="/app/doctor/schedule">Grafik</a></strong>
-    <strong><a href="/app/doctor/patients">Lista pacjentów</a></strong>
-    <strong><a href="/app/doctor/treatment-plan">Plan leczenia</a></strong>
-    <strong><a href="/app/doctor/services">Cennik zabiegów</a></strong>
-    <strong><a href="/app/doctor/edit">Edytuj dane</a></strong>
-    <strong><a href="/app/doctor/dashboard">Kontakt</a></strong>
-    <strong><a href="/logout">Wyloguj</a></strong>
-</div>
-<hr>
+<%@include file="temps/header.jsp" %>
 <head>
     <title>Cennik zabiegów</title>
     <style>
@@ -22,6 +8,7 @@
             border: 1px solid black;
             padding: 5px;
         }
+
         th {
             background-color: #ccc;
         }
@@ -43,17 +30,18 @@
         <th>Usuń</th>
     </tr>
 
-        <c:forEach var="s" items="${services}">
-    <tr>
-        <td>${s.id}</td>
-        <td>${s.description}</td>
-        <td>${s.RTG}</td>
-        <td>${s.time}</td>
-        <td>${s.amount}</td>
-        <td><a href="/app/doctor/edit-service/${s.id}">Edytuj</a> </td>
-        <td><a href="">Usuń</a> </td>
-    </tr>
-        </c:forEach>
+    <c:forEach var="s" items="${services}">
+        <tr>
+            <td>${s.id}</td>
+            <td>${s.description}</td>
+            <td>${s.RTG}</td>
+            <td>${s.time}</td>
+            <td>${s.amount}</td>
+            <td><a href="/app/doctor/edit-service/${s.id}">Edytuj</a></td>
+            <td><a href=/app/doctor/remove-service/${s.id}>Usuń</a></td>
+        </tr>
+
+    </c:forEach>
 </table>
 <br/>
 <h2>Dodaj zabieg</h2> <br/>

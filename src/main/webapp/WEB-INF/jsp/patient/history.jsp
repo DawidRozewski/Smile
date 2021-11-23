@@ -1,9 +1,5 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@include file="dashboard.jsp"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<hr>
+<%@include file="temps/header.jsp"%>
 <head>
     <title>Plan leczenia</title>
     <style>
