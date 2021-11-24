@@ -19,12 +19,14 @@
 <table>
     <tr>
         <th>Data wizyty</th>
+        <th>Godzina</th>
         <th>Opis</th>
     </tr>
     <c:forEach var="a" items="${appointments}">
         <tr>
-            <td>${a.start}</td>
-            <td>${a.treatmentDescription}</td>
+            <td>${a.date}</td>
+            <td>${a.time}</td>
+            <td>${a.serviceDescription}</td>
         </tr>
     </c:forEach>
 </table>
