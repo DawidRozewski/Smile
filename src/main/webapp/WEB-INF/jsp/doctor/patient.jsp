@@ -40,7 +40,6 @@
     <tr>
         <th>Numer wizyty</th>
         <th>Opis</th>
-        <th>Czas</th>
         <th>Data wizyty</th>
         <th>Edytuj</th>
         <th>Usuń</th>
@@ -49,7 +48,6 @@
         <tr>
             <td>${t.visitNumber}</td>
             <td>${t.description}</td>
-            <td>${t.time}</td>
             <td>${t.visitDate}</td>
             <td><a href="/app/doctor/edit-treatment/${patient.id}/${t.id}">Edytuj</a></td>
             <td><a href="/app/doctor/remove/${patient.id}/${t.id}">Usuń</a></td>

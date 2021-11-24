@@ -20,7 +20,6 @@
         <th>Data wizyty</th>
         <th>Imie i nazwisko</th>
         <th>Opis zabiegu</th>
-        <th>Czas</th>
         <th>Przypomnij</th>
     </tr>
 
@@ -30,7 +29,6 @@
         <td>14.11.2021 16:00</td>
         <td>Jan Kowalski</td>
         <td>Usuwanie kamienia</td>
-        <td>60 minut</td>
         <td><a href="">SMS</a></td>
     </tr>
     <%--    </c:forEach>--%>

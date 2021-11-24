@@ -24,9 +24,6 @@ public class Appointment {
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private LocalDateTime start;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private LocalDateTime end;
-
     @NotBlank
     private String treatmentDescription;
 

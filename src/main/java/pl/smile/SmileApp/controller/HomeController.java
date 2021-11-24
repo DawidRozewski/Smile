@@ -6,10 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.entity.AppointmentSlot;
 import pl.smile.SmileApp.entity.Patient;
@@ -21,6 +18,7 @@ import pl.smile.SmileApp.security.CurrentUser;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -49,7 +47,20 @@ public class HomeController {
         return "/form/ediit";
     }
 
-
+    @ModelAttribute("hours")
+    List< LocalTime > hourTimes () {
+        return List.of(
+                LocalTime.of(8, 0),
+                LocalTime.of(9, 0),
+                LocalTime.of(10, 0),
+                LocalTime.of(11, 0),
+                LocalTime.of(12, 0),
+                LocalTime.of(13, 0),
+                LocalTime.of(14, 0),
+                LocalTime.of(15, 0),
+                LocalTime.of(16, 0)
+        );
+    }
 }
 
 

@@ -24,7 +24,6 @@
         <th>Id</th>
         <th>Opis zabiegu</th>
         <th>RTG</th>
-        <th>Czas</th>
         <th>Cena</th>
         <th>Edytuj</th>
         <th>Usuń</th>
@@ -35,7 +34,6 @@
             <td>${s.id}</td>
             <td>${s.description}</td>
             <td>${s.RTG}</td>
-            <td>${s.time}</td>
             <td>${s.amount}</td>
             <td><a href="/app/doctor/edit-service/${s.id}">Edytuj</a></td>
             <td><a href=/app/doctor/remove-service/${s.id}>Usuń</a></td>
@@ -54,9 +52,6 @@
     RTG: <form:radiobutton path="RTG" value="Tak"/>Tak
     <form:radiobutton path="RTG" value="Nie"/>Nie<br>
     <form:errors path="RTG" cssClass="error"/> <br>
-
-    Czas: <form:input type="number" path="time"/><br/>
-    <form:errors path="time" cssClass="error"/><br/>
 
     Cena: <form:input path="amount" type="number"/><br/>
     <form:errors path="amount" cssClass="error"/><br/>

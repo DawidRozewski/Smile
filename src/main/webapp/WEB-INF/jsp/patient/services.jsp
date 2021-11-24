@@ -20,7 +20,6 @@
         <th>Id</th>
         <th>Opis zabiegu</th>
         <th>RTG</th>
-        <th>Czas</th>
         <th>Cena</th>
         <th>Zaplanuj wizyte</th>
     </tr>
@@ -30,7 +29,6 @@
             <td>${s.id}</td>
             <td>${s.description}a</td>
             <td>${s.RTG}</td>
-            <td>${s.time}</td>
             <td>${s.amount}</td>
             <td><a href="">Zaplanuj wizyte</a></td>
         </tr>

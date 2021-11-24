@@ -19,9 +19,6 @@
     Opis: <form:textarea path="description" cols="80" rows="10"/><br>
     <form:errors path="description" cssClass="error"/> <br>
 
-    Czas: <form:input type="number" path="time"/><br/>
-    <form:errors path="time" cssClass="error"/><br/>
-
     Wizyta: <form:input path="visitDate" type="date"/><br/>
     <form:errors path="visitDate" cssClass="error"/><br/>
 
