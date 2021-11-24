@@ -2,12 +2,12 @@ package pl.smile.SmileApp.entity;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -21,19 +21,24 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private LocalDateTime start;
+    @Future
+    private LocalDate date;
+
+    private LocalTime time;
 
     @NotBlank
-    private String treatmentDescription;
+    private String serviceDescription;
 
     @NotNull
     private int price;
 
-    @OneToOne
-    private AppointmentSlot appointmentSlot;
+//    @OneToOne
+//    private AppointmentSlot appointmentSlot;
 
     @ManyToOne
     private Patient patient;
+
+    @ManyToOne
+    private Doctor doctor;
 
 }

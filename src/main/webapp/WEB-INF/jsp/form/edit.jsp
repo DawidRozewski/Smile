@@ -13,6 +13,11 @@
 
 <form:form modelAttribute="patient">
     <form:hidden path="id"/>
+    <form:errors path="phoneNumber" cssClass="error"/><br/>
+    <form:hidden path="pesel"/><br/>
+    <form:hidden path="password" /><br/>
+    <form:hidden path="doctor.id" items="${doctors}" itemLabel="fullName" itemValue="id"/><br/>
+    <form:hidden path="processingOfPersonalData" id="processingOfPersonalData"/><br/>
 
     Imie: <form:input path="firstName"/><br/>
     <form:errors path="firstName" cssClass="error"/><br/>
@@ -24,12 +29,8 @@
     <form:errors path="email" cssClass="error"/><br/>
 
     Nr. kontaktowy: <form:input path="phoneNumber"/><br/>
-    <form:errors path="phoneNumber" cssClass="error"/><br/>
-    <form:hidden path="pesel"/><br/>
-    <form:hidden path="password" /><br/>
-    <form:hidden path="doctor.id" items="${doctors}" itemLabel="fullName" itemValue="id"/><br/>
-    <form:hidden path="processingOfPersonalData" id="processingOfPersonalData"/><br/>
-             <input type="submit" value="Zapisz dane">
+
+    <input type="submit" value="Zapisz dane">
 
 </form:form>
 

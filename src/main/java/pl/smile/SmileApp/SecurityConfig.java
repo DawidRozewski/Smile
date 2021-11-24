@@ -1,5 +1,6 @@
 package pl.smile.SmileApp;
 
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -21,16 +22,6 @@ import pl.smile.SmileApp.security.CurrentUser;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private final PatientRepository patientRepository;
-    private final DoctorRepository doctorRepository;
-    private final AdminRepository adminRepository;
-
-    public SecurityConfig(PatientRepository patientRepository, DoctorRepository doctorRepository, AdminRepository adminRepository) {
-        this.patientRepository = patientRepository;
-        this.doctorRepository = doctorRepository;
-        this.adminRepository = adminRepository;
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

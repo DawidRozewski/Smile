@@ -3,18 +3,25 @@
 
 <h2>Zaplanuj wizytę</h2>
 
+<head >
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
 <form:form modelAttribute="appointment" method="post">
     <form:hidden path="id"/>
+    <form:hidden path="doctor" value="${doctor.id}"/><br/>
+    <form:hidden path="patient" value="${patient.id}"/><br/>
+    <form:hidden path="serviceDescription" value="${service.description}"/>
+    <form:hidden path="price" value="${service.amount}"/>
 
-    Wybierz date: <form:input path="start" type="date"/>
-    <form:errors path="start" cssClass="error"/><br/>
+    Wybierz date: <form:input path="date" type="date"/>
+    <form:errors path="date" cssClass="error"/><br/>
 
-    Opis: <form:input path="treatmentDescription"/>
-    <form:errors path="treatmentDescription" cssClass="error"/><br/>
+    Wybierz godzinę: <form:select path="time" items="${hours}" /><br/>
 
-    Cena: <form:input path="price"/>
-    <form:errors path="price" cssClass="error"/><br/>
-
-    <input type="button" value="Zarezerwuj">
+    <input type="submit" value="Zarezerwuj">
     
 </form:form>

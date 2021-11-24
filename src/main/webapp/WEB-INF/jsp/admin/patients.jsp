@@ -43,5 +43,3 @@
     </c:forEach>
 </table>
 <br/>
-
-</body>

@@ -1,4 +1,5 @@
 package pl.smile.SmileApp.controller;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,26 +12,24 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/app/admin")
+@AllArgsConstructor
 public class AdminController {
+
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
     private final DoctorServiceImpl doctorService;
 
-    public AdminController(PatientRepository patientRepository, DoctorRepository doctorRepository, DoctorServiceImpl doctorService) {
-        this.patientRepository = patientRepository;
-        this.doctorRepository = doctorRepository;
-        this.doctorService = doctorService;
-    }
-
     @GetMapping("/patients")
     public String showPatients(Model model) {
         model.addAttribute("patients", patientRepository.findAll());
+
         return "/admin/patients";
     }
 
     @GetMapping("/patients/remove/{id}")
     public String prepareToRemove(@PathVariable long id, Model model) {
         model.addAttribute("patient", patientRepository.getById(id));
+
         return "/admin/patientRemove";
     }
 
@@ -40,6 +39,7 @@ public class AdminController {
         if ("yes".equals(confirmed)) {
             patientRepository.deleteById(id);
         }
+
         return "redirect:/app/admin/patients";
     }
 
@@ -52,6 +52,7 @@ public class AdminController {
     @GetMapping("/doctors/remove/{id}")
     public String prepToRemove(@PathVariable long id, Model model) {
         model.addAttribute("doctor", doctorRepository.getById(id));
+
         return "/admin/doctorRemove";
     }
 
@@ -61,12 +62,14 @@ public class AdminController {
         if ("yes".equals(confirmed)) {
             doctorRepository.deleteById(id);
         }
+
         return "redirect:/app/admin/doctors";
     }
 
     @GetMapping("/doctors/add")
     public String prepareToSave(Model model) {
         model.addAttribute("doctor", new Doctor());
+
         return "/admin/add";
     }
 
@@ -76,6 +79,7 @@ public class AdminController {
             return "/admin/add";
         }
         doctorService.save(doctor, result);
+
         return "redirect:/app/admin/doctors";
     }
 }

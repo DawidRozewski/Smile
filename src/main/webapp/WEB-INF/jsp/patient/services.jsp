@@ -27,10 +27,10 @@
     <c:forEach var="s" items="${services}">
         <tr>
             <td>${s.id}</td>
-            <td>${s.description}a</td>
+            <td>${s.description}</td>
             <td>${s.RTG}</td>
             <td>${s.amount}</td>
-            <td><a href="">Zaplanuj wizyte</a></td>
+            <td><a href="/app/patient/appointment?serviceID=${s.id}">Zaplanuj wizyte</a></td>
         </tr>
     </c:forEach>
 </table>

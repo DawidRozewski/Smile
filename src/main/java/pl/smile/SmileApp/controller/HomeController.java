@@ -26,41 +26,12 @@ import java.util.List;
 @AllArgsConstructor
 public class HomeController {
 
-    private final CurrentUser currentUser;
-    private final PatientRepository patientRepository;
-    private final DoctorRepository doctorRepository;
-    private final AdminRepository adminRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final AppointmentSlotRepository appointmentSlotRepository;
-
-
     @GetMapping("")
-    public String homePage(Principal principal) {
+    public String homePage() {
 
         return "homepage";
     }
-
-    @GetMapping("/test")
-    public String test(Model model) {
-
-
-        return "/form/ediit";
-    }
-
-    @ModelAttribute("hours")
-    List< LocalTime > hourTimes () {
-        return List.of(
-                LocalTime.of(8, 0),
-                LocalTime.of(9, 0),
-                LocalTime.of(10, 0),
-                LocalTime.of(11, 0),
-                LocalTime.of(12, 0),
-                LocalTime.of(13, 0),
-                LocalTime.of(14, 0),
-                LocalTime.of(15, 0),
-                LocalTime.of(16, 0)
-        );
-    }
 }
+
 
 

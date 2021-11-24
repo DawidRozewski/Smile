@@ -8,9 +8,6 @@
     </style>
 </head>
 
-
-
-
 <div id="menu">
     <strong><a href="/app/admin/patients">Pacjenci</a></strong>&nbsp;&nbsp;&nbsp;
     <strong><a href="/app/admin/doctors">Doktorzy</a></strong>&nbsp;&nbsp;&nbsp;
@@ -41,7 +38,6 @@
         <th>Nr.kontaktowy</th>
         <th>Usuń</th>
     </tr>
-
     <c:forEach items="${doctors}" var="d">
         <tr>
             <td>${d.id}</td>
@@ -53,4 +49,3 @@
     </c:forEach>
 </table>
 <br/>
-</body>
