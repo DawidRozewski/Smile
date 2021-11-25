@@ -21,6 +21,7 @@
         <th>Data wizyty</th>
         <th>Godzina</th>
         <th>Opis</th>
+        <th>Zakończ</th>
     </tr>
     <c:forEach var="a" items="${appointments}">
         <tr>

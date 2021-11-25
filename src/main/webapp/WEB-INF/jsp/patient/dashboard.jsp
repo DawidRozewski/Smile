@@ -17,7 +17,7 @@
 <h2>Zbliżające się wizyty</h2>
 <table>
     <tr>
-        <th>Id</th>
+<%--        <th>Id</th>--%>
         <th>Data</th>
         <th>Godzina</th>
         <th>Opis</th>
@@ -25,7 +25,7 @@
     </tr>
     <c:forEach var="a" items="${appointments}">
         <tr>
-            <td>${a.id}</td>
+            <td hidden="${a.id}"></td>
             <td>${a.date}</td>
             <td>${a.time}</td>
             <td>${a.serviceDescription}</td>

@@ -35,6 +35,3 @@
     </c:forEach>
 </table>
 <br/>
-<p>Dla widoku doktora bedzie mozliwosc dodania zabiegu do cennika.</p>
-
-</body>
