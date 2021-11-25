@@ -36,6 +36,8 @@ public class Appointment {
 //    @OneToOne
 //    private AppointmentSlot appointmentSlot;
 
+    boolean isFinished;
+
     @ManyToOne
     private Patient patient;
 

@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 @Entity
 @Getter
 @Setter
@@ -17,14 +19,15 @@ public class AppointmentSlot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private LocalDateTime start;
+    private LocalDate date;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private LocalDateTime end;
+    private LocalTime time;
 
     @ManyToOne
     private Doctor doctor;
+
+    @ManyToOne
+    private Patient patient;
 
     private boolean isReserved;
 }

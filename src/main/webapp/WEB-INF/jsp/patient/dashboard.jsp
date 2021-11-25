@@ -14,7 +14,7 @@
         }
     </style>
 </head>
-<h2>Zbliżające się wizyty</h2>
+<h2>Nadchodzące wizyty</h2>
 <table>
     <tr>
 <%--        <th>Id</th>--%>

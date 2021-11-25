@@ -1,7 +1,6 @@
 package pl.smile.SmileApp.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.boot.autoconfigure.data.ConditionalOnRepositoryType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +12,7 @@ import pl.smile.SmileApp.repository.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/app/doctor")
@@ -22,7 +22,7 @@ public class DoctorController {
     private final DoctorRepository doctorRepository;
     private final PatientRepository patientRepository;
     private final AppointmentRepository appointmentRepository;
-    private final TreatmentPlanRepository treatmentPlanRepository;
+    private final TreatmentPlanRepository treatmentRepository;
     private final ServiceRepository serviceRepository;
 
     @GetMapping("/dashboard")
@@ -33,12 +33,12 @@ public class DoctorController {
         return "/doctor/dashboard";
     }
 
-    @GetMapping("/patient/{id}")
-    public String showPatientInfoAndTreatmentPan(@PathVariable long id, Model model, Principal principal) {
-        String email = principal.getName();
-        model.addAttribute("patient", patientRepository.getById(id));
-        model.addAttribute("appointments", appointmentRepository.findAllByPatientId(id));
-        model.addAttribute("treatmentList", treatmentPlanRepository.findAllByPatientIdAndDoctor(id, doctorRepository.getByEmail(email)));
+    @GetMapping("/patient/{patientID}")
+    public String showPatientInfoAndTreatmentPan(@PathVariable long patientID, Model model, Principal principal) {
+        Doctor doctor = getDoctor(principal);
+        model.addAttribute("patient", patientRepository.getById(patientID));
+        model.addAttribute("appointments", appointmentRepository.getFutureOrPresentPatientApp(patientID, doctor.getId(), LocalDate.now()));
+        model.addAttribute("treatmentList", treatmentRepository.findAllByPatientIdAndDoctor(patientID, doctor));
 
         return "/doctor/patient";
     }
@@ -58,14 +58,14 @@ public class DoctorController {
         if (result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
-        treatmentPlanRepository.save(treatmentPlan);
+        treatmentRepository.save(treatmentPlan);
 
         return "redirect:/app/doctor/patient/" + patientID;
     }
 
     @GetMapping("/edit-treatment/{patientID}/{id}")
     public String prepToEditTreatment(@PathVariable long id, Model model) {
-        model.addAttribute("treatment", treatmentPlanRepository.getById(id));
+        model.addAttribute("treatment", treatmentRepository.getById(id));
 
         return "/doctor/treatment_plan";
     }
@@ -78,14 +78,14 @@ public class DoctorController {
         if (result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
-        treatmentPlanRepository.save(treatmentPlan);
+        treatmentRepository.save(treatmentPlan);
 
         return "redirect:/app/doctor/patient/" + patientID;
     }
 
     @GetMapping("/remove/{patientID}/{id}")
     public String prepToRemoveTreatment(@PathVariable long id, Model model) {
-        model.addAttribute("treatment", treatmentPlanRepository.getById(id));
+        model.addAttribute("treatment", treatmentRepository.getById(id));
 
         return "/doctor/remove_treatment";
     }
@@ -95,7 +95,7 @@ public class DoctorController {
                                        @PathVariable long patientID,
                                        @RequestParam String confirmed) {
         if ("yes".equals(confirmed)) {
-            treatmentPlanRepository.deleteById(id);
+            treatmentRepository.deleteById(id);
         }
 
         return "redirect:/app/doctor/patient/" + patientID;
@@ -153,11 +153,17 @@ public class DoctorController {
         return "redirect:/app/doctor/services";
     }
 
-    @GetMapping("/history/{id}")
-    public String showPatientHistory(@PathVariable long id, Model model) {
-        model.addAttribute("appointments", appointmentRepository.findAllByPatientId(id));
+    @GetMapping("/history/{patientID}")
+    public String showPatientHistory(@PathVariable long patientID, Model model, Principal principal) {
+        Doctor doctor = getDoctor(principal);
+        model.addAttribute("appointments", appointmentRepository.getPatientHistoryApp(patientID, doctor.getId(),LocalDate.now()));
 
         return "/doctor/history";
+    }
+
+    private Doctor getDoctor(Principal principal) {
+        String email = principal.getName();
+        return doctorRepository.getByEmail(email);
     }
 }
 

@@ -32,14 +32,16 @@ public class PatientController {
 
     @GetMapping("/dashboard")
     public String dashboard(Principal principal, Model model) {
-        model.addAttribute("appointments", appointmentRepository.getFutureAppointments(getPatientID(principal), LocalDate.now()));
+        model.addAttribute("appointments",
+                appointmentRepository.getFutureOrPresentAppointments(getPatientID(principal), LocalDate.now()));
 
         return "/patient/dashboard";
     }
 
     @GetMapping("/history")
     public String history(Principal principal, Model model) {
-        model.addAttribute("appointments", appointmentRepository.getPastAppointments(getPatientID(principal), LocalDate.now()));
+        model.addAttribute("appointments",
+                appointmentRepository.getPastAppointments(getPatientID(principal), LocalDate.now()));
 
         return "/patient/history";
     }
@@ -51,7 +53,8 @@ public class PatientController {
 
     @GetMapping("/my-treatment")
     public String treatment(Principal principal, Model model) {
-        model.addAttribute("treatmentPlan", treatmentPlanRepository.findAllByPatientId(getPatientID(principal)));
+        model.addAttribute("treatmentPlan",
+                treatmentPlanRepository.findAllByPatientId(getPatientID(principal)));
 
         return "/patient/treatment";
     }

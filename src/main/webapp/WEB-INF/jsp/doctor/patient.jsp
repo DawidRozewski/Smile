@@ -54,6 +54,29 @@
         </tr>
     </c:forEach>
 </table>
-<h4><a href="/app/doctor/add-treatment/${patient.id}">Dodaj plan</a></h4>
+<h4><a href="/app/doctor/add-treatment/${patient.id}">Dodaj plan</a></h4><br/>
+
+<h2>Nadchodzące wizyty</h2>
+<table>
+    <tr>
+        <th>Data wizyty</th>
+        <th>Godzina</th>
+        <th>Opis</th>
+        <th>Cena</th>
+        <th>Zakończ</th>
+    </tr>
+    <c:forEach var="a" items="${appointments}">
+        <tr>
+            <td hidden="${a.id}"></td>
+            <td>${a.date}</td>
+            <td>${a.time}</td>
+            <td>${a.serviceDescription}</td>
+            <td>${a.price}</td>
+            <td><a href="/app">Zakończ wizytę</a></td>
+        </tr>
+    </c:forEach>
+</table>
+
+
 
 </body>
