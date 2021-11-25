@@ -33,7 +33,7 @@
         <td><a href="/app/doctor/history/${patient.id}">Pokaż</a></td>
     </tr>
 </table>
-<hr/>
+
 
 <h2>Plan leczenia</h2>
 <table>
@@ -72,7 +72,7 @@
             <td>${a.time}</td>
             <td>${a.serviceDescription}</td>
             <td>${a.price}</td>
-            <td><a href="/app">Zakończ wizytę</a></td>
+            <td><a href="/app/doctor/endVisit/${a.id}">Zakończ wizytę</a></td>
         </tr>
     </c:forEach>
 </table>

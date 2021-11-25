@@ -41,7 +41,7 @@ public class PatientController {
     @GetMapping("/history")
     public String history(Principal principal, Model model) {
         model.addAttribute("appointments",
-                appointmentRepository.getPastAppointments(getPatientID(principal), LocalDate.now()));
+                appointmentRepository.getPastAppointments(getPatientID(principal)));
 
         return "/patient/history";
     }

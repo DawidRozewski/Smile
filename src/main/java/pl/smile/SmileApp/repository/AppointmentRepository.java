@@ -14,23 +14,33 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     List<Appointment> findAllByPatientId(long id);
 
-    @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID AND a.date >= :now ORDER BY a.date ASC ")
+    @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID " +
+            "AND a.date >= :now " +
+            "AND a.isFinished = false " +
+            "ORDER BY a.date ASC ")
     List<Appointment> getFutureOrPresentAppointments(@Param("patientID") long patientID,
                                             @Param("now") LocalDate now);
 
-    @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID AND a.date < :now ORDER BY a.date DESC")
-    List<Appointment> getPastAppointments(@Param("patientID") long patientID,
-                                          @Param("now") LocalDate now);
+    @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID " +
+            "AND a.isFinished = true " +
+            "ORDER BY a.date DESC")
+    List<Appointment> getPastAppointments(@Param("patientID") long patientID);
 
-    @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID AND a.doctor.id = :doctorID AND a.date >= :now ORDER BY a.date ASC")
+    @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID " +
+            "AND a.doctor.id = :doctorID " +
+            "AND a.date >= :now " +
+            "AND a.isFinished = false " +
+            "ORDER BY a.date ASC")
     List<Appointment> getFutureOrPresentPatientApp(@Param("patientID") long patientID,
                                                    @Param("doctorID") long doctorID,
                                                    @Param("now") LocalDate now);
 
-    @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID AND a.doctor.id = :doctorID AND a.date < :now ORDER BY a.date ASC")
+    @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID " +
+            "AND a.doctor.id = :doctorID " +
+            "AND a.isFinished = true " +
+            "ORDER BY a.date ASC")
     List<Appointment> getPatientHistoryApp(@Param("patientID") long patientID,
-                                           @Param("doctorID") long doctorID,
-                                           @Param("now") LocalDate now);
+                                           @Param("doctorID") long doctorID);
 
 
 

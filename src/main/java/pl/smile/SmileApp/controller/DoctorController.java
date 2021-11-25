@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Service;
 import pl.smile.SmileApp.entity.TreatmentPlan;
@@ -156,9 +157,27 @@ public class DoctorController {
     @GetMapping("/history/{patientID}")
     public String showPatientHistory(@PathVariable long patientID, Model model, Principal principal) {
         Doctor doctor = getDoctor(principal);
-        model.addAttribute("appointments", appointmentRepository.getPatientHistoryApp(patientID, doctor.getId(),LocalDate.now()));
+        model.addAttribute("appointments", appointmentRepository.getPatientHistoryApp(patientID, doctor.getId()));
 
         return "/doctor/history";
+    }
+
+    @GetMapping("/endVisit/{id}")
+    public String prepToEndVisit(@PathVariable long id, Model model) {
+        model.addAttribute("appointment", appointmentRepository.getById(id));
+
+        return "/doctor/end_visit";
+    }
+
+    @PostMapping("/endVisit/{id}")
+    public String endVisit(@PathVariable long id, @RequestParam String confirmed) {
+        Appointment appointment = appointmentRepository.getById(id);
+        if ("yes".equals(confirmed)) {
+             appointment.setFinished(true);
+             appointmentRepository.save(appointment);
+        }
+
+        return "redirect:/app/doctor/patient/" + appointment.getPatient().getId();
     }
 
     private Doctor getDoctor(Principal principal) {
