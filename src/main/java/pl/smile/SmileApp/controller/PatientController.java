@@ -6,11 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import pl.smile.SmileApp.entity.Appointment;
-import pl.smile.SmileApp.entity.Doctor;
-import pl.smile.SmileApp.entity.Patient;
-import pl.smile.SmileApp.entity.Service;
+import pl.smile.SmileApp.entity.*;
 import pl.smile.SmileApp.repository.*;
+import pl.smile.SmileApp.service.AppointmentServiceImpl;
 import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import javax.validation.Valid;
@@ -29,6 +27,7 @@ public class PatientController {
     private final ServiceRepository serviceRepository;
     private final TreatmentPlanRepository treatmentPlanRepository;
     private final AppointmentRepository appointmentRepository;
+    private final AppointmentServiceImpl appointmentService;
 
     @GetMapping("/dashboard")
     public String dashboard(Principal principal, Model model) {
@@ -99,10 +98,12 @@ public class PatientController {
     @GetMapping("/appointment-by-plan")
     public String prepToAppByPan(@RequestParam long planID, Model model, Principal principal) {
         Patient patient = patientRepository.getByEmail(principal.getName());
+        TreatmentPlan treatmentPlan = treatmentPlanRepository.getById(planID);
         model.addAttribute("doctor", patient.getDoctor());
         model.addAttribute("patient", patient);
-        model.addAttribute("treatment", treatmentPlanRepository.getById(planID));
+        model.addAttribute("treatment", treatmentPlan);
         model.addAttribute("appointment", new Appointment());
+        model.addAttribute("hoursDay", appointmentService.getAvailableHours(treatmentPlan.getVisitDate()));
 
         return "/patient/appointment_by_plan";
     }
@@ -119,21 +120,6 @@ public class PatientController {
     @ModelAttribute("services")
     public List<Service> servicesList() {
         return serviceRepository.findAll();
-    }
-
-    @ModelAttribute("hours")
-    List<LocalTime> hourTimes () {
-        return List.of(
-                LocalTime.of(8, 0),
-                LocalTime.of(9, 0),
-                LocalTime.of(10, 0),
-                LocalTime.of(11, 0),
-                LocalTime.of(12, 0),
-                LocalTime.of(13, 0),
-                LocalTime.of(14, 0),
-                LocalTime.of(15, 0),
-                LocalTime.of(16, 0)
-        );
     }
 
     private long getPatientID(Principal principal) {

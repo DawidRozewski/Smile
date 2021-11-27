@@ -34,6 +34,15 @@ public class DoctorController {
         return "/doctor/dashboard";
     }
 
+    @GetMapping("/schedule")
+    public String showSchedule(Principal principal, Model model) {
+        Doctor doctor = getDoctor(principal);
+        model.addAttribute("appointment", appointmentRepository.findAllActiveAppointments(doctor.getId()));
+
+        return "/doctor/schedule";
+
+    }
+
     @GetMapping("/patient/{patientID}")
     public String showPatientInfoAndTreatmentPan(@PathVariable long patientID, Model model, Principal principal) {
         Doctor doctor = getDoctor(principal);

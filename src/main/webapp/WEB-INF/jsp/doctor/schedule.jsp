@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="temps/header.jsp" %>
 <head>
-    <title>Harmonogram pacjentow</title>
+    <title>Harmonogram pacjentów</title>
     <style>
         table, th, td {
             border-collapse: collapse;
@@ -14,25 +14,27 @@
         }
     </style>
 </head>
-
 <table>
     <tr>
-        <th>Data wizyty</th>
-        <th>Imie i nazwisko</th>
+        <th>Imię i nazwisko</th>
         <th>Opis zabiegu</th>
-        <th>Przypomnij</th>
+        <th>Cena</th>
+        <th>Data wizyty</th>
+        <th>Godzina</th>
+        <th>Pokaż dane</th>
     </tr>
 
 
-    <%--    <c:forEach var="" items="${}">--%>
+        <c:forEach var="a" items="${appointment}">
     <tr>
-        <td>14.11.2021 16:00</td>
-        <td>Jan Kowalski</td>
-        <td>Usuwanie kamienia</td>
-        <td><a href="">SMS</a></td>
+        <td>${a.patient.fullName}</td>
+        <td>${a.serviceDescription}</td>
+        <td>${a.price}</td>
+        <td>${a.date}</td>
+        <td>${a.time}</td>
+        <td><a href="/app/doctor/patient/${a.patient.id}">Pokaż</a></td>
     </tr>
-    <%--    </c:forEach>--%>
+        </c:forEach>
 
 </table>
-<p>Posortowane od najblizszych od dnia dzisiejszego.</p>
 </body>

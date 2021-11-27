@@ -20,7 +20,7 @@
     Wybierz date: <form:input path="date" type="date" value="${treatment.visitDate}"/>
     <form:errors path="date" cssClass="error"/><br/>
 
-    Wybierz godzinę: <form:select path="time" items="${hours}" /><br/>
+    Wybierz godzinę: <form:select path="time" items="${hoursDay}" /><br/>
 
     <input type="submit" value="Zarezerwuj">
 

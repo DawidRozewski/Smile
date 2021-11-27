@@ -33,9 +33,6 @@ public class Appointment {
     @NotNull
     private int price;
 
-//    @OneToOne
-//    private AppointmentSlot appointmentSlot;
-
     boolean isFinished;
 
     @ManyToOne
@@ -43,5 +40,6 @@ public class Appointment {
 
     @ManyToOne
     private Doctor doctor;
+
 
 }

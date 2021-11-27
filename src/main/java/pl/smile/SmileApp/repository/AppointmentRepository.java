@@ -45,5 +45,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     @Query("SELECT a FROM Appointment a WHERE a.date = :date AND a.isFinished = false")
     List<Appointment> findByDateAndFinishedIsFalse(@Param("date") LocalDate now);
 
-
+    @Query("SELECT a FROM Appointment a WHERE a.doctor.id = :doctorID " +
+            "AND a.isFinished = false " +
+            "ORDER BY a.date, a.time ASC ")
+    List<Appointment> findAllActiveAppointments(@Param("doctorID") long doctorID);
 }
