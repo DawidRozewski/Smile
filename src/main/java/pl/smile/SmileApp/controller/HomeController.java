@@ -31,6 +31,7 @@ public class HomeController {
         return workingHours.toString();
     }
 
+
     private List<LocalTime> getAvailableHours(LocalDate date) {
         List<LocalTime> workingHours = new ArrayList<>(List.of(
                 LocalTime.of(8, 0),

@@ -17,7 +17,7 @@
     <form:hidden path="serviceDescription" value="${treatment.description}"/>
     <form:hidden path="price" value="${treatment.price}"/>
 
-    Wybierz date: <form:input path="date" type="date"/>
+    Wybierz date: <form:input path="date" type="date" value="${treatment.visitDate}"/>
     <form:errors path="date" cssClass="error"/><br/>
 
     Wybierz godzinę: <form:select path="time" items="${hours}" /><br/>
