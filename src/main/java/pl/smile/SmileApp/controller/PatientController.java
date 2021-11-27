@@ -78,7 +78,9 @@ public class PatientController {
 
     @GetMapping("/appointment")
     public String prepToAppointment(@RequestParam long serviceID, Model model, Principal principal) {
-        model.addAttribute("patient", patientRepository.getByEmail(principal.getName()));
+        Patient patient = patientRepository.getByEmail(principal.getName());
+        model.addAttribute("doctor", patient.getDoctor());
+        model.addAttribute("patient", patient);
         model.addAttribute("service", serviceRepository.getById(serviceID));
         model.addAttribute("appointment", new Appointment());
 
@@ -94,16 +96,29 @@ public class PatientController {
         return "redirect:/app/patient/dashboard";
     }
 
+    @GetMapping("/appointment-by-plan")
+    public String prepToAppByPan(@RequestParam long planID, Model model, Principal principal) {
+        Patient patient = patientRepository.getByEmail(principal.getName());
+        model.addAttribute("doctor", patient.getDoctor());
+        model.addAttribute("patient", patient);
+        model.addAttribute("treatment", treatmentPlanRepository.getById(planID));
+        model.addAttribute("appointment", new Appointment());
+
+        return "/patient/appointment_by_plan";
+    }
+    @PostMapping("/appointment-by-plan")
+    public String addAppByPLan(@ModelAttribute("appointment") @Valid Appointment appointment, BindingResult result) {
+        if(result.hasErrors()) {
+            return "/patient/appointment_by_plan";
+        }
+        appointmentRepository.save(appointment);
+
+        return "redirect:/app/patient/dashboard";
+    }
+
     @ModelAttribute("services")
     public List<Service> servicesList() {
         return serviceRepository.findAll();
-    }
-
-    @ModelAttribute("doctor")
-    public Doctor patientDoctor(Principal principal) {
-        Patient patient = patientRepository.getByEmail(principal.getName());
-
-        return patient.getDoctor();
     }
 
     @ModelAttribute("hours")

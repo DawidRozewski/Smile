@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UniqueElements;
+import pl.smile.SmileApp.validators.UniqueEmail;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -34,9 +35,9 @@ public class Doctor {
     @Transient
     private String repassword;
 
+//    @UniqueEmail
     @Email
     @NotBlank
-//    @UniqueElements Dlaczego tu rzuca bledem?
     private String email;
 
     @Pattern(regexp = "^[5-8]\\d{8}$", message = "Podaj prawidlowy numer telefonu.")

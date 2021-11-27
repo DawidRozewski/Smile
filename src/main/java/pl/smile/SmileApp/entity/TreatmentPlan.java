@@ -4,9 +4,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -24,8 +22,7 @@ public class TreatmentPlan {
     @NotNull
     private int visitNumber;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Future
+    @FutureOrPresent
     private LocalDate visitDate;
 
     @NotBlank
@@ -33,6 +30,10 @@ public class TreatmentPlan {
 
     @NotNull
     private int time;
+
+    @NotNull
+    @Min(value = 0, message = "Cena nie może być poniżej 0.")
+    private int price;
 
     @OneToOne
     private Patient patient;

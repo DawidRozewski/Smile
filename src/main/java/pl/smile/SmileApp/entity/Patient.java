@@ -1,6 +1,9 @@
 package pl.smile.SmileApp.entity;
 import lombok.*;
 import org.hibernate.validator.constraints.pl.PESEL;
+import pl.smile.SmileApp.validators.UniqueEmail;
+import pl.smile.SmileApp.validators.UniquePesel;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -32,14 +35,12 @@ public class Patient {
     @Transient
     private String repassword;
 
-
+    @UniqueEmail
     @Email()
     @NotBlank
-//    @UniqueEmail
     private String email;
 
-
-//    @UniqueElements No validator could be found for constraint 'org.hibernate.validator.constraints.UniqueElements' validating type 'java.lang.String'
+    @UniquePesel
     @PESEL()
     private String pesel;
 

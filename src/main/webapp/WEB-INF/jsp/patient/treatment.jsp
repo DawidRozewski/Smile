@@ -19,18 +19,18 @@
     <tr>
         <th>Kolejność wizyt</th>
         <th>Opis zabiegu</th>
-        <th>Czas</th>
         <th>Data</th>
+        <th>Cena</th>
         <th>Zarezerwuj wizytę</th>
     </tr>
 
     <c:forEach var="t" items="${treatmentPlan}">
         <tr>
-            <td>${t.id}</td>
+            <td>${t.visitNumber}</td>
             <td>${t.description}</td>
-            <td>${t.time}</td>
             <td>${t.visitDate}</td>
-            <td><a href="/">Rezerwuj termin</a></td>
+            <td>${t.price}</td>
+            <td><a href="/app/patient/appointment-by-plan?planID=${t.id}">Zaplanuj wizyte</a></td>
         </tr>
     </c:forEach>
 </table>

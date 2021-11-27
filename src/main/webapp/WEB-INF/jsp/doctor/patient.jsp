@@ -41,6 +41,7 @@
         <th>Numer wizyty</th>
         <th>Opis</th>
         <th>Data wizyty</th>
+        <th>Cena</th>
         <th>Edytuj</th>
         <th>Usuń</th>
     </tr>
@@ -49,6 +50,7 @@
             <td>${t.visitNumber}</td>
             <td>${t.description}</td>
             <td>${t.visitDate}</td>
+            <td>${t.price}</td>
             <td><a href="/app/doctor/edit-treatment/${patient.id}/${t.id}">Edytuj</a></td>
             <td><a href="/app/doctor/remove/${patient.id}/${t.id}">Usuń</a></td>
         </tr>

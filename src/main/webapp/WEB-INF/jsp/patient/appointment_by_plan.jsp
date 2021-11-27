@@ -14,14 +14,14 @@
     <form:hidden path="id"/>
     <form:hidden path="doctor" value="${doctor.id}"/><br/>
     <form:hidden path="patient" value="${patient.id}"/><br/>
-    <form:hidden path="serviceDescription" value="${service.description}"/>
-    <form:hidden path="price" value="${service.amount}"/>
+    <form:hidden path="serviceDescription" value="${treatment.description}"/>
+    <form:hidden path="price" value="${treatment.price}"/>
 
     Wybierz date: <form:input path="date" type="date"/>
-                  <form:errors path="date" cssClass="error"/><br/>
+    <form:errors path="date" cssClass="error"/><br/>
 
     Wybierz godzinę: <form:select path="time" items="${hours}" /><br/>
 
     <input type="submit" value="Zarezerwuj">
-    
+
 </form:form>

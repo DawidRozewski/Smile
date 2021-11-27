@@ -19,7 +19,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
             "AND a.isFinished = false " +
             "ORDER BY a.date ASC ")
     List<Appointment> getFutureOrPresentAppointments(@Param("patientID") long patientID,
-                                            @Param("now") LocalDate now);
+                                                     @Param("now") LocalDate now);
 
     @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID " +
             "AND a.isFinished = true " +
@@ -38,15 +38,12 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID " +
             "AND a.doctor.id = :doctorID " +
             "AND a.isFinished = true " +
-            "ORDER BY a.date ASC")
+            "ORDER BY a.date DESC")
     List<Appointment> getPatientHistoryApp(@Param("patientID") long patientID,
                                            @Param("doctorID") long doctorID);
 
-
-
-
-
-
+    @Query("SELECT a FROM Appointment a WHERE a.date = :date AND a.isFinished = false")
+    List<Appointment> findByDateAndFinishedIsFalse(@Param("date") LocalDate now);
 
 
 }

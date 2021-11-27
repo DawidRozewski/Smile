@@ -36,17 +36,17 @@ public class CurrentUser implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return getUserDetails(email, patientRepository, doctorRepository);
+        return getUserDetails(email);
     }
 
-    private UserDetails getUserDetails(String email, PatientRepository patientRepository, DoctorRepository doctorRepository) {
+    private UserDetails getUserDetails(String email) {
         Patient patient = patientRepository.getByEmail(email);
         UserDetails patientUser = getPatient(patient);
         if (patientUser != null) return patientUser;
 
         Doctor doctor = doctorRepository.getByEmail(email);
         UserDetails doctorUser = getDoctor(doctor);
-        if (doctorUser != null) return doctorUser;
+        if (doctorUser != null) return getDoctor(doctor);
 
         Admin admin = adminRepository.findByUsername(email);
         UserDetails adminUser = getAdmin(admin);

@@ -19,6 +19,9 @@
     Opis: <form:textarea path="description" cols="80" rows="10"/><br>
     <form:errors path="description" cssClass="error"/> <br>
 
+    Cena: <form:input path="price" /><br/>
+    <form:errors path="price" cssClass="error"/><br/>
+
     Wizyta: <form:input path="visitDate" type="date"/><br/>
     <form:errors path="visitDate" cssClass="error"/><br/>
 
