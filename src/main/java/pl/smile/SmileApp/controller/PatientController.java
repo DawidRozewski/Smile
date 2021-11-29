@@ -74,7 +74,7 @@ public class PatientController {
 
         return "redirect:/app/patient/dashboard";
     }
-
+ 
     @GetMapping("/appointment")
     public String prepToAppointment(@RequestParam long serviceID, Model model, Principal principal) {
         Patient patient = patientRepository.getByEmail(principal.getName());

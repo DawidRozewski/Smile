@@ -2,18 +2,11 @@ package pl.smile.SmileApp.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.*;
-import pl.smile.SmileApp.entity.Appointment;
-import pl.smile.SmileApp.repository.AppointmentRepository;
 import pl.smile.SmileApp.service.AppointmentServiceImpl;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Controller

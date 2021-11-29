@@ -29,8 +29,7 @@ public class AppointmentServiceImpl implements AppointmentService {
                 LocalTime.of(12, 0),
                 LocalTime.of(13, 0),
                 LocalTime.of(14, 0),
-                LocalTime.of(15, 0),
-                LocalTime.of(16, 0)
+                LocalTime.of(15, 0)
         ));
 
         List<Appointment> allByDate = appointmentRepository.findByDateAndFinishedIsFalse(appointmentDate);
