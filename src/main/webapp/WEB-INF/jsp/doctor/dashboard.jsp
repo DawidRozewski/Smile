@@ -19,12 +19,14 @@
         }
     </script>
 </head>
-<p><strong>Znajdź pacjenta: </strong></p>
+
+<h3>Znajdź pacjenta: </h3>
 <form method="get" action="/app/doctor/dashboard">
-    Pesel: <input type="text" name="pesel" id="keyword" size="15" value="${pesel}"/>
+    Pesel: <input type="text" name="pesel"  size="15" value="${pesel}"/>
     <input type="submit" value="Szukaj" />
-    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+    <input type="button" value="Wyczyść"  onclick="clearSearch()" />
 </form>
+
 <table>
     <tr>
         <th>ID</th>
