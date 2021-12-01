@@ -65,6 +65,7 @@
         <th>Godzina</th>
         <th>Opis</th>
         <th>Cena</th>
+        <th>Dodaj RTG</th>
         <th>Zakończ</th>
     </tr>
     <c:forEach var="a" items="${appointments}">

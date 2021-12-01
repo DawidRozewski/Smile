@@ -78,6 +78,9 @@ public class PatientController {
     @GetMapping("/appointment")
     public String prepToAppointment(@RequestParam long serviceID, Model model, Principal principal) {
         Patient patient = patientRepository.getByEmail(principal.getName());
+        LocalDate today = LocalDate.now();
+        model.addAttribute("today", today);
+        model.addAttribute("hoursDay", appointmentService.getAvailableHours(today));
         model.addAttribute("doctor", patient.getDoctor());
         model.addAttribute("patient", patient);
         model.addAttribute("service", serviceRepository.getById(serviceID));

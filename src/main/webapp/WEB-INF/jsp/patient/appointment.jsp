@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="temps/header.jsp" %>
-
+<script src="app.js"></script>
 <h2>Zaplanuj wizytę</h2>
 
 <head >
@@ -10,6 +10,7 @@
         }
     </style>
 </head>
+
 <form:form modelAttribute="appointment" method="post">
     <form:hidden path="id"/>
     <form:hidden path="doctor" value="${doctor.id}"/><br/>
@@ -17,10 +18,10 @@
     <form:hidden path="serviceDescription" value="${service.description}"/>
     <form:hidden path="price" value="${service.amount}"/>
 
-    Wybierz date: <form:input path="date" type="date"/>
+    Wybierz datę: <form:input id="pick_date"   path="date" type="date" value="${today}"/>
                   <form:errors path="date" cssClass="error"/><br/>
 
-    Wybierz godzinę: <form:select path="time" items="${hours}" /><br/>
+    Wybierz godzinę: <form:select id="pick_hour" path="time" items="${hoursDay}" /><br/>
 
     <input type="submit" value="Zarezerwuj">
     

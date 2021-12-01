@@ -7,12 +7,9 @@ import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.repository.DoctorRepository;
 
-import java.util.Set;
-
 @Service
 @AllArgsConstructor
-public class DoctorServiceImpl implements DoctorService {
-
+public class DoctorServiceImpl implements DoctorService{
     private final DoctorRepository doctorRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -32,4 +29,9 @@ public class DoctorServiceImpl implements DoctorService {
     private boolean checkPassword(String pass, String pass2) {
         return pass.equals(pass2);
     }
+
+
+
+
+
 }

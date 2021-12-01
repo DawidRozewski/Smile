@@ -13,7 +13,18 @@
             background-color: #ccc;
         }
     </style>
+    <script type="text/javascript">
+        function clearSearch() {
+            window.location = "http://localhost:8080/app/doctor/dashboard";
+        }
+    </script>
 </head>
+<p><strong>Znajdź pacjenta: </strong></p>
+<form method="get" action="/app/doctor/dashboard">
+    Pesel: <input type="text" name="pesel" id="keyword" size="15" value="${pesel}"/>
+    <input type="submit" value="Szukaj" />
+    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+</form>
 <table>
     <tr>
         <th>ID</th>

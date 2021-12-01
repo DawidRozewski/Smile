@@ -35,6 +35,11 @@ public class Appointment {
 
     boolean isFinished;
 
+//    @Lob  n
+//    private byte[] data
+
+
+
     @ManyToOne
     private Patient patient;
 

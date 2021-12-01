@@ -1,15 +1,14 @@
 package pl.smile.SmileApp.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.smile.SmileApp.entity.Appointment;
-import pl.smile.SmileApp.entity.Doctor;
-import pl.smile.SmileApp.entity.Service;
-import pl.smile.SmileApp.entity.TreatmentPlan;
+import pl.smile.SmileApp.entity.*;
 import pl.smile.SmileApp.repository.*;
+import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -25,11 +24,12 @@ public class DoctorController {
     private final AppointmentRepository appointmentRepository;
     private final TreatmentPlanRepository treatmentRepository;
     private final ServiceRepository serviceRepository;
+    private final PatientServiceImpl patientService;
 
     @GetMapping("/dashboard")
-    public String showAllPatients(Principal principal, Model model) {
+    public String showAllPatients(Principal principal, Model model, @Param("pesel") String pesel) {
         Doctor doctor = doctorRepository.getByEmail(principal.getName());
-        model.addAttribute("patients", patientRepository.findAllByDoctor(doctor));
+        model.addAttribute("patients", patientService.listAll(pesel, doctor));
 
         return "/doctor/dashboard";
     }

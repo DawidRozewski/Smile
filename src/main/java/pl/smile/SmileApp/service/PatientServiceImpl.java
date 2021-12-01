@@ -5,10 +5,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.repository.PatientRepository;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -35,6 +37,14 @@ public class PatientServiceImpl implements PatientService {
     public void update(Patient patient) {
         patientRepository.save(patient);
     }
+
+    public List<Patient> listAll(String pesel, Doctor doctor) {
+        if (pesel != null) {
+            return patientRepository.findAllByPesel(pesel);
+        }
+        return patientRepository.findAllByDoctor(doctor);
+    }
+
 
     private boolean checkPassword(String pass, String pass2) {
         return pass.equals(pass2);
