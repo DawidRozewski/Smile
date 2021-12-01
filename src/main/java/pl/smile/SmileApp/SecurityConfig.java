@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/app/admin/**").hasRole("ADMIN")
                 .antMatchers("/app/doctor/**").hasRole("DOCTOR")
                 .antMatchers("/app/patient/**").hasRole("PATIENT")
-                .antMatchers("/app/**").permitAll()
+                .antMatchers("/app/**", "/app/example-appointment/**").permitAll()
                 .and().formLogin().successHandler(myAuthenticationSuccessHandler())
                 .and().logout().logoutSuccessUrl("/app").deleteCookies("JSESSIONID")
                 .and().exceptionHandling().accessDeniedPage("/403");
