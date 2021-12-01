@@ -81,7 +81,7 @@ public class PatientController {
         LocalDate today = LocalDate.now();
         model.addAttribute("today", today);
         model.addAttribute("hoursDay", appointmentService.getAvailableHours(today));
-        model.addAttribute("doctor", patient.getDoctor());
+         model.addAttribute("doctor", patient.getDoctor());
         model.addAttribute("patient", patient);
         model.addAttribute("service", serviceRepository.getById(serviceID));
         model.addAttribute("appointment", new Appointment());

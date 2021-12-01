@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.*;
+import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.repository.*;
 import pl.smile.SmileApp.service.PatientServiceImpl;
 
@@ -46,7 +47,9 @@ public class DoctorController {
     @GetMapping("/patient/{patientID}")
     public String showPatientInfoAndTreatmentPan(@PathVariable long patientID, Model model, Principal principal) {
         Doctor doctor = getDoctor(principal);
-        model.addAttribute("patient", patientRepository.getById(patientID));
+        Patient patient = patientRepository.findById(patientID).orElseThrow(PatientNotFound::new);
+
+        model.addAttribute("patient", patient);
         model.addAttribute("appointments", appointmentRepository.getFutureOrPresentPatientApp(patientID, doctor.getId(), LocalDate.now()));
         model.addAttribute("treatmentList", treatmentRepository.findAllByPatientIdAndDoctor(patientID, doctor));
 
