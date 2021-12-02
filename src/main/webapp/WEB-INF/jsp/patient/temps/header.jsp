@@ -8,6 +8,10 @@
             display: flex;
             justify-content:space-between;
         }
+
+        .error {
+            color: red;
+        }
     </style>
 </head>
 

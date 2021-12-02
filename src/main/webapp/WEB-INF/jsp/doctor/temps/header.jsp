@@ -15,11 +15,8 @@
     <strong><a href="/app">Strona główna</a></strong>
     <strong><a href="/app/doctor/dashboard">Dashboard</a></strong>
     <strong><a href="/app/doctor/schedule">Grafik</a></strong>
-    <strong><a href="/app/doctor/patients">Lista pacjentów</a></strong>
-    <strong><a href="/app/doctor/treatment-plan">Plan leczenia</a></strong>
     <strong><a href="/app/doctor/services">Cennik zabiegów</a></strong>
     <strong><a href="/app/doctor/edit">Edytuj dane</a></strong>
-    <strong><a href="/app/doctor/dashboard">Kontakt</a></strong>
     <strong><a href="/logout">Wyloguj</a></strong>
 </div>
 <hr>
