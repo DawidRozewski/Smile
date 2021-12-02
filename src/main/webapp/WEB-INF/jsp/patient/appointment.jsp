@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="temps/header.jsp" %>
-<script src="app.js"></script>
+<!-- koontynuacja zmian żeby plik js był dostępny i możliwy do uruchomienia --->
+<script src="<c:url value="/app.js"/>" type="text/javascript"></script>
 <h2>Zaplanuj wizytę</h2>
 
 <head >
