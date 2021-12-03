@@ -1,7 +1,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@include file="temps/header.jsp"%>
+<%@include file="temps/header.jsp" %>
+
 <head>
     <title>Lista plików</title>
     <style>
@@ -16,12 +17,6 @@
         }
     </style>
 </head>
-
-<h2>Dodaj pliki dla pacjenta ${patient.fullName}</h2>
-<form method="post" action="/app/doctor/uploadFiles/${appointment.id}/${patient.id}" enctype="multipart/form-data">
-    <input type="file" name="files" multiple required>
-    <button type="submit">Dodaj</button>
-</form><br/>
 
 <h2>Lista plików do wizyty z dnia ${appointment.date}</h2>
 <div>
@@ -38,7 +33,6 @@
                 <td>${d.name}</td>
                 <td><a href="/app/file/download/${d.id}">Pobierz</a></td>
             </tr>
-
         </c:forEach>
     </table>
 </div>

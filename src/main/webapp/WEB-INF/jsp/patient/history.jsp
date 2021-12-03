@@ -20,12 +20,14 @@
         <th>Data wizyty</th>
         <th>Godzina</th>
         <th>Opis</th>
+        <th>Pliki</th>
     </tr>
     <c:forEach var="a" items="${appointments}">
         <tr>
             <td>${a.date}</td>
             <td>${a.time}</td>
             <td>${a.serviceDescription}</td>
+            <td><a href="/app/patient/show-files/${a.id}">Pokaż</a> </td>
         </tr>
     </c:forEach>
 </table>

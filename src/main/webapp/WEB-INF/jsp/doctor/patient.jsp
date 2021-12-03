@@ -65,7 +65,7 @@
         <th>Godzina</th>
         <th>Opis</th>
         <th>Cena</th>
-        <th>Dodaj RTG</th>
+        <th>Pliki</th>
         <th>Zakończ</th>
     </tr>
     <c:forEach var="a" items="${appointments}">
@@ -75,7 +75,7 @@
             <td>${a.time}</td>
             <td>${a.serviceDescription}</td>
             <td>${a.price}</td>
-            <td><a href="/app/doctor/uploadFiles/${a.id}/${patient.id}">Pliki</a></td>
+            <td><a href="/app/doctor/uploadFiles/${a.id}/${patient.id}">Dodaj</a></td>
             <td><a href="/app/doctor/endVisit/${a.id}">Zakończ wizytę</a></td>
         </tr>
     </c:forEach>
