@@ -1,5 +1,6 @@
 package pl.smile.SmileApp.controller.form;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,20 +19,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/app/register")
 public class RegisterController {
 
-    private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
-    private final PasswordEncoder passwordEncoder;
     private final PatientServiceImpl patientService;
-
-    public RegisterController(PatientRepository patientRepository, DoctorRepository doctorRepository, PasswordEncoder passwordEncoder, PatientServiceImpl patientService) {
-        this.patientRepository = patientRepository;
-        this.doctorRepository = doctorRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.patientService = patientService;
-    }
 
     @GetMapping("")
     public String prepareToAdd(Model model) {

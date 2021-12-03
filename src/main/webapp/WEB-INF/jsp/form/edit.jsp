@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%--<%@include file="../patient/dashboard.jsp" %>--%>
+
 <head>
     <style>
         .error {
@@ -10,6 +10,7 @@
     </style>
 </head>
 
+<%@include file="../patient/temps/header.jsp" %>
 <form:form modelAttribute="patient">
     <form:hidden path="id"/>
     <form:hidden path="password" /><br/>

@@ -5,12 +5,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.smile.SmileApp.entity.Document;
 import pl.smile.SmileApp.repository.AppointmentRepository;
-import pl.smile.SmileApp.repository.DoctorRepository;
 import pl.smile.SmileApp.repository.DocumentRepository;
 import pl.smile.SmileApp.repository.PatientRepository;
 
 import java.io.IOException;
-import java.util.Optional;
+
 
 @Service
 @AllArgsConstructor
@@ -36,12 +35,5 @@ public class DocumentServiceImpl implements DocumentService{
     public Document getFile(Long fileId) {
         return documentRepository.getById(fileId);
     }
-
-
-
-
-
-
-
 
 }
