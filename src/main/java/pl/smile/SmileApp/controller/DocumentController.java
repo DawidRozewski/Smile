@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import pl.smile.SmileApp.entity.Document;
+import pl.smile.SmileApp.repository.AppointmentRepository;
 import pl.smile.SmileApp.repository.DocumentRepository;
-import pl.smile.SmileApp.service.DocumentService;
+import pl.smile.SmileApp.repository.PatientRepository;
+import pl.smile.SmileApp.service.DocumentServiceImpl;
 
 import java.util.List;
 
@@ -22,22 +24,30 @@ import java.util.List;
 @AllArgsConstructor
 public class DocumentController {
 
-    private DocumentService documentService;
-    private DocumentRepository documentRepository;
+    private final DocumentServiceImpl documentService;
+    private final DocumentRepository documentRepository;
+    private final AppointmentRepository appointmentRepository;
+    private final PatientRepository patientRepository;
 
-    @GetMapping("/app/doctor/showFiles")
-    public String get(Model model){
-        List<Document> documents = documentRepository.findAll();
+    @GetMapping("/app/doctor/uploadFiles/{appID}/{patientID}")
+    public String get(@PathVariable Long appID,
+                      @PathVariable Long patientID,
+                      Model model) {
+        List<Document> documents = documentRepository.findAllByAppointment_IdAndPatient_Id(appID, patientID);
         model.addAttribute("docs", documents);
-        return "doc";
+        model.addAttribute("appointment", appointmentRepository.getById(appID));
+        model.addAttribute("patient", patientRepository.getById(patientID));
+        return "/doctor/uploadFile";
     }
 
-    @PostMapping("/app/doctor/uploadFiles")
-    public String upload(@RequestParam("files") MultipartFile[] files) {
-        for(MultipartFile file : files) {
-            documentService.saveFile(file);
+    @PostMapping("/app/doctor/uploadFiles/{appID}/{patientID}")
+    public String uploadFiles(@RequestParam("files") MultipartFile[] files,
+                              @PathVariable Long appID,
+                              @PathVariable Long patientID) {
+        for (MultipartFile file : files) {
+            documentService.saveFile(file, appID, patientID);
         }
-        return "redirect:/app/doctor/showFiles";
+        return "redirect:/app/doctor/dashboard";
     }
 
     @GetMapping("/app/doctor/downloadFile/{fileID}")
@@ -45,7 +55,7 @@ public class DocumentController {
         Document document = documentService.getFile(fileID);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(document.getType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\""+document.getName()+"\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + document.getName() + "\"")
                 .body(new ByteArrayResource(document.getData()));
     }
 }

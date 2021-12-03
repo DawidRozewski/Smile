@@ -75,11 +75,10 @@
             <td>${a.time}</td>
             <td>${a.serviceDescription}</td>
             <td>${a.price}</td>
+            <td><a href="/app/doctor/uploadFiles/${a.id}/${patient.id}">Pliki</a></td>
             <td><a href="/app/doctor/endVisit/${a.id}">Zakończ wizytę</a></td>
         </tr>
     </c:forEach>
 </table>
-
-
 
 </body>
