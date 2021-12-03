@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
                 data.forEach(element => {
                     const select = document.createElement("select");
-                    select.textContent = element;
+                    select.innerText = element;
                     hoursInput.appendChild(select);
                 })
             })
