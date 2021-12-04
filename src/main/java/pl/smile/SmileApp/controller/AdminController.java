@@ -76,7 +76,7 @@ public class AdminController {
     @PostMapping("/doctors/add")
     public String save(@ModelAttribute("doctor") @Valid Doctor doctor, BindingResult result) {
         if (result.hasErrors()) {
-            return "/admin/add";
+            return "redirect:/app/admin/doctors/add";
         }
         doctorService.save(doctor, result);
 

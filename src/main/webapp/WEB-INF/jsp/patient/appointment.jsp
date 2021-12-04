@@ -18,10 +18,10 @@
     <form:hidden path="serviceDescription" value="${service.description}"/>
     <form:hidden path="price" value="${service.amount}"/>
 
-    Wybierz datę: <form:input id="pick_date"   path="date" type="date" value="${today}"/>
+    Wybierz datę: <form:input id="pick_date"   path="date" type="date" value="${today}"/><br/>
                   <form:errors path="date" cssClass="error"/><br/>
 
-    Wybierz godzinę: <form:select id="pick_hour" path="time" items="${hoursDay}"/><br/>
+    Wybierz godzinę: <form:select id="pick_hour" path="time" items="${hoursDay}"/><br/><br/>
 
     <input type="submit" value="Zarezerwuj">
 

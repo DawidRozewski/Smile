@@ -13,6 +13,7 @@ import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -90,6 +91,11 @@ public class PatientController {
     }
     @PostMapping("/appointment")
     public String addAppointment(@ModelAttribute("appointment") @Valid Appointment appointment, BindingResult result) {
+        if(appointment.getDate().getDayOfWeek() == DayOfWeek.SUNDAY) {
+            result.rejectValue("date", "error.appointment", "W niedziele nie pracujemy :)");
+            return "/patient/appointment";
+        }
+
         if(result.hasErrors()) {
             return "/patient/appointment";
         }

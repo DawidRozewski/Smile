@@ -1,9 +1,7 @@
 package pl.smile.SmileApp.validators;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
-import pl.smile.SmileApp.repository.DoctorRepository;
-import pl.smile.SmileApp.repository.PatientRepository;
 
+import pl.smile.SmileApp.repository.PatientRepository;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 

@@ -1,9 +1,9 @@
 package pl.smile.SmileApp.entity;
 
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
+
+
 import javax.persistence.*;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -22,6 +22,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+//    @SundayCheck
     @FutureOrPresent
     private LocalDate date;
 
@@ -34,11 +35,6 @@ public class Appointment {
     private int price;
 
     boolean isFinished;
-
-//    @Lob  n
-//    private byte[] data
-
-
 
     @ManyToOne
     private Patient patient;

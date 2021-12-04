@@ -15,12 +15,12 @@ public class DoctorServiceImpl implements DoctorService{
 
     @Override
     public String save(Doctor doctor, BindingResult result) {
-        if (checkPassword(doctor.getPassword(), doctor.getRepassword())) {
+        if (!checkPassword(doctor.getPassword(), doctor.getRepassword())) {
+            result.rejectValue("repassword", "error.doctor", "Podane hasła nie są zgodne.");
+            return "redirect:/app/admin/doctors/add";
+        } else {
             doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
             doctorRepository.save(doctor);
-        } else {
-            result.rejectValue("repassword", "error.doctor", "Podane hasła nie są zgodne.");
-            return "/admin/add";
         }
 
         return "/admin/doctors";
@@ -29,8 +29,6 @@ public class DoctorServiceImpl implements DoctorService{
     private boolean checkPassword(String pass, String pass2) {
         return pass.equals(pass2);
     }
-
-
 
 
 

@@ -49,4 +49,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
             "AND a.isFinished = false " +
             "ORDER BY a.date, a.time ASC ")
     List<Appointment> findAllActiveAppointments(@Param("doctorID") long doctorID);
+
 }
