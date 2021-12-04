@@ -192,6 +192,27 @@ public class DoctorController {
         return "redirect:/app/doctor/patient/" + appointment.getPatient().getId();
     }
 
+    @GetMapping("/remove-appointment/{appID}/{patientID}")
+    public String prepToRemoveVisit(@PathVariable Long appID, @PathVariable Long patientID, Model model) {
+        Appointment appointment = appointmentRepository.getById(appID);
+        Patient patient = patientRepository.getById(patientID);
+        model.addAttribute("appointment", appointment);
+        model.addAttribute("patient", patient.getFullName());
+
+        return "/doctor/remove_appointment";
+    }
+
+    @PostMapping("/remove-appointment/{appID}/{patientID}")
+    public String removeVisit(@PathVariable long appID, @RequestParam String confirmed) {
+        if ("yes".equals(confirmed)) {
+            appointmentRepository.deleteById(appID);
+        }
+
+        return "redirect:/app/doctor/schedule/";
+    }
+
+
+
     private Doctor getDoctor(Principal principal) {
         String email = principal.getName();
         return doctorRepository.getByEmail(email);

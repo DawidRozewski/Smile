@@ -22,6 +22,7 @@
         <th>Data wizyty</th>
         <th>Godzina</th>
         <th>Pokaż dane</th>
+        <th>Usuń wizytę</th>
     </tr>
 
 
@@ -33,6 +34,7 @@
         <td>${a.date}</td>
         <td>${a.time}</td>
         <td><a href="/app/doctor/patient/${a.patient.id}">Pokaż</a></td>
+        <td><a href="/app/doctor/remove-appointment/${a.id}/${a.patient.id}">Usuń wizytę</a></td>
     </tr>
         </c:forEach>
 

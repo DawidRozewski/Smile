@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
                 formattedHours.forEach(element => {
                     const option = document.createElement("option");
-                    option.textContent = element;
+                    option.innerText = element;
                     hoursInput.appendChild(option);
                 })
             })
