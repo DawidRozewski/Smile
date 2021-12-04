@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="temps/header.jsp" %>
-<%@page import="pl.smile.SmileApp.service.AppointmentServiceImpl"%>
-<%@ page import="pl.smile.SmileApp.repository.AppointmentRepository" %>
+<script src="<c:url value="/app.js"/>" type="text/javascript"></script>
 
 <h2>Zaplanuj wizytę</h2>
 <head >
