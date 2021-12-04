@@ -21,6 +21,7 @@ public class AppointmentRestController {
     @GetMapping("/available")
     public List<LocalTime> getAvailable(@RequestParam("date") String date) {
         LocalDate pickedDate = LocalDate.parse(date);
+
         return appointmentService.getAvailableHours(pickedDate);
     }
 
