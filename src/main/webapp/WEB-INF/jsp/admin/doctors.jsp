@@ -16,7 +16,7 @@
 <br/>
 <hr/>
 <br/>
-<a href="/app/admin/doctors/add" class="test">Dodaj doktora</a><br/>
+<h3><a href="/app/admin/doctors/add" class="test">Dodaj doktora</a><br/></h3>
 <head>
     <title>Doktorzy</title>
     <style>

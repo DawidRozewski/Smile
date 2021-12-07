@@ -23,7 +23,7 @@ public class HomeController {
 
     @GetMapping("/services")
     public String services() {
-        return "/patient/services";
+        return "/homepage/services";
     }
 
     @ModelAttribute("services")

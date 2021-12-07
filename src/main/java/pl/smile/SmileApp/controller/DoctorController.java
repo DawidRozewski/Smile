@@ -170,6 +170,7 @@ public class DoctorController {
     public String showPatientHistory(@PathVariable long patientID, Model model, Principal principal) {
         Doctor doctor = getDoctor(principal);
         model.addAttribute("appointments", appointmentRepository.getPatientHistoryApp(patientID, doctor.getId()));
+        model.addAttribute("patient", patientRepository.getById(patientID));
 
         return "/doctor/history";
     }

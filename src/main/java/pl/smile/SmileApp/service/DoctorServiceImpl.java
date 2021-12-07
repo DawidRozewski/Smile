@@ -9,27 +9,17 @@ import pl.smile.SmileApp.repository.DoctorRepository;
 
 @Service
 @AllArgsConstructor
-public class DoctorServiceImpl implements DoctorService{
+public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepository doctorRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public String save(Doctor doctor, BindingResult result) {
-        if (!checkPassword(doctor.getPassword(), doctor.getRepassword())) {
-            result.rejectValue("repassword", "error.doctor", "Podane hasła nie są zgodne.");
-            return "redirect:/app/admin/doctors/add";
-        } else {
-            doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
-            doctorRepository.save(doctor);
-        }
+    public String save(Doctor doctor) {
+        doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
+        doctorRepository.save(doctor);
 
         return "/admin/doctors";
     }
-
-    private boolean checkPassword(String pass, String pass2) {
-        return pass.equals(pass2);
-    }
-
 
 
 }

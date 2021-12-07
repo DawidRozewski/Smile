@@ -40,6 +40,9 @@ public class PatientController {
 
     @GetMapping("/history")
     public String history(Principal principal, Model model) {
+        String email = principal.getName();
+        Patient patient = patientRepository.getByEmail(email);
+        model.addAttribute("patient", patient);
         model.addAttribute("appointments",
                 appointmentRepository.getPastAppointments(getPatientID(principal)));
 
@@ -71,7 +74,7 @@ public class PatientController {
         if(result.hasErrors()) {
             return "/form/edit";
         }
-        patientService.update(patient);
+        patientService.save(patient);
 
         return "redirect:/app/patient/dashboard";
     }

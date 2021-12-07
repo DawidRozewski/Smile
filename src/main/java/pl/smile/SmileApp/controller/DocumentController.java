@@ -61,13 +61,11 @@ public class DocumentController {
                 .body(new ByteArrayResource(document.getData()));
     }
 
-    @GetMapping("/app/patient/show-files/{appID}")
+    @GetMapping("/app/file/show/{appID}/{patientID}")
     public String showFiles(@PathVariable Long appID,
-                            Model model,
-                            Principal principal) {
-        String patientEmail = principal.getName();
-        Patient patient = patientRepository.getByEmail(patientEmail);
-        List<Document> documents = documentRepository.findAllByAppointment_IdAndPatient_Id(appID, patient.getId());
+                            @PathVariable Long patientID,
+                            Model model) {
+        List<Document> documents = documentRepository.findAllByAppointment_IdAndPatient_Id(appID, patientID);
         model.addAttribute("documents", documents);
         model.addAttribute("appointment", appointmentRepository.getById(appID));
         return "/patient/showFiles";

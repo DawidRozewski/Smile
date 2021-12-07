@@ -1,7 +1,6 @@
 package pl.smile.SmileApp.controller.form;
 
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +15,7 @@ import pl.smile.SmileApp.repository.PatientRepository;
 import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import javax.validation.Valid;
+import java.time.DayOfWeek;
 import java.util.List;
 
 @Controller
@@ -24,6 +24,7 @@ import java.util.List;
 public class RegisterController {
 
     private final DoctorRepository doctorRepository;
+    private final PatientRepository patientRepository;
     private final PatientServiceImpl patientService;
 
     @GetMapping("")
@@ -34,10 +35,14 @@ public class RegisterController {
 
     @PostMapping("")
     public String save(@ModelAttribute("patient") @Valid Patient patient, BindingResult result) {
+        if(!checkPassword(patient.getPassword(), patient.getRepassword())) {
+            result.rejectValue("repassword", "error.patient", "Podane hasła nie są zgodne.");
+            return "/form/register";
+        }
         if (result.hasErrors()) {
             return "/form/register";
         }
-        patientService.save(patient,result);
+        patientService.save(patient);
         return "redirect:/login";
     }
 
@@ -46,4 +51,7 @@ public class RegisterController {
         return doctorRepository.findAll();
     }
 
+    private boolean checkPassword(String pass, String pass2) {
+        return pass.equals(pass2);
+    }
 }
