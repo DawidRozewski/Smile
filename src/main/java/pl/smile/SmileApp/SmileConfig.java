@@ -21,7 +21,6 @@ import java.util.Locale;
 @ComponentScan(basePackages = "pl.smile")
 @EnableJpaRepositories(basePackages = "pl.smile.SmileApp.repository")
 @EnableTransactionManagement
-@EnableScheduling
 public class SmileConfig {
 
     @Bean(name="localeResolver")

@@ -15,7 +15,6 @@ import pl.smile.SmileApp.repository.ServiceRepository;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @Controller
@@ -32,7 +31,6 @@ public class HomeController {
         return "homepage";
     }
 
-
     @GetMapping("/services")
     public String services() {
         return "/homepage/services";
@@ -43,32 +41,7 @@ public class HomeController {
         return serviceRepository.findAll();
     }
 
-
-    @GetMapping
-    @Scheduled(cron = "10 13 * * * *")
-    public void sendSMS() {
-        List<Appointment> appointments = appointmentRepository.findAll();
-
-        List<Appointment> list = appointments.stream()
-                .filter(a -> !a.isFinished())
-                .filter(a -> a.getDate().minusDays(3).equals(LocalDate.now()))
-                .filter(a -> a.getPatient().getPhoneNumber().equals("789024803"))
-                .collect(Collectors.toList());
-
-        for (Appointment a : list) {
-            Twilio.init(
-                    twilioAcc.getAccSid(),
-                    twilioAcc.getAuthToken());
-            Message.creator(new PhoneNumber("+48" + a.getPatient().getPhoneNumber()),
-                    new PhoneNumber(twilioAcc.getTrialNumber()),
-                    "Przypominamy, że za 3 dni wizyta. :) W celu odwołania wizyty, prosimy o kontakt pod numerem: 999 999 999").create();
-
-        }
-    }
 }
-
-
-
 
 
 
