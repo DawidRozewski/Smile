@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -20,6 +21,7 @@ import java.util.Locale;
 @ComponentScan(basePackages = "pl.smile")
 @EnableJpaRepositories(basePackages = "pl.smile.SmileApp.repository")
 @EnableTransactionManagement
+@EnableScheduling
 public class SmileConfig {
 
     @Bean(name="localeResolver")

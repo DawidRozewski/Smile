@@ -25,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/app/patient/**").hasRole("PATIENT")
                 .antMatchers("/app/file/**").hasAnyRole("DOCTOR", "PATIENT")
                 .antMatchers("/app/**", "/app/example-appointment/**").permitAll()
+                .antMatchers("/sendSMS/**").permitAll()
                 .and().formLogin().successHandler(myAuthenticationSuccessHandler())
                 .and().logout().logoutSuccessUrl("/app").deleteCookies("JSESSIONID")
                 .and().exceptionHandling().accessDeniedPage("/403");

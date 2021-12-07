@@ -13,8 +13,7 @@ import javax.validation.constraints.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-//@PasswordMatches
+
 public class Patient {
 
     @Id

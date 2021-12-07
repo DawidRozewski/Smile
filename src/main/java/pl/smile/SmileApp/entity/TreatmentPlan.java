@@ -29,9 +29,6 @@ public class TreatmentPlan {
     private String description;
 
     @NotNull
-    private int time;
-
-    @NotNull
     @Min(value = 0, message = "Cena nie może być poniżej 0.")
     private int price;
 

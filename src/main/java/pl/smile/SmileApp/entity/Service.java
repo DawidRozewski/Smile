@@ -21,10 +21,6 @@ public class Service {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
-    @Min(value = 0, message = "Czas nie może być poniżej 0.")
-    private int time;
-
     @NotBlank
     private String description;
 
