@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.*;
 import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.repository.*;
+import pl.smile.SmileApp.service.DoctorService;
+import pl.smile.SmileApp.service.DoctorServiceImpl;
 import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import javax.validation.Valid;
@@ -26,6 +28,7 @@ public class DoctorController {
     private final TreatmentPlanRepository treatmentRepository;
     private final ServiceRepository serviceRepository;
     private final PatientServiceImpl patientService;
+    private final DoctorServiceImpl doctorService;
 
     @GetMapping("/dashboard")
     public String showAllPatients(Principal principal, Model model, @Param("pesel") String pesel) {
@@ -213,6 +216,22 @@ public class DoctorController {
     }
 
 
+    @GetMapping("/edit")
+    public String prepareToEdit(Principal principal, Model model) {
+        model.addAttribute("doctor", doctorRepository.getByEmail(principal.getName()));
+
+        return "/doctor/edit";
+    }
+
+    @PostMapping("/edit")
+    public String updatePersonalData(@ModelAttribute("doctor") @Valid Doctor doctor, BindingResult result) {
+        if(result.hasErrors()) {
+            return "/doctor/edit";
+        }
+        doctorService.save(doctor);
+
+        return "redirect:/app/doctor/dashboard";
+    }
 
     private Doctor getDoctor(Principal principal) {
         String email = principal.getName();

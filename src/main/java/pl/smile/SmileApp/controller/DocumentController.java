@@ -49,7 +49,7 @@ public class DocumentController {
         for (MultipartFile file : files) {
             documentService.saveFile(file, appID, patientID);
         }
-        return "redirect:/app/doctor/patient/" + patientID;
+        return "redirect:/app/doctor/uploadFiles/" + appID +"/" + patientID;
     }
 
     @GetMapping("/app/file/download/{fileID}")

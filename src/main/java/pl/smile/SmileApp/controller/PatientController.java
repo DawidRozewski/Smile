@@ -70,7 +70,7 @@ public class PatientController {
     }
 
     @PostMapping("/edit")
-    public String updatePersonalData(@ModelAttribute("patient") Patient patient, BindingResult result) {
+    public String updatePersonalData(@ModelAttribute("patient") @Valid Patient patient, BindingResult result) {
         if(result.hasErrors()) {
             return "/form/edit";
         }

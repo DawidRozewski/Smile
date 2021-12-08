@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@include file="../homepage.jsp" %>
+<%@include file="homepage.jsp" %>
 
 <head>
     <title>Cennik zabiegów</title>

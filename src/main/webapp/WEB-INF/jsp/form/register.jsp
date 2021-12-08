@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@include file="../homepage.jsp" %>
+<%@include file="../homepage/homepage.jsp" %>
 <h2>Zarejestruj</h2>
 <head >
     <style>
