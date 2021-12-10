@@ -30,6 +30,7 @@
             <th>ID</th>
             <th>Nazwa pliku</th>
             <th>Link</th>
+            <th>Usuń</th>
         </tr>
 
         <c:forEach var="d" items="${documents}">
@@ -37,6 +38,7 @@
                 <td>${d.id}</td>
                 <td>${d.name}</td>
                 <td><a href="/app/file/download/${d.id}">Pobierz</a></td>
+                <td><a href="/app/file/remove/${appointment.id}/${d.id}">Usuń</a></td>
             </tr>
 
         </c:forEach>

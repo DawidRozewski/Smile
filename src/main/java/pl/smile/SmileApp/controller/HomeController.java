@@ -1,12 +1,14 @@
 package pl.smile.SmileApp.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Service;
 
+import pl.smile.SmileApp.repository.DoctorRepository;
 import pl.smile.SmileApp.repository.ServiceRepository;
-
 import java.util.List;
 
 @Controller
@@ -18,7 +20,7 @@ public class HomeController {
 
     @GetMapping("")
     public String homePage() {
-        return "homepage";
+        return "/homepage/homepage";
     }
 
     @GetMapping("/services")
@@ -30,6 +32,7 @@ public class HomeController {
     public String about() {
         return "/homepage/about";
     }
+
     @GetMapping("/contact")
     public String contact() {
         return "/homepage/contact";

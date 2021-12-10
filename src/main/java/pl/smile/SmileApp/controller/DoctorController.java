@@ -7,12 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.*;
-import pl.smile.SmileApp.exceptions.PatientNotFound;
+import pl.smile.SmileApp.exceptions.*;
 import pl.smile.SmileApp.repository.*;
-import pl.smile.SmileApp.service.DoctorService;
 import pl.smile.SmileApp.service.DoctorServiceImpl;
 import pl.smile.SmileApp.service.PatientServiceImpl;
-
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
@@ -32,7 +30,7 @@ public class DoctorController {
 
     @GetMapping("/dashboard")
     public String showAllPatients(Principal principal, Model model, @Param("pesel") String pesel) {
-        Doctor doctor = doctorRepository.getByEmail(principal.getName());
+        Doctor doctor = getDoctor(principal);
         model.addAttribute("patients", patientService.listAll(pesel, doctor));
 
         return "/doctor/dashboard";
@@ -51,7 +49,6 @@ public class DoctorController {
     public String showPatientInfoAndTreatmentPan(@PathVariable long patientID, Model model, Principal principal) {
         Doctor doctor = getDoctor(principal);
         Patient patient = patientRepository.findById(patientID).orElseThrow(PatientNotFound::new);
-
         model.addAttribute("patient", patient);
         model.addAttribute("appointments", appointmentRepository.getFutureOrPresentPatientApp(patientID, doctor.getId(), LocalDate.now()));
         model.addAttribute("treatmentList", treatmentRepository.findAllByPatientIdAndDoctor(patientID, doctor));
@@ -60,17 +57,19 @@ public class DoctorController {
     }
 
     @GetMapping("/add-treatment/{patientID}")
-    public String prep(@PathVariable long patientID, Principal principal, Model model) {
-        model.addAttribute("patient", patientRepository.getById(patientID));
+    public String prepToAddTreatment(@PathVariable long patientID, Principal principal, Model model) {
+        model.addAttribute("patient", patientRepository.findById(patientID).orElseThrow(PatientNotFound::new));
         model.addAttribute("treatment", new TreatmentPlan());
-        model.addAttribute("doctor", doctorRepository.getByEmail(principal.getName()));
+        model.addAttribute("doctor", getDoctor(principal));
 
         return "/doctor/treatment_plan";
     }
 
     @PostMapping("/add-treatment/{patientID}")
-    public String add(@ModelAttribute("treatment") @Valid TreatmentPlan treatmentPlan,
-                      BindingResult result, @PathVariable long patientID) {
+    public String addTreatment(@ModelAttribute("treatment")
+                               @Valid TreatmentPlan treatmentPlan,
+                               BindingResult result,
+                               @PathVariable long patientID) {
         if (result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
@@ -81,13 +80,14 @@ public class DoctorController {
 
     @GetMapping("/edit-treatment/{patientID}/{id}")
     public String prepToEditTreatment(@PathVariable long id, Model model) {
-        model.addAttribute("treatment", treatmentRepository.getById(id));
+        TreatmentPlan treatmentPlan = treatmentRepository.findById(id).orElseThrow(TreatmentPlanNotFound::new);
+        model.addAttribute("treatment", treatmentPlan);
 
         return "/doctor/treatment_plan";
     }
 
     @PostMapping("/edit-treatment/{patientID}/{id}")
-    public String mergePlan(@PathVariable long patientID,
+    public String updateTreatment(@PathVariable long patientID,
                             @ModelAttribute("treatment")
                             @Valid TreatmentPlan treatmentPlan,
                             BindingResult result) {
@@ -101,7 +101,8 @@ public class DoctorController {
 
     @GetMapping("/remove/{patientID}/{id}")
     public String prepToRemoveTreatment(@PathVariable long id, Model model) {
-        model.addAttribute("treatment", treatmentRepository.getById(id));
+        TreatmentPlan treatmentPlan = treatmentRepository.findById(id).orElseThrow(TreatmentPlanNotFound::new);
+        model.addAttribute("treatment", treatmentPlan);
 
         return "/doctor/remove_treatment";
     }
@@ -128,7 +129,7 @@ public class DoctorController {
     @PostMapping("/services")
     public String addService(@ModelAttribute("service") @Valid Service service, BindingResult result) {
         if (result.hasErrors()) {
-            return "/doctor/services";
+            return "redirect:/app/doctor/services";
         }
         serviceRepository.save(service);
 
@@ -137,7 +138,8 @@ public class DoctorController {
 
     @GetMapping("/edit-service/{id}")
     public String prepToEditService(@PathVariable long id, Model model) {
-        model.addAttribute("service", serviceRepository.getById(id));
+        Service service = serviceRepository.findById(id).orElseThrow(ServiceNotFound::new);
+        model.addAttribute("service", service);
         model.addAttribute("services", serviceRepository.findAll());
 
         return "/doctor/services";
@@ -155,7 +157,8 @@ public class DoctorController {
 
     @GetMapping("/remove-service/{id}")
     public String prepToDeleteService(@PathVariable long id, Model model) {
-        model.addAttribute("service", serviceRepository.getById(id));
+        Service service = serviceRepository.findById(id).orElseThrow(ServiceNotFound::new);
+        model.addAttribute("service", service);
 
         return "/doctor/remove_service";
     }
@@ -171,23 +174,25 @@ public class DoctorController {
 
     @GetMapping("/history/{patientID}")
     public String showPatientHistory(@PathVariable long patientID, Model model, Principal principal) {
+        Patient patient = patientRepository.findById(patientID).orElseThrow(PatientNotFound::new);
+        model.addAttribute("patient", patient);
         Doctor doctor = getDoctor(principal);
         model.addAttribute("appointments", appointmentRepository.getPatientHistoryApp(patientID, doctor.getId()));
-        model.addAttribute("patient", patientRepository.getById(patientID));
 
         return "/doctor/history";
     }
 
     @GetMapping("/endVisit/{id}")
     public String prepToEndVisit(@PathVariable long id, Model model) {
-        model.addAttribute("appointment", appointmentRepository.getById(id));
+        Appointment appointment = appointmentRepository.findById(id).orElseThrow(AppointmentNotFound::new);
+        model.addAttribute("appointment", appointment);
 
         return "/doctor/end_visit";
     }
 
     @PostMapping("/endVisit/{id}")
     public String endVisit(@PathVariable long id, @RequestParam String confirmed) {
-        Appointment appointment = appointmentRepository.getById(id);
+        Appointment appointment = appointmentRepository.findById(id).orElseThrow(AppointmentNotFound::new);
         if ("yes".equals(confirmed)) {
              appointment.setFinished(true);
              appointmentRepository.save(appointment);
@@ -197,17 +202,17 @@ public class DoctorController {
     }
 
     @GetMapping("/remove-appointment/{appID}/{patientID}")
-    public String prepToRemoveVisit(@PathVariable Long appID, @PathVariable Long patientID, Model model) {
-        Appointment appointment = appointmentRepository.getById(appID);
-        Patient patient = patientRepository.getById(patientID);
+    public String prepToDeleteVisit(@PathVariable Long appID, @PathVariable Long patientID, Model model) {
+        Appointment appointment = appointmentRepository.findById(appID).orElseThrow(AppointmentNotFound::new);
         model.addAttribute("appointment", appointment);
+        Patient patient = patientRepository.findById(patientID).orElseThrow(PatientNotFound::new);
         model.addAttribute("patient", patient.getFullName());
 
         return "/doctor/remove_appointment";
     }
 
     @PostMapping("/remove-appointment/{appID}/{patientID}")
-    public String removeVisit(@PathVariable long appID, @RequestParam String confirmed) {
+    public String deleteVisit(@PathVariable long appID, @RequestParam String confirmed) {
         if ("yes".equals(confirmed)) {
             appointmentRepository.deleteById(appID);
         }
@@ -217,18 +222,18 @@ public class DoctorController {
 
 
     @GetMapping("/edit")
-    public String prepareToEdit(Principal principal, Model model) {
-        model.addAttribute("doctor", doctorRepository.getByEmail(principal.getName()));
+    public String prepToEditPD(Principal principal, Model model) {
+        model.addAttribute("doctor", getDoctor(principal));
 
         return "/doctor/edit";
     }
 
     @PostMapping("/edit")
-    public String updatePersonalData(@ModelAttribute("doctor") @Valid Doctor doctor, BindingResult result) {
+    public String updatePD(@ModelAttribute("doctor") @Valid Doctor doctor, BindingResult result) {
         if(result.hasErrors()) {
             return "/doctor/edit";
         }
-        doctorService.save(doctor);
+        doctorRepository.save(doctor);
 
         return "redirect:/app/doctor/dashboard";
     }

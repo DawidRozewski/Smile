@@ -13,7 +13,7 @@
 <form:form modelAttribute="patient">
     <form:hidden path="id"/>
 
-Imie: <form:input path="firstName"/><br/>
+Imię: <form:input path="firstName"/><br/>
      <form:errors path="firstName" cssClass="error"/><br/>
 
 Nazwisko: <form:input path="lastName"/><br/>

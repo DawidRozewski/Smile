@@ -22,9 +22,9 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @SundayCheck
     @FutureOrPresent
     private LocalDate date;
+
 
     private LocalTime time;
 

@@ -35,7 +35,7 @@ public class Patient {
     private String repassword;
 
     @UniqueEmail
-    @Email()
+    @Email
     @NotBlank
     private String email;
 

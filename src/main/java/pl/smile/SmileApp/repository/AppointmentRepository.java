@@ -12,8 +12,6 @@ import java.util.List;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
-    List<Appointment> findAllByPatientId(long id);
-
     @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID " +
             "AND a.date >= :now " +
             "AND a.isFinished = false " +

@@ -12,6 +12,7 @@
             bottom: 0;
             right: 0;
         }
+
     </style>
 </head>
 <div id="menu">
@@ -30,3 +31,6 @@
 <h3><a href="http://localhost:8080/app/doctor/dashboard">Doktor</a></h3><br/><br/>
 <h3><a href="http://localhost:8080/app/admin/patients">Admin</a></h3>
 </div>
+<body>
+
+</body>

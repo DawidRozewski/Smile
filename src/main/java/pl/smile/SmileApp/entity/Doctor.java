@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.smile.SmileApp.validators.UniqueEmail;
-
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -35,7 +33,6 @@ public class Doctor {
     @Transient
     private String repassword;
 
-//    @UniqueEmail
     @Email
     @NotBlank
     private String email;

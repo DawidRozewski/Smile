@@ -28,7 +28,6 @@
         <th>Email</th>
         <th>PESEL</th>
         <th>Nr.kontaktowy</th>
-        <th>Usuń</th>
     </tr>
 
     <c:forEach items="${patients}" var="p">
@@ -38,7 +37,6 @@
             <td>${p.email}</td>
             <td>${p.pesel}</td>
             <td>${p.phoneNumber}</td>
-            <td><a href="/app/admin/patients/remove/${p.id}">Usuń</a></td>
         </tr>
     </c:forEach>
 </table>

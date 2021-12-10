@@ -10,15 +10,13 @@
     <form:hidden path="doctor.id" items="${doctors}" itemLabel="fullName" itemValue="id"/>
     <form:hidden path="processingOfPersonalData" />
     <form:hidden path="email" />
+    <form:hidden path="pesel" />
 
     Imie: <form:input path="firstName"/><br/>
     <form:errors path="firstName" cssClass="error"/><br/>
 
     Nazwisko: <form:input path="lastName"/><br/>
     <form:errors path="lastName" cssClass="error"/><br/>
-
-    Pesel: <form:input path="pesel"/><br/>
-    <form:errors path="pesel" cssClass="error"/><br/>
 
     Nr. kontaktowy: <form:input path="phoneNumber"/><br/><br/>
     <form:errors path="phoneNumber" cssClass="error"/><br/>

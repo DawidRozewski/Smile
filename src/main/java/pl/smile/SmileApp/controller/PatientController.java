@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import pl.smile.SmileApp.entity.*;
+import pl.smile.SmileApp.exceptions.TreatmentPlanNotFound;
 import pl.smile.SmileApp.repository.*;
 import pl.smile.SmileApp.service.AppointmentServiceImpl;
 import pl.smile.SmileApp.service.PatientServiceImpl;
@@ -40,9 +41,7 @@ public class PatientController {
 
     @GetMapping("/history")
     public String history(Principal principal, Model model) {
-        String email = principal.getName();
-        Patient patient = patientRepository.getByEmail(email);
-        model.addAttribute("patient", patient);
+        model.addAttribute("patient", getPatient(principal));
         model.addAttribute("appointments",
                 appointmentRepository.getPastAppointments(getPatientID(principal)));
 
@@ -64,28 +63,25 @@ public class PatientController {
 
     @GetMapping("/edit")
     public String prepareToEdit(Principal principal, Model model) {
-        model.addAttribute("patient", patientRepository.getByEmail(principal.getName()));
+        model.addAttribute("patient", getPatient(principal));
 
         return "/form/edit";
     }
 
     @PostMapping("/edit")
-    public String updatePersonalData(@ModelAttribute("patient") @Valid Patient patient, BindingResult result) {
-        if(result.hasErrors()) {
-            return "/form/edit";
-        }
-        patientService.save(patient);
+    public String updatePersonalData(@ModelAttribute("patient") Patient patient) {
 
+        patientRepository.save(patient);
         return "redirect:/app/patient/dashboard";
     }
  
     @GetMapping("/appointment")
     public String prepToAppointment(@RequestParam long serviceID, Model model, Principal principal) {
-        Patient patient = patientRepository.getByEmail(principal.getName());
+        Patient patient = getPatient(principal);
         LocalDate today = LocalDate.now();
         model.addAttribute("today", today);
         model.addAttribute("hoursDay", appointmentService.getAvailableHours(today));
-         model.addAttribute("doctor", patient.getDoctor());
+        model.addAttribute("doctor", patient.getDoctor());
         model.addAttribute("patient", patient);
         model.addAttribute("service", serviceRepository.getById(serviceID));
         model.addAttribute("appointment", new Appointment());
@@ -109,8 +105,8 @@ public class PatientController {
 
     @GetMapping("/appointment-by-plan")
     public String prepToAppByPan(@RequestParam long planID, Model model, Principal principal) {
-        Patient patient = patientRepository.getByEmail(principal.getName());
-        TreatmentPlan treatmentPlan = treatmentPlanRepository.getById(planID);
+        Patient patient = getPatient(principal);
+        TreatmentPlan treatmentPlan = treatmentPlanRepository.findById(planID).orElseThrow(TreatmentPlanNotFound::new);
         model.addAttribute("doctor", patient.getDoctor());
         model.addAttribute("patient", patient);
         model.addAttribute("treatment", treatmentPlan);
@@ -139,6 +135,14 @@ public class PatientController {
         Patient patient = patientRepository.getByEmail(patientEmail);
         return patient.getId();
     }
+
+    private Patient getPatient(Principal principal) {
+        String email = principal.getName();
+        return patientRepository.getByEmail(email);
+    }
+
+
+
 }
 
 

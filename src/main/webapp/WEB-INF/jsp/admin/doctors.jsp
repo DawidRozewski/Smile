@@ -36,7 +36,6 @@
         <th>Imię i nazwisko</th>
         <th>Email</th>
         <th>Nr.kontaktowy</th>
-        <th>Usuń</th>
     </tr>
     <c:forEach items="${doctors}" var="d">
         <tr>
@@ -44,7 +43,6 @@
             <td>${d.fullName}</td>
             <td>${d.email}</td>
             <td>${d.phoneNumber}</td>
-            <td><a href="/app/admin/doctors/remove/${d.id}">Usuń</a></td>
         </tr>
     </c:forEach>
 </table>

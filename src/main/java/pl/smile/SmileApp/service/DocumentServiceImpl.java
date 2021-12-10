@@ -32,8 +32,5 @@ public class DocumentServiceImpl implements DocumentService{
         return null;
     }
 
-    public Document getFile(Long fileId) {
-        return documentRepository.getById(fileId);
-    }
 
 }

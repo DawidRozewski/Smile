@@ -1,16 +1,17 @@
 package pl.smile.SmileApp.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.Doctor;
+import pl.smile.SmileApp.entity.Patient;
+import pl.smile.SmileApp.exceptions.DoctorNotFound;
+import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.repository.DoctorRepository;
 import pl.smile.SmileApp.repository.PatientRepository;
 import pl.smile.SmileApp.service.DoctorServiceImpl;
-import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import javax.validation.Valid;
 
@@ -22,7 +23,6 @@ public class AdminController {
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
     private final DoctorServiceImpl doctorService;
-    private final PatientServiceImpl patientService;
 
     @GetMapping("/patients")
     public String showPatients(Model model) {
@@ -31,44 +31,10 @@ public class AdminController {
         return "/admin/patients";
     }
 
-    @GetMapping("/patients/remove/{id}")
-    public String prepareToRemove(@PathVariable long id, Model model) {
-        model.addAttribute("patient", patientRepository.getById(id));
-
-        return "/admin/patientRemove";
-    }
-
-    @PostMapping("/patients/remove/{id}")
-    public String removePatient(@PathVariable long id,
-                                @RequestParam String confirmed) {
-        if ("yes".equals(confirmed)) {
-            patientRepository.deleteById(id);
-        }
-
-        return "redirect:/app/admin/patients";
-    }
-
     @GetMapping("/doctors")
     public String showDoctors(Model model) {
         model.addAttribute("doctors", doctorRepository.findAll());
         return "/admin/doctors";
-    }
-
-    @GetMapping("/doctors/remove/{id}")
-    public String prepToRemove(@PathVariable long id, Model model) {
-        model.addAttribute("doctor", doctorRepository.getById(id));
-
-        return "/admin/doctorRemove";
-    }
-
-    @PostMapping("/doctors/remove/{id}")
-    public String removeDoctor(@PathVariable long id,
-                               @RequestParam String confirmed) {
-        if ("yes".equals(confirmed)) {
-            doctorRepository.deleteById(id);
-        }
-
-        return "redirect:/app/admin/doctors";
     }
 
     @GetMapping("/doctors/add")
@@ -91,7 +57,6 @@ public class AdminController {
 
         return "redirect:/app/admin/doctors";
     }
-
 
     private boolean checkPassword(String pass, String pass2) {
         return pass.equals(pass2);

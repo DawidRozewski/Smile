@@ -30,7 +30,6 @@ public class Document {
     @ManyToOne
     private Appointment appointment;
 
-
     public Document(String name, String type, byte[] data) {
         super();
         this.name = name;
