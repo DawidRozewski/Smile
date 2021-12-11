@@ -87,9 +87,9 @@ public class DoctorController {
 
     @PostMapping("/edit-treatment/{patientID}/{id}")
     public String updateTreatment(@PathVariable long patientID,
-                            @ModelAttribute("treatment")
-                            @Valid TreatmentPlan treatmentPlan,
-                            BindingResult result) {
+                                  @ModelAttribute("treatment")
+                                  @Valid TreatmentPlan treatmentPlan,
+                                  BindingResult result) {
         if (result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
