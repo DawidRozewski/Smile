@@ -21,9 +21,6 @@
     Nazwisko: <form:input path="lastName"/><br/>
     <form:errors path="lastName" cssClass="error"/><br/>
 
-    Email: <form:input path="email"/><br/>
-    <form:errors path="email" cssClass="error"/><br/>
-
     Nr. kontaktowy: <form:input path="phoneNumber"/><br/><br/>
     <form:errors path="phoneNumber" cssClass="error"/><br/>
 

@@ -37,8 +37,8 @@ public class DocumentController {
 
     @GetMapping("/app/doctor/uploadFiles/{appID}/{patientID}")
     public String prepToAddFiles(@PathVariable Long appID,
-                      @PathVariable Long patientID,
-                      Model model) {
+                                 @PathVariable Long patientID,
+                                  Model model) {
         List<Document> documents = documentRepository.findAllByAppointment_IdAndPatient_Id(appID, patientID);
         model.addAttribute("documents", documents);
         Appointment appointment = appointmentRepository.findById(appID).orElseThrow(AppointmentNotFound::new);
@@ -70,18 +70,6 @@ public class DocumentController {
                 .body(new ByteArrayResource(document.getData()));
     }
 
-    @GetMapping("/app/file/show/{appID}/{patientID}")
-    public String showFiles(@PathVariable Long appID,
-                            @PathVariable Long patientID,
-                            Model model) {
-        List<Document> documents = documentRepository.findAllByAppointment_IdAndPatient_Id(appID, patientID);
-        model.addAttribute("documents", documents);
-        Appointment appointment = appointmentRepository.findById(appID).orElseThrow(AppointmentNotFound::new);
-        model.addAttribute("appointment", appointment);
-
-        return "/patient/showFiles";
-    }
-
     @GetMapping("/app/file/remove/{appID}/{documentID}")
     public String prepToRemoveDocument(@PathVariable Long documentID, Model model) {
         Document document = documentRepository.findById(documentID).orElseThrow(DocumentNotFound::new);
@@ -100,6 +88,18 @@ public class DocumentController {
             }
 
         return "redirect:/app/doctor/uploadFiles/" + appID +"/" + appointment.getPatient().getId();
+    }
+
+    @GetMapping("/app/file/show/{appID}/{patientID}")
+    public String showFiles(@PathVariable Long appID,
+                            @PathVariable Long patientID,
+                            Model model) {
+        List<Document> documents = documentRepository.findAllByAppointment_IdAndPatient_Id(appID, patientID);
+        model.addAttribute("documents", documents);
+        Appointment appointment = appointmentRepository.findById(appID).orElseThrow(AppointmentNotFound::new);
+        model.addAttribute("appointment", appointment);
+
+        return "/patient/showFiles";
     }
 
 

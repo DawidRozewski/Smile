@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -25,7 +24,6 @@ import java.util.List;
 public class PatientController {
 
     private final PatientRepository patientRepository;
-    private final PatientServiceImpl patientService;
     private final ServiceRepository serviceRepository;
     private final TreatmentPlanRepository treatmentPlanRepository;
     private final AppointmentRepository appointmentRepository;
@@ -70,8 +68,8 @@ public class PatientController {
 
     @PostMapping("/edit")
     public String updatePersonalData(@ModelAttribute("patient") Patient patient) {
-
         patientRepository.save(patient);
+
         return "redirect:/app/patient/dashboard";
     }
  

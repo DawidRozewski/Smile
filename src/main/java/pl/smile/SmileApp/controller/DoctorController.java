@@ -26,7 +26,6 @@ public class DoctorController {
     private final TreatmentPlanRepository treatmentRepository;
     private final ServiceRepository serviceRepository;
     private final PatientServiceImpl patientService;
-    private final DoctorServiceImpl doctorService;
 
     @GetMapping("/dashboard")
     public String showAllPatients(Principal principal, Model model, @Param("pesel") String pesel) {
@@ -46,7 +45,7 @@ public class DoctorController {
     }
 
     @GetMapping("/patient/{patientID}")
-    public String showPatientInfoAndTreatmentPan(@PathVariable long patientID, Model model, Principal principal) {
+    public String showPatientInfoAndTreatmentPlan(@PathVariable long patientID, Model model, Principal principal) {
         Doctor doctor = getDoctor(principal);
         Patient patient = patientRepository.findById(patientID).orElseThrow(PatientNotFound::new);
         model.addAttribute("patient", patient);

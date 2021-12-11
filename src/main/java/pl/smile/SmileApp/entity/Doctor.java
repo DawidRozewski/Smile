@@ -48,4 +48,5 @@ public class Doctor {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
 }

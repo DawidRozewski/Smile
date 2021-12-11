@@ -1,13 +1,10 @@
 package pl.smile.SmileApp.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Service;
 
-import pl.smile.SmileApp.repository.DoctorRepository;
 import pl.smile.SmileApp.repository.ServiceRepository;
 import java.util.List;
 
@@ -43,7 +40,9 @@ public class HomeController {
         return serviceRepository.findAll();
     }
 
-}
+ }
+
+
 
 
 

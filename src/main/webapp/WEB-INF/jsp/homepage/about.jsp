@@ -14,11 +14,11 @@
     Proin sed imperdiet quam. Suspendisse potenti. Curabitur blandit hendrerit urna, pulvinar viverra risus gravida id.
     Fusce quis sagittis lacus, vel pellentesque est. Ut mattis dolor at leo commodo aliquam. Aliquam interdum porttitor tortor, vel bibendum sapien dictum at.
     Proin arcu eros, ullamcorper eu ligula at, ullamcorper euismod odio. Etiam blandit vestibulum sodales.
-</p><br/><br/>
+</p>
 
 <h2>Kacper Malinowski</h2>
 <p>Aliquam porta blandit mi ut tincidunt. Pellentesque non porta ante, non tempor eros. Pellentesque in elit varius, tristique mi sit amet, ornare dolor.
     Aliquam lobortis commodo enim, ac fringilla lacus eleifend id. Morbi posuere ultrices justo vel sodales. In sed efficitur mauris.
     Proin malesuada augue sed orci tempor, eget luctus purus varius.
     Curabitur dapibus, lectus at interdum venenatis, risus mauris iaculis lorem, id suscipit tortor neque sed eros.
-    Nunc dictum viverra justo quis scelerisque. Vivamus at commodo dui, id iaculis sapien</p>
+    Nunc dictum viverra justo quis scelerisque. Vivamus at commodo dui, id iaculis sapien</p><br/><br/>

@@ -17,7 +17,6 @@
 <h2>Nadchodzące wizyty</h2>
 <table>
     <tr>
-<%--        <th>Id</th>--%>
         <th>Data</th>
         <th>Godzina</th>
         <th>Opis</th>

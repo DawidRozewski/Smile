@@ -15,7 +15,6 @@ import pl.smile.SmileApp.repository.PatientRepository;
 import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import javax.validation.Valid;
-import java.time.DayOfWeek;
 import java.util.List;
 
 @Controller
@@ -24,7 +23,6 @@ import java.util.List;
 public class RegisterController {
 
     private final DoctorRepository doctorRepository;
-    private final PatientRepository patientRepository;
     private final PatientServiceImpl patientService;
 
     @GetMapping("")
