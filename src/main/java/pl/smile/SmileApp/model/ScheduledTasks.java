@@ -20,14 +20,13 @@ public class ScheduledTasks {
     private final TwilioAcc twilioAcc;
     private final AppointmentRepository appointmentRepository;
 
-    @Scheduled(cron = "0 06 11 * * *")
+    @Scheduled(cron = "0 18 14 * * *")
     public void sendSMS() {
         List<Appointment> appointments = appointmentRepository.findAll();
 
         List<Appointment> list = appointments.stream()
                 .filter(a -> !a.isFinished())
                 .filter(a -> a.getDate().minusDays(3).equals(LocalDate.now()))
-                .filter(a -> a.getPatient().getPhoneNumber().equals("789024803"))
                 .collect(Collectors.toList());
 
         for (Appointment a : list) {

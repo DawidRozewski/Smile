@@ -17,6 +17,7 @@ public class TreatmentPlan {
     private long id;
 
     @NotNull
+    @Min(value = 1, message = "Minimalna wartość to 1.")
     private int visitNumber;
 
     @FutureOrPresent

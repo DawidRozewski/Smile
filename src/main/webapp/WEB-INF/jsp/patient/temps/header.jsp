@@ -21,7 +21,7 @@
     <strong><a href="/app/patient/history"class="test">Historia wizyt</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
     <strong><a href="/app/patient/services" class="test">Cennik zabiegów</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
     <strong><a href="/app/patient/edit"class="test">Edytuj dane</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
-    <strong><a href="/app/patient/login"class="test">Kontakt</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/contact"class="test">Kontakt</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
     <strong><a href="/logout"class="test">Wyloguj</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 <hr/>
