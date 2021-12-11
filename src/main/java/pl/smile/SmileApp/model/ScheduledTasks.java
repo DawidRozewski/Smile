@@ -20,7 +20,7 @@ public class ScheduledTasks {
     private final TwilioAcc twilioAcc;
     private final AppointmentRepository appointmentRepository;
 
-    @Scheduled(cron = "0 18 14 * * *")
+    @Scheduled(cron = "0 24 17 * * *")
     public void sendSMS() {
         List<Appointment> appointments = appointmentRepository.findAll();
 

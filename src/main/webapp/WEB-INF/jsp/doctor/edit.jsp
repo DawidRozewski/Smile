@@ -14,6 +14,7 @@
 <form:form modelAttribute="doctor">
     <form:hidden path="id"/>
     <form:hidden path="password" />
+    <form:hidden path="email" />
 
     Imie: <form:input path="firstName"/><br/>
     <form:errors path="firstName" cssClass="error"/><br/>
