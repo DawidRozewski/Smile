@@ -1,7 +1,6 @@
 package pl.smile.SmileApp.controller;
 
 import lombok.AllArgsConstructor;
-import org.dom4j.DocumentException;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -21,8 +20,8 @@ import pl.smile.SmileApp.exceptions.DocumentNotFound;
 import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.repository.AppointmentRepository;
 import pl.smile.SmileApp.repository.DocumentRepository;
-import pl.smile.SmileApp.repository.PatientRepository;
 import pl.smile.SmileApp.service.DocumentServiceImpl;
+import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import java.util.List;
 
@@ -31,9 +30,9 @@ import java.util.List;
 public class DocumentController {
 
     private final DocumentServiceImpl documentService;
+    private final PatientServiceImpl patientService;
     private final DocumentRepository documentRepository;
     private final AppointmentRepository appointmentRepository;
-    private final PatientRepository patientRepository;
 
     @GetMapping("/app/doctor/uploadFiles/{appID}/{patientID}")
     public String prepToAddFiles(@PathVariable Long appID,
@@ -43,7 +42,7 @@ public class DocumentController {
         model.addAttribute("documents", documents);
         Appointment appointment = appointmentRepository.findById(appID).orElseThrow(AppointmentNotFound::new);
         model.addAttribute("appointment", appointment);
-        Patient patient = patientRepository.findById(patientID).orElseThrow(PatientNotFound::new);
+        Patient patient = patientService.findById(patientID).orElseThrow(PatientNotFound::new);
         model.addAttribute("patient", patient);
 
         return "/doctor/uploadFile";

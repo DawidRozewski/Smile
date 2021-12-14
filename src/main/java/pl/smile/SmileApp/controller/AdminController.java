@@ -6,10 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.Doctor;
-import pl.smile.SmileApp.repository.DoctorRepository;
-import pl.smile.SmileApp.repository.PatientRepository;
 import pl.smile.SmileApp.service.DoctorServiceImpl;
-
+import pl.smile.SmileApp.service.PatientServiceImpl;
 import javax.validation.Valid;
 
 @Controller
@@ -17,20 +15,20 @@ import javax.validation.Valid;
 @AllArgsConstructor
 public class AdminController {
 
-    private final PatientRepository patientRepository;
-    private final DoctorRepository doctorRepository;
+    private final PatientServiceImpl patientService;
     private final DoctorServiceImpl doctorService;
 
     @GetMapping("/patients")
     public String showPatients(Model model) {
-        model.addAttribute("patients", patientRepository.findAll());
+        model.addAttribute("patients", patientService.findAll());
 
         return "/admin/patients";
     }
 
     @GetMapping("/doctors")
     public String showDoctors(Model model) {
-        model.addAttribute("doctors", doctorRepository.findAll());
+        model.addAttribute("doctors", doctorService.findAll());
+
         return "/admin/doctors";
     }
 

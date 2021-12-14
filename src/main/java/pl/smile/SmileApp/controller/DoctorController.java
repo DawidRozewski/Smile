@@ -20,12 +20,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class DoctorController {
 
-    private final DoctorRepository doctorRepository;
-    private final PatientRepository patientRepository;
+    private final PatientServiceImpl patientService;
+    private final DoctorServiceImpl doctorService;
     private final AppointmentRepository appointmentRepository;
     private final TreatmentPlanRepository treatmentRepository;
     private final ServiceRepository serviceRepository;
-    private final PatientServiceImpl patientService;
 
     @GetMapping("/dashboard")
     public String showAllPatients(Principal principal, Model model, @Param("pesel") String pesel) {
@@ -45,9 +44,9 @@ public class DoctorController {
     }
 
     @GetMapping("/patient/{patientID}")
-    public String showPatientInfoAndTreatmentPlan(@PathVariable long patientID, Model model, Principal principal) {
+    public String showPatientInfoAndTreatmentPan(@PathVariable long patientID, Model model, Principal principal) {
         Doctor doctor = getDoctor(principal);
-        Patient patient = patientRepository.findById(patientID).orElseThrow(PatientNotFound::new);
+        Patient patient = patientService.findById(patientID).orElseThrow(PatientNotFound::new);
         model.addAttribute("patient", patient);
         model.addAttribute("appointments", appointmentRepository.getFutureOrPresentPatientApp(patientID, doctor.getId(), LocalDate.now()));
         model.addAttribute("treatmentList", treatmentRepository.findAllByPatientIdAndDoctor(patientID, doctor));
@@ -57,7 +56,7 @@ public class DoctorController {
 
     @GetMapping("/add-treatment/{patientID}")
     public String prepToAddTreatment(@PathVariable long patientID, Principal principal, Model model) {
-        model.addAttribute("patient", patientRepository.findById(patientID).orElseThrow(PatientNotFound::new));
+        model.addAttribute("patient", patientService.findById(patientID).orElseThrow(PatientNotFound::new));
         model.addAttribute("treatment", new TreatmentPlan());
         model.addAttribute("doctor", getDoctor(principal));
 
@@ -87,9 +86,9 @@ public class DoctorController {
 
     @PostMapping("/edit-treatment/{patientID}/{id}")
     public String updateTreatment(@PathVariable long patientID,
-                                  @ModelAttribute("treatment")
-                                  @Valid TreatmentPlan treatmentPlan,
-                                  BindingResult result) {
+                            @ModelAttribute("treatment")
+                            @Valid TreatmentPlan treatmentPlan,
+                            BindingResult result) {
         if (result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
@@ -173,7 +172,7 @@ public class DoctorController {
 
     @GetMapping("/history/{patientID}")
     public String showPatientHistory(@PathVariable long patientID, Model model, Principal principal) {
-        Patient patient = patientRepository.findById(patientID).orElseThrow(PatientNotFound::new);
+        Patient patient = patientService.findById(patientID).orElseThrow(PatientNotFound::new);
         model.addAttribute("patient", patient);
         Doctor doctor = getDoctor(principal);
         model.addAttribute("appointments", appointmentRepository.getPatientHistoryApp(patientID, doctor.getId()));
@@ -204,7 +203,7 @@ public class DoctorController {
     public String prepToDeleteVisit(@PathVariable Long appID, @PathVariable Long patientID, Model model) {
         Appointment appointment = appointmentRepository.findById(appID).orElseThrow(AppointmentNotFound::new);
         model.addAttribute("appointment", appointment);
-        Patient patient = patientRepository.findById(patientID).orElseThrow(PatientNotFound::new);
+        Patient patient = patientService.findById(patientID).orElseThrow(PatientNotFound::new);
         model.addAttribute("patient", patient.getFullName());
 
         return "/doctor/remove_appointment";
@@ -232,14 +231,14 @@ public class DoctorController {
         if(result.hasErrors()) {
             return "/doctor/edit";
         }
-        doctorRepository.save(doctor);
+        doctorService.update(doctor);
 
         return "redirect:/app/doctor/dashboard";
     }
 
     private Doctor getDoctor(Principal principal) {
         String email = principal.getName();
-        return doctorRepository.getByEmail(email);
+        return doctorService.findByEmail(email);
     }
 }
 

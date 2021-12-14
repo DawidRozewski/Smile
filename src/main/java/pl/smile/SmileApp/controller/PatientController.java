@@ -23,11 +23,11 @@ import java.util.List;
 @AllArgsConstructor
 public class PatientController {
 
-    private final PatientRepository patientRepository;
+    private final PatientServiceImpl patientService;
+    private final AppointmentServiceImpl appointmentService;
     private final ServiceRepository serviceRepository;
     private final TreatmentPlanRepository treatmentPlanRepository;
     private final AppointmentRepository appointmentRepository;
-    private final AppointmentServiceImpl appointmentService;
 
     @GetMapping("/dashboard")
     public String dashboard(Principal principal, Model model) {
@@ -68,8 +68,8 @@ public class PatientController {
 
     @PostMapping("/edit")
     public String updatePersonalData(@ModelAttribute("patient") Patient patient) {
-        patientRepository.save(patient);
 
+        patientService.update(patient);
         return "redirect:/app/patient/dashboard";
     }
  
@@ -130,13 +130,13 @@ public class PatientController {
 
     private long getPatientID(Principal principal) {
         String patientEmail = principal.getName();
-        Patient patient = patientRepository.getByEmail(patientEmail);
+        Patient patient = patientService.findByEmail(patientEmail);
         return patient.getId();
     }
 
     private Patient getPatient(Principal principal) {
         String email = principal.getName();
-        return patientRepository.getByEmail(email);
+        return patientService.findByEmail(email);
     }
 
 

@@ -12,7 +12,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/example-appointment")
+@RequestMapping("/app/get-appointment-hours")
 @RequiredArgsConstructor
 public class AppointmentRestController {
 
