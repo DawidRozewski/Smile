@@ -42,12 +42,8 @@ public class P_ServicesController {
     }
     @PostMapping("/appointment")
     public String addAppointment(@ModelAttribute("appointment") @Valid Appointment appointment, BindingResult result) {
-        if(appointment.getDate().getDayOfWeek() == DayOfWeek.SUNDAY) {
+        if(appointment.getDate().getDayOfWeek() == DayOfWeek.SUNDAY || result.hasErrors()) {
             result.rejectValue("date", "error.appointment", "W niedziele nie pracujemy :)");
-            return "/patient/appointment";
-        }
-
-        if(result.hasErrors()) {
             return "/patient/appointment";
         }
         appointmentService.save(appointment);

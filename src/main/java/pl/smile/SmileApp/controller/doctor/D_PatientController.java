@@ -82,7 +82,7 @@ public class D_PatientController {
                                   @ModelAttribute("treatment")
                                   @Valid TreatmentPlan treatmentPlan,
                                   BindingResult result) {
-        if (result.hasErrors()) {
+        if (treatmentPlan.getVisitDate().getDayOfWeek() == DayOfWeek.SUNDAY || result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
         treatmentRepository.save(treatmentPlan);

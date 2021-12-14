@@ -35,8 +35,8 @@
             <td>${s.description}</td>
             <td>${s.RTG}</td>
             <td>${s.amount}</td>
-            <td><a href="/app/doctor/edit-dentalService/${s.id}">Edytuj</a></td>
-            <td><a href=/app/doctor/remove-dentalService/${s.id}>Usuń</a></td>
+            <td><a href="/app/doctor/edit-service/${s.id}">Edytuj</a></td>
+            <td><a href=/app/doctor/remove-service/${s.id}>Usuń</a></td>
         </tr>
 
     </c:forEach>
@@ -44,7 +44,7 @@
 <br/>
 <h2>Dodaj zabieg</h2> <br/>
 
-<form:form modelAttribute="dentalService">
+<form:form modelAttribute="service">
     <form:hidden path="id"/>
 
     Opis: <form:textarea path="description" cols="50" rows="10"/><br>
