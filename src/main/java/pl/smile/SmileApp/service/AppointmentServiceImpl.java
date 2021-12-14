@@ -41,5 +41,10 @@ public  class AppointmentServiceImpl implements AppointmentService {
         return workingHours;
     }
 
+    @Override
+    public Appointment save(Appointment appointment) {
+        return appointmentRepository.save(appointment);
+    }
+
 
 }

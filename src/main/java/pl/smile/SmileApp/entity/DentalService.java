@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Service {
+public class DentalService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

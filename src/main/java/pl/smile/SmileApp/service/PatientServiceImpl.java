@@ -7,6 +7,7 @@ import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.repository.PatientRepository;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,5 +59,10 @@ public  class PatientServiceImpl implements PatientService {
         return patientRepository.save(patient);
     }
 
+    @Override
+    public Patient getPatient(Principal principal) {
+        String email = principal.getName();
+        return patientRepository.getByEmail(email);
+    }
 
 }

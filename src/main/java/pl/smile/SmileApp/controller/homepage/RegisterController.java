@@ -1,4 +1,4 @@
-package pl.smile.SmileApp.controller.form;
+package pl.smile.SmileApp.controller.homepage;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.repository.DoctorRepository;
-import pl.smile.SmileApp.repository.PatientRepository;
 import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import javax.validation.Valid;

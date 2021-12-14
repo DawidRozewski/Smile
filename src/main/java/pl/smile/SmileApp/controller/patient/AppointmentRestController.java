@@ -1,4 +1,4 @@
-package pl.smile.SmileApp.controller;
+package pl.smile.SmileApp.controller.patient;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

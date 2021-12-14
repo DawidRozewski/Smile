@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.repository.DoctorRepository;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -36,6 +37,11 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<Doctor> findAll() {
         return doctorRepository.findAll();
+    }
+
+    @Override
+    public Doctor getDoctor(Principal principal) {
+        return doctorRepository.getByEmail(principal.getName());
     }
 
 

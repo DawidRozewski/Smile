@@ -4,6 +4,7 @@ import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.repository.PatientRepository;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,4 +17,5 @@ public interface PatientService
     Optional<Patient> findById(long id);
     Patient findByEmail(String email);
     Patient update(Patient patient);
+    Patient getPatient(Principal principal);
 }

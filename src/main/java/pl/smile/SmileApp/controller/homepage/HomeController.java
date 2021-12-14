@@ -1,9 +1,9 @@
-package pl.smile.SmileApp.controller;
+package pl.smile.SmileApp.controller.homepage;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pl.smile.SmileApp.entity.Service;
+import pl.smile.SmileApp.entity.DentalService;
 import pl.smile.SmileApp.repository.ServiceRepository;
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class HomeController {
     }
 
     @ModelAttribute("services")
-    public List<Service> servicesList() {
+    public List<DentalService> servicesList() {
         return serviceRepository.findAll();
     }
 

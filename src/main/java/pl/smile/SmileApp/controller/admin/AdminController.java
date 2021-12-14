@@ -1,4 +1,4 @@
-package pl.smile.SmileApp.controller;
+package pl.smile.SmileApp.controller.admin;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
