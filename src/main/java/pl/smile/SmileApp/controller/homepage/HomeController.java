@@ -44,17 +44,6 @@ public class HomeController {
         return serviceRepository.findAll();
     }
 
-    @GetMapping("/add-admin")
-    @ResponseBody
-    public String test() {
-        Admin admin = new Admin();
-        admin.setUsername("admin1");
-        admin.setPassword(passwordEncoder.encode("admin123"));
-        adminRepository.save(admin);
-
-        return "Udalo sie zapisac admina";
-    }
-
 
 }
 
