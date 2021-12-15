@@ -1,1 +1,1 @@
-web: java -jar target/SmileApp-1.0.0.jar
+web: java -jar target/SmileApp-0.0.1-SNAPSHOT.jar
