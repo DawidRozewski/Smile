@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     dateInput.addEventListener("change", function (event) {
         const pickedDate = event.target.value;
 
-        fetch("http://localhost:8080/app/get-appointment-hours/available?date=" + pickedDate)
+        fetch("https://just-smile.herokuapp.com/app/get-appointment-hours/available?date=" + pickedDate)
             .then(resp => resp.json())
             .then(data => {
                 hoursInput.length = 0;
