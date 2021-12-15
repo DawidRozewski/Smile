@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <div id="menu">
-    <strong><a href="/app/admin/patients">Pacjenci</a></strong>&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app">Strona głowna</a></strong>&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/admin/patients">Pacjenci</a></strong>
     <strong><a href="/app/admin/doctors">Doktorzy</a></strong>&nbsp;&nbsp;&nbsp;
     <strong><a href="/logout">Wyloguj</a></strong>&nbsp;&nbsp;&nbsp;
 </div>
