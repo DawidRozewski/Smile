@@ -15,8 +15,8 @@
     <form:hidden path="id"/>
     <form:hidden path="doctor" value="${doctor.id}"/><br/>
     <form:hidden path="patient" value="${patient.id}"/><br/>
-    <form:hidden path="serviceDescription" value="${dentalService.description}"/>
-    <form:hidden path="price" value="${dentalService.amount}"/>
+    <form:hidden path="serviceDescription" value="${service.description}"/>
+    <form:hidden path="price" value="${service.amount}"/>
 
     Wybierz datę: <form:input id="pick_date"   path="date" type="date" value="${today}"/><br/>
                   <form:errors path="date" cssClass="error"/><br/>

@@ -25,7 +25,6 @@ public class Appointment {
     @FutureOrPresent
     private LocalDate date;
 
-
     private LocalTime time;
 
     @NotBlank

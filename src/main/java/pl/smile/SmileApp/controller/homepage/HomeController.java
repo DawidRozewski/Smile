@@ -39,8 +39,14 @@ public class HomeController {
         return serviceRepository.findAll();
     }
 
+    @GetMapping("/test")
+    public String test() {
 
- }
+        return "/homepage/contact";
+    }
+
+
+}
 
 
 

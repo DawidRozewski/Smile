@@ -16,11 +16,10 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Component
 public class ScheduledTasks {
-
     private final TwilioAcc twilioAcc;
     private final AppointmentRepository appointmentRepository;
 
-    @Scheduled(cron = "0 30 07 * * *")
+    @Scheduled(cron = "0 16 18 * * *")
     public void sendSMS() {
         List<Appointment> appointments = appointmentRepository.findAll();
 
@@ -30,11 +29,10 @@ public class ScheduledTasks {
                 .collect(Collectors.toList());
 
         for (Appointment a : list) {
-            Twilio.init(
-                    twilioAcc.getAccSid(),
-                    twilioAcc.getAuthToken());
+            Twilio.init(twilioAcc.getTWILIO_ACCOUNT_SID(),
+                        twilioAcc.getTWILIO_AUTH_TOKEN());
             Message.creator(new PhoneNumber("+48" + a.getPatient().getPhoneNumber()),
-                    new PhoneNumber(twilioAcc.getTrialNumber()),
+                            new PhoneNumber(twilioAcc.getTrialNumber()),
                     "Przypominamy, że za 3 dni masz wizytę w naszym gabiniecie SMILE o godzinie: " + a.getTime() +
                     ". W celu odwołania, prosimy o kontakt pod numerem: 665 432 147").create();
 
