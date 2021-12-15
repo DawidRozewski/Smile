@@ -8,6 +8,7 @@ import pl.smile.SmileApp.repository.AppointmentRepository;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ public  class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public List<LocalTime> getAvailableHours(LocalDate appointmentDate) {
-        List<LocalTime> workingHours = new ArrayList<>(List.of(
+        List<LocalTime> workingHours = new ArrayList<>(Arrays.asList(
                 LocalTime.of(8, 0),
                 LocalTime.of(9, 0),
                 LocalTime.of(10, 0),
