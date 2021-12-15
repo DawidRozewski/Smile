@@ -27,9 +27,9 @@
 <hr/>
 <br/>
 <div id="users">
-<h3><a href="http://localhost:8080/app/patient/dashboard">Pacjent</a></h3><br/><br/>
-<h3><a href="http://localhost:8080/app/doctor/dashboard">Doktor</a></h3><br/><br/>
-<h3><a href="http://localhost:8080/app/admin/patients">Admin</a></h3>
+<h3><a href="https://just-smile.herokuapp.com/app/patient/dashboard">Pacjent</a></h3><br/><br/>
+<h3><a href="https://just-smile.herokuapp.com/app/doctor/dashboard">Doktor</a></h3><br/><br/>
+<h3><a href="https://just-smile.herokuapp.com/app/admin/patients">Admin</a></h3>
 </div>
 <body>
 

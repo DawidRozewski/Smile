@@ -15,7 +15,7 @@
     </style>
     <script type="text/javascript">
         function clearSearch() {
-            window.location = "http://localhost:8080/app/doctor/dashboard";
+            window.location = "https://just-smile.herokuapp.com/app/doctor/dashboard";
         }
     </script>
 </head>
