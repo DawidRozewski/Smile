@@ -47,15 +47,16 @@ An SMS reminder is also sent 3 days before the visit.
 [Enter here](https://just-smile.herokuapp.com/app)
 
 If you do not want to create a new account, you can use your existing account to log in:
-**Patient**:
-username: pacjent@gmail.com
-password: Patient123!
+- **Patient**:
+- username: pacjent@gmail.com
+- password: Patient123!
 
-**Doctor**: 
-username: doktor@gmail.com
-password: Doktor123!
+- **Doctor**: 
+- username: doktor@gmail.com
+- password: Doktor123!
 
-The SMS sending method starts every day at 12:00, so when you book an appointment for **3 days from today, do not forget** to enter your correct phone number :)
+The SMS sending method starts every day at **12:00**, so when you book an appointment for 
+- **3 days from today, do not forget** to enter your correct phone number :)
 
 ## Inspiration
 
