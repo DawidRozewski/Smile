@@ -19,7 +19,7 @@ public class ScheduledTasks {
     private final TwilioAcc twilioAcc;
     private final AppointmentRepository appointmentRepository;
 
-    @Scheduled(cron = "0 45 20 * * *")
+    @Scheduled(cron = "0 00 12 * * *")
     public void sendSMS() {
         List<Appointment> appointments = appointmentRepository.findAll();
 
@@ -34,7 +34,7 @@ public class ScheduledTasks {
             Message.creator(new PhoneNumber("+48" + a.getPatient().getPhoneNumber()),
                             new PhoneNumber(twilioAcc.getTrialNumber()),
                     "Przypominamy, że za 3 dni masz wizytę w naszym gabiniecie SMILE o godzinie: " + a.getTime() +
-                    ". W celu odwołania, prosimy o kontakt pod numerem: 665 432 147").create();
+                    ". W celu odwołania, prosimy o kontakt pod numerem: 789 024 803").create();
 
         }
     }
