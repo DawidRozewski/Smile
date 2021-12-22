@@ -2,6 +2,7 @@ package pl.smile.SmileApp.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.exceptions.PatientNotFound;
@@ -50,11 +51,6 @@ public  class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient findByEmail(String email) {
-        return patientRepository.getByEmail(email);
-    }
-
-    @Override
     public Patient update(Patient patient) {
         return patientRepository.save(patient);
     }
@@ -64,5 +60,19 @@ public  class PatientServiceImpl implements PatientService {
         String email = principal.getName();
         return patientRepository.getByEmail(email);
     }
+
+    @Override
+    public String comparePasswords(Patient patient, BindingResult result) {
+        if(!checkPassword(patient.getPassword(), patient.getRepassword())) {
+            result.rejectValue("repassword", "error.patient", "Podane hasła nie są zgodne.");
+            return "/form/register";
+        }
+        return null;
+    }
+
+    private boolean checkPassword(String pass, String pass2) {
+        return pass.equals(pass2);
+    }
+
 
 }

@@ -20,7 +20,9 @@ import pl.smile.SmileApp.exceptions.DocumentNotFound;
 import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.repository.AppointmentRepository;
 import pl.smile.SmileApp.repository.DocumentRepository;
+import pl.smile.SmileApp.service.DocumentService;
 import pl.smile.SmileApp.service.DocumentServiceImpl;
+import pl.smile.SmileApp.service.PatientService;
 import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import java.util.List;
@@ -29,8 +31,8 @@ import java.util.List;
 @AllArgsConstructor
 public class DocumentController {
 
-    private final DocumentServiceImpl documentService;
-    private final PatientServiceImpl patientService;
+    private final DocumentService documentService;
+    private final PatientService patientService;
     private final DocumentRepository documentRepository;
     private final AppointmentRepository appointmentRepository;
 

@@ -1,5 +1,6 @@
 package pl.smile.SmileApp.service;
 
+import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Doctor;
 
 import java.security.Principal;
@@ -9,9 +10,8 @@ public interface DoctorService  {
 
     String save(Doctor doctor);
     Doctor update(Doctor doctor);
-    Doctor findByEmail(String email);
     List<Doctor> findAll();
     Doctor getDoctor(Principal principal);
-
+    String comparePasswords(Doctor doctor, BindingResult result);
 
 }

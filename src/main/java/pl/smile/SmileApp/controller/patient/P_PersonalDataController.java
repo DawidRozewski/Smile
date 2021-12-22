@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.smile.SmileApp.entity.Patient;
-import pl.smile.SmileApp.service.PatientServiceImpl;
+import pl.smile.SmileApp.service.PatientService;
 
 import java.security.Principal;
 
@@ -18,7 +18,7 @@ import java.security.Principal;
 @RequestMapping("/app/patient")
 public class P_PersonalDataController {
 
-    private final PatientServiceImpl patientService;
+    private final PatientService patientService;
 
 
     @GetMapping("/edit")
@@ -31,7 +31,6 @@ public class P_PersonalDataController {
 
     @PostMapping("/edit")
     public String updatePersonalData(@ModelAttribute("patient") Patient patient) {
-
         patientService.update(patient);
         return "redirect:/app/patient/dashboard";
     }

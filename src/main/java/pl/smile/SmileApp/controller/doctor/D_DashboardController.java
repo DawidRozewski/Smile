@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.smile.SmileApp.entity.Doctor;
-import pl.smile.SmileApp.service.DoctorServiceImpl;
-import pl.smile.SmileApp.service.PatientServiceImpl;
+import pl.smile.SmileApp.service.DoctorService;
+import pl.smile.SmileApp.service.PatientService;
 
 import java.security.Principal;
 
@@ -18,8 +18,8 @@ import java.security.Principal;
 @RequestMapping("/app/doctor")
 public class D_DashboardController {
 
-    private final PatientServiceImpl patientService;
-    private final DoctorServiceImpl doctorService;
+    private final PatientService patientService;
+    private final DoctorService doctorService;
 
     @GetMapping("/dashboard")
     public String showAllPatients(Principal principal, Model model, @Param("pesel") String pesel) {

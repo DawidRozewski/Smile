@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <head>
     <style>
         div#menu {
@@ -12,7 +13,6 @@
             bottom: 0;
             right: 0;
         }
-
     </style>
 </head>
 <div id="menu">
@@ -31,6 +31,8 @@
 <h3><a href="https://just-smile.herokuapp.com/app/doctor/dashboard">Doktor</a></h3><br/><br/>
 <h3><a href="https://just-smile.herokuapp.com/app/admin/patients">Admin</a></h3>
 </div>
-<body>
+
+<div id="background">
 
 </body>
+</div>

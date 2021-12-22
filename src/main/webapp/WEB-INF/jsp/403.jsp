@@ -11,7 +11,7 @@
         }
 
         .hero-image {
-            background-image: url("../images/tooth1.jpg");
+            background-image: url("../../resources/images/tooth1.jpg");
             background-color: dimgray;
             height: 950px;
             background-position: center;

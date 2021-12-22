@@ -11,8 +11,8 @@ import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.exceptions.AppointmentNotFound;
 import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.repository.AppointmentRepository;
-import pl.smile.SmileApp.service.DoctorServiceImpl;
-import pl.smile.SmileApp.service.PatientServiceImpl;
+import pl.smile.SmileApp.service.DoctorService;
+import pl.smile.SmileApp.service.PatientService;
 
 import java.security.Principal;
 
@@ -21,8 +21,8 @@ import java.security.Principal;
 @RequestMapping("/app/doctor")
 public class D_ScheduleController {
 
-    private final DoctorServiceImpl doctorService;
-    private final PatientServiceImpl patientService;
+    private final DoctorService doctorService;
+    private final PatientService patientService;
     private final AppointmentRepository appointmentRepository;
 
     @GetMapping("/schedule")

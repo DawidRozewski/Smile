@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.smile.SmileApp.entity.Doctor;
-import pl.smile.SmileApp.service.DoctorServiceImpl;
+import pl.smile.SmileApp.service.DoctorService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -19,7 +19,7 @@ import java.security.Principal;
 @RequestMapping("/app/doctor")
 public class D_PersonalDataController {
 
-    private final DoctorServiceImpl doctorService;
+    private final DoctorService doctorService;
 
 
     @GetMapping("/edit")

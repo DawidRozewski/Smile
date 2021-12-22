@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.repository.DoctorRepository;
-import pl.smile.SmileApp.service.PatientServiceImpl;
+import pl.smile.SmileApp.service.PatientService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
 public class RegisterController {
 
     private final DoctorRepository doctorRepository;
-    private final PatientServiceImpl patientService;
+    private final PatientService patientService;
 
     @GetMapping("")
     public String prepareToAdd(Model model) {
@@ -32,10 +32,8 @@ public class RegisterController {
 
     @PostMapping("")
     public String save(@ModelAttribute("patient") @Valid Patient patient, BindingResult result) {
-        if(!checkPassword(patient.getPassword(), patient.getRepassword())) {
-            result.rejectValue("repassword", "error.patient", "Podane hasła nie są zgodne.");
-            return "/form/register";
-        }
+        patientService.comparePasswords(patient, result);
+
         if (result.hasErrors()) {
             return "/form/register";
         }
@@ -48,7 +46,4 @@ public class RegisterController {
         return doctorRepository.findAll();
     }
 
-    private boolean checkPassword(String pass, String pass2) {
-        return pass.equals(pass2);
-    }
 }

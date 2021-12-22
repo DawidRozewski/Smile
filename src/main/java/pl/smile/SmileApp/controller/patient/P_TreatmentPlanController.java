@@ -10,8 +10,8 @@ import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.entity.TreatmentPlan;
 import pl.smile.SmileApp.exceptions.TreatmentPlanNotFound;
 import pl.smile.SmileApp.repository.TreatmentPlanRepository;
-import pl.smile.SmileApp.service.AppointmentServiceImpl;
-import pl.smile.SmileApp.service.PatientServiceImpl;
+import pl.smile.SmileApp.service.AppointmentService;
+import pl.smile.SmileApp.service.PatientService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -21,9 +21,9 @@ import java.security.Principal;
 @RequestMapping("/app/patient")
 public class P_TreatmentPlanController {
 
-        private final PatientServiceImpl patientService;
+        private final PatientService patientService;
         private final TreatmentPlanRepository treatmentPlanRepository;
-        private final AppointmentServiceImpl appointmentService;
+        private final AppointmentService appointmentService;
 
     @GetMapping("/appointment-by-plan")
     public String prepToAppByPan(@RequestParam long planID, Model model, Principal principal) {
@@ -51,8 +51,7 @@ public class P_TreatmentPlanController {
     @GetMapping("/my-treatment")
     public String treatment(Principal principal, Model model) {
         Patient patient = patientService.getPatient(principal);
-        model.addAttribute("treatmentPlan",
-                treatmentPlanRepository.findAllByPatientId(patient.getId()));
+        model.addAttribute("treatmentPlan", treatmentPlanRepository.findAllByPatientId(patient.getId()));
 
         return "/patient/treatment";
     }

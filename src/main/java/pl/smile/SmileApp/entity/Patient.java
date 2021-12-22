@@ -21,11 +21,11 @@ public class Patient {
     private long id;
 
     @NotBlank
-    @Pattern(regexp = "^[A-Za-z]*$", message = "Wpisz poprawne imie.")
+    @Pattern(regexp = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$", message = "Wpisz poprawne imie.")
     private String firstName;
 
     @NotBlank
-    @Pattern(regexp = "^[A-Za-z]*$", message = "Wpisz poprawne nazwisko.")
+    @Pattern(regexp = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$", message = "Wpisz poprawne nazwisko.")
     private String lastName;
 
     @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$", message = "Haslo musi posiadac przynajmniej 1 duza litere, 1 cyfre, 1 znak specjalny oraz minimum 8 znakow dlugosci.")

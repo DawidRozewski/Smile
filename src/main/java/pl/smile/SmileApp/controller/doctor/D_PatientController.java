@@ -14,8 +14,8 @@ import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.exceptions.TreatmentPlanNotFound;
 import pl.smile.SmileApp.repository.AppointmentRepository;
 import pl.smile.SmileApp.repository.TreatmentPlanRepository;
-import pl.smile.SmileApp.service.DoctorServiceImpl;
-import pl.smile.SmileApp.service.PatientServiceImpl;
+import pl.smile.SmileApp.service.DoctorService;
+import pl.smile.SmileApp.service.PatientService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -27,8 +27,8 @@ import java.time.LocalDate;
 @RequestMapping("/app/doctor")
 public class D_PatientController {
 
-    private final DoctorServiceImpl doctorService;
-    private final PatientServiceImpl patientService;
+    private final DoctorService doctorService;
+    private final PatientService patientService;
     private final TreatmentPlanRepository treatmentRepository;
     private final AppointmentRepository appointmentRepository;
 

@@ -9,8 +9,8 @@ import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.entity.DentalService;
 import pl.smile.SmileApp.repository.ServiceRepository;
-import pl.smile.SmileApp.service.AppointmentServiceImpl;
-import pl.smile.SmileApp.service.PatientServiceImpl;
+import pl.smile.SmileApp.service.AppointmentService;
+import pl.smile.SmileApp.service.PatientService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -23,8 +23,8 @@ import java.util.List;
 @RequestMapping("/app/patient")
 public class P_ServicesController {
 
-    private final AppointmentServiceImpl appointmentService;
-    private final PatientServiceImpl patientService;
+    private final AppointmentService appointmentService;
+    private final PatientService patientService;
     private final ServiceRepository serviceRepository;
 
     @GetMapping("/appointment")

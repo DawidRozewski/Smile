@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.Doctor;
-import pl.smile.SmileApp.service.DoctorServiceImpl;
-import pl.smile.SmileApp.service.PatientServiceImpl;
+import pl.smile.SmileApp.service.DoctorService;
+import pl.smile.SmileApp.service.PatientService;
 import javax.validation.Valid;
 
 @Controller
@@ -15,8 +15,8 @@ import javax.validation.Valid;
 @AllArgsConstructor
 public class AdminController {
 
-    private final PatientServiceImpl patientService;
-    private final DoctorServiceImpl doctorService;
+    private final PatientService patientService;
+    private final DoctorService doctorService;
 
     @GetMapping("/patients")
     public String showPatients(Model model) {
@@ -41,10 +41,8 @@ public class AdminController {
 
     @PostMapping("/doctors/add")
     public String save(@ModelAttribute("doctor") @Valid Doctor doctor, BindingResult result) {
-        if (!checkPassword(doctor.getPassword(), doctor.getRepassword())) {
-            result.rejectValue("repassword", "error.doctor", "Podane hasła nie są zgodne.");
-            return "/admin/add";
-        }
+        doctorService.comparePasswords(doctor, result);
+
         if (result.hasErrors()) {
             return "/admin/add";
         }
@@ -53,7 +51,7 @@ public class AdminController {
         return "redirect:/app/admin/doctors";
     }
 
-    private boolean checkPassword(String pass, String pass2) {
-        return pass.equals(pass2);
-    }
+
+
+
 }

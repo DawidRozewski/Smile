@@ -16,8 +16,6 @@ import java.util.List;
 public class HomeController {
 
     private final ServiceRepository serviceRepository;
-    private final AdminRepository adminRepository;
-    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("")
     public String homePage() {

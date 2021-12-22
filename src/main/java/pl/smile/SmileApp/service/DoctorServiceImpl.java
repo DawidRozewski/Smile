@@ -3,6 +3,7 @@ package pl.smile.SmileApp.service;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.repository.DoctorRepository;
 
@@ -29,10 +30,6 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.save(doctor);
     }
 
-    @Override
-    public Doctor findByEmail(String email) {
-        return doctorRepository.getByEmail(email);
-    }
 
     @Override
     public List<Doctor> findAll() {
@@ -44,5 +41,17 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.getByEmail(principal.getName());
     }
 
+    @Override
+    public String comparePasswords(Doctor doctor, BindingResult result) {
+        if (!checkPassword(doctor.getPassword(), doctor.getRepassword())) {
+            result.rejectValue("repassword", "error.doctor", "Podane hasła nie są zgodne.");
+            return "/admin/add";
+        }
+        return null;
+    }
+
+    private boolean checkPassword(String pass, String pass2) {
+        return pass.equals(pass2);
+    }
 
 }

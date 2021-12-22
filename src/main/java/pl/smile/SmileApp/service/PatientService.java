@@ -1,5 +1,6 @@
 package pl.smile.SmileApp.service;
 
+import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.repository.PatientRepository;
@@ -15,7 +16,7 @@ public interface PatientService
     List<Patient> listAll(String pesel, Doctor doctor);
     List<Patient> findAll();
     Optional<Patient> findById(long id);
-    Patient findByEmail(String email);
     Patient update(Patient patient);
     Patient getPatient(Principal principal);
+    String comparePasswords(Patient patient, BindingResult result);
 }

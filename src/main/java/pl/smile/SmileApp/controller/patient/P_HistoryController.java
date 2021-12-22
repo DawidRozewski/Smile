@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.repository.AppointmentRepository;
-import pl.smile.SmileApp.service.PatientServiceImpl;
+import pl.smile.SmileApp.service.PatientService;
 
 import java.security.Principal;
 
@@ -17,7 +17,7 @@ import java.security.Principal;
 @AllArgsConstructor
 public class P_HistoryController {
 
-    private final PatientServiceImpl patientService;
+    private final PatientService patientService;
     private final AppointmentRepository appointmentRepository;
 
     @GetMapping("/history")
