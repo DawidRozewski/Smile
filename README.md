@@ -55,7 +55,7 @@ If you do not want to create a new account, you can use your existing account to
 - username: doktor@gmail.com
 - password: Doktor123!
 
-The SMS sending method starts every day at **08:00**, so when you book an appointment for 
+The SMS sending method starts every day at **07:00**, so when you book an appointment for 
 - **3 days from today, do not forget** to enter your correct phone number :)
 
 ## Inspiration
