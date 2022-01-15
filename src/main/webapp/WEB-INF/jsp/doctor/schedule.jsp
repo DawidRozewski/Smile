@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="temps/header.jsp" %>
 <head>
-    <title>Harmonogram pacjentów</title>
+    <title>Schedule</title>
     <style>
         table, th, td {
             border-collapse: collapse;
@@ -16,13 +16,13 @@
 </head>
 <table>
     <tr>
-        <th>Imię i nazwisko</th>
-        <th>Opis zabiegu</th>
-        <th>Cena</th>
-        <th>Data wizyty</th>
-        <th>Godzina</th>
-        <th>Pokaż dane</th>
-        <th>Usuń wizytę</th>
+        <th>Patient</th>
+        <th>Service description</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Show patient details</th>
+        <th>Delete visit</th>
     </tr>
 
 
@@ -33,8 +33,8 @@
         <td>${a.price}</td>
         <td>${a.date}</td>
         <td>${a.time}</td>
-        <td><a href="/app/doctor/patient/${a.patient.id}">Pokaż</a></td>
-        <td><a href="/app/doctor/remove-appointment/${a.id}/${a.patient.id}">Usuń wizytę</a></td>
+        <td><a href="/app/doctor/patient/${a.patient.id}">Show</a></td>
+        <td><a href="/app/doctor/remove-appointment/${a.id}/${a.patient.id}">Delete</a></td>
     </tr>
         </c:forEach>
 

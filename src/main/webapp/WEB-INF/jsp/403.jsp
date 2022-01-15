@@ -37,8 +37,8 @@
 <div class="hero-image">
     <div class="hero-text">
         <h1 style="font-size:50px">403</h1>
-        <h3>Brak dostępu :(</h3>
-        <a href="/app" class="back">Wróć na stronę główną</a>
+        <h3>Access denied :(</h3>
+        <a href="/app" class="back">Go back to the homepage</a>
     </div>
 </div>
 </body>

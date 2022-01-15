@@ -17,7 +17,6 @@ import java.time.LocalDate;
 @RequestMapping("/app/patient")
 public class P_DashboardController {
 
-
     private final AppointmentRepository appointmentRepository;
     private final PatientService patientService;
 

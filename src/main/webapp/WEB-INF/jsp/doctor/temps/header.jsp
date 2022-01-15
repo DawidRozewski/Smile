@@ -12,11 +12,11 @@
 </head>
 
 <div id="menu">
-    <strong><a href="/app">Strona główna</a></strong>
+    <strong><a href="/app">Home</a></strong>
     <strong><a href="/app/doctor/dashboard">Dashboard</a></strong>
-    <strong><a href="/app/doctor/schedule">Grafik</a></strong>
-    <strong><a href="/app/doctor/services">Cennik zabiegów</a></strong>
-    <strong><a href="/app/doctor/edit">Edytuj dane</a></strong>
-    <strong><a href="/logout">Wyloguj</a></strong>
+    <strong><a href="/app/doctor/schedule">Schedule</a></strong>
+    <strong><a href="/app/doctor/services">Services</a></strong>
+    <strong><a href="/app/doctor/edit">Edit profile</a></strong>
+    <strong><a href="/logout">Logout</a></strong>
 </div>
 <hr>

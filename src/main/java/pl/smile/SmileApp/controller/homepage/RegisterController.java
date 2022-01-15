@@ -27,6 +27,7 @@ public class RegisterController {
     @GetMapping("")
     public String prepareToAdd(Model model) {
         model.addAttribute("patient", new Patient());
+
         return "/form/register";
     }
 
@@ -38,6 +39,7 @@ public class RegisterController {
             return "/form/register";
         }
         patientService.save(patient);
+
         return "redirect:/login";
     }
 

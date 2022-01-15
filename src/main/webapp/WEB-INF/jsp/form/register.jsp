@@ -13,35 +13,35 @@
 <form:form modelAttribute="patient">
     <form:hidden path="id"/>
 
-Imię: <form:input path="firstName"/><br/>
+First name: <form:input path="firstName"/><br/>
      <form:errors path="firstName" cssClass="error"/><br/>
 
-Nazwisko: <form:input path="lastName"/><br/>
+Last name: <form:input path="lastName"/><br/>
 <form:errors path="lastName" cssClass="error"/><br/>
 
-Hasło: <form:password path="password" /><br/>
+Password: <form:password path="password" /><br/>
 <form:errors path="password" cssClass="error"/><br/>
 
-Powtórz hasło: <form:password path="repassword" /><br/>
+Repassword: <form:password path="repassword" /><br/>
 <form:errors path="repassword" cssClass="error"/><br/>
 
 Email: <form:input path="email"/><br/>
 <form:errors path="email" cssClass="error"/><br/>
 
-Pesel: <form:input path="pesel"/><br/>
+PESEL: <form:input path="pesel"/><br/>
 <form:errors path="pesel" cssClass="error"/><br/>
 
-Nr. kontaktowy: <form:input path="phoneNumber"/><br/>
+Phone number: <form:input path="phoneNumber"/><br/>
 <form:errors path="phoneNumber" cssClass="error"/><br/>
 
-Wybierz doktora: <form:select path="doctor.id" items="${doctors}" itemLabel="fullName" itemValue="id"/><br/>
+Select doctor: <form:select path="doctor.id" items="${doctors}" itemLabel="fullName" itemValue="id"/><br/>
      <form:errors path="doctor" cssClass="error"/><br/>
 
  <form:checkbox path="processingOfPersonalData" id="processingOfPersonalData"/><br/>
-     <label for="processingOfPersonalData">Zgoda na przetwarzanie danych osobowych.</label><br/>
+     <label for="processingOfPersonalData">I accept terms and conditions and general policy.</label><br/>
 <form:errors path="processingOfPersonalData" cssClass="error"/><br/>
 
-<input type="submit" value="Zarejestruj">
+<input type="submit" value="Register">
 
 </form:form>
 

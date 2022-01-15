@@ -32,7 +32,6 @@ public class D_PatientController {
     private final TreatmentPlanRepository treatmentRepository;
     private final AppointmentRepository appointmentRepository;
 
-
     @GetMapping("/patient/{patientID}")
     public String showPatientInfoAndTreatmentPan(@PathVariable long patientID, Model model, Principal principal) {
         Doctor doctor = doctorService.getDoctor(principal);
@@ -60,7 +59,10 @@ public class D_PatientController {
                                BindingResult result,
                                @PathVariable long patientID) {
         if(treatmentPlan.getVisitDate().getDayOfWeek() == DayOfWeek.SUNDAY || result.hasErrors()) {
-            result.rejectValue("visitDate", "error.treatment", "W niedziele nie pracujemy :)");
+            result.rejectValue("visitDate", "error.treatment", "We are not working on Sundays :)");
+            return "/doctor/treatment_plan";
+        }
+        if(result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
 
@@ -83,6 +85,10 @@ public class D_PatientController {
                                   @Valid TreatmentPlan treatmentPlan,
                                   BindingResult result) {
         if (treatmentPlan.getVisitDate().getDayOfWeek() == DayOfWeek.SUNDAY || result.hasErrors()) {
+            result.rejectValue("visitDate", "error.treatment", "We are not working on Sundays :)");
+            return "/doctor/treatment_plan";
+        }
+        if(result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
         treatmentRepository.save(treatmentPlan);

@@ -21,7 +21,6 @@ public class D_PersonalDataController {
 
     private final DoctorService doctorService;
 
-
     @GetMapping("/edit")
     public String prepToEditPD(Principal principal, Model model) {
         Doctor doctor = doctorService.getDoctor(principal);

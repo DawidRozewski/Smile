@@ -24,7 +24,7 @@
 <div id="text">
 <body>
 <h1>Ups!</h1>
-<h2> Coś poszło nie tak :(</h2>
-<a href="/app">Wróć na stronę główną</a>
+<h2>Something went wrong.. :(</h2>
+<a href="/app">Go back to the homepage</a>
 </body>
 </div>

@@ -2,7 +2,7 @@
 <%@include file="temps/header.jsp" %>
 <script src="<c:url value="/app.js"/>" type="text/javascript"></script>
 
-<h2>Zaplanuj wizytę</h2>
+<h2>Book an appointment</h2>
 <head >
     <style>
         .error {
@@ -18,11 +18,11 @@
     <form:hidden path="serviceDescription" value="${treatment.description}"/>
     <form:hidden path="price" value="${treatment.price}"/>
 
-    Wybierz date: <form:input id="pick_date" path="date" type="date" value="${treatment.visitDate}"/>
+    Pick a date: <form:input id="pick_date" path="date" type="date" value="${treatment.visitDate}"/>
                   <form:errors path="date" cssClass="error"/><br/>
 
-    Wybierz godzinę: <form:select id="pick_hour" path="time" items="${hoursDay}" /><br/>
+    Pick an hour: <form:select id="pick_hour" path="time" items="${hoursDay}" /><br/>
 
-    <input type="submit" value="Zarezerwuj">
+    <input type="submit" value="Book now">
 
 </form:form>

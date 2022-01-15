@@ -20,7 +20,6 @@ public class P_PersonalDataController {
 
     private final PatientService patientService;
 
-
     @GetMapping("/edit")
     public String prepareToEdit(Principal principal, Model model) {
         Patient patient = patientService.getPatient(principal);
@@ -32,6 +31,7 @@ public class P_PersonalDataController {
     @PostMapping("/edit")
     public String updatePersonalData(@ModelAttribute("patient") Patient patient) {
         patientService.update(patient);
+
         return "redirect:/app/patient/dashboard";
     }
 

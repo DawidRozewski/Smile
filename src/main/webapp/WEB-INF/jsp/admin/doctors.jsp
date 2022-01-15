@@ -9,16 +9,16 @@
 </head>
 
 <div id="menu">
-    <strong><a href="/app/admin/patients">Pacjenci</a></strong>&nbsp;&nbsp;&nbsp;
-    <strong><a href="/app/admin/doctors">Doktorzy</a></strong>&nbsp;&nbsp;&nbsp;
-    <strong><a href="/logout">Wyloguj</a></strong>&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/admin/patients">Patients</a></strong>&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/admin/doctors">Doctors</a></strong>&nbsp;&nbsp;&nbsp;
+    <strong><a href="/logout">Logout</a></strong>&nbsp;&nbsp;&nbsp;
 </div>
 <br/>
 <hr/>
 <br/>
-<h3><a href="/app/admin/doctors/add" class="test">Dodaj doktora</a><br/></h3>
+<h3><a href="/app/admin/doctors/add" class="test">Add doctor</a><br/></h3>
 <head>
-    <title>Doktorzy</title>
+    <title>Doctors</title>
     <style>
         table, th, td {
             border-collapse: collapse;
@@ -33,9 +33,9 @@
 <table>
     <tr>
         <th>Id</th>
-        <th>Imię i nazwisko</th>
+        <th>First name & last name</th>
         <th>Email</th>
-        <th>Nr.kontaktowy</th>
+        <th>Phone number</th>
     </tr>
     <c:forEach items="${doctors}" var="d">
         <tr>

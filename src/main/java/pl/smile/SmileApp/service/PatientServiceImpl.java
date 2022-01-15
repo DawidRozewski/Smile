@@ -33,6 +33,12 @@ public  class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    public Patient getPatient(Principal principal) {
+        String email = principal.getName();
+        return patientRepository.getByEmail(email);
+    }
+
+    @Override
     public List<Patient> listAll(String pesel, Doctor doctor) {
         if (pesel != null) {
             return patientRepository.findAllByPesel(pesel);
@@ -56,21 +62,15 @@ public  class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient getPatient(Principal principal) {
-        String email = principal.getName();
-        return patientRepository.getByEmail(email);
-    }
-
-    @Override
     public String comparePasswords(Patient patient, BindingResult result) {
-        if(!checkPassword(patient.getPassword(), patient.getRepassword())) {
-            result.rejectValue("repassword", "error.patient", "Podane hasła nie są zgodne.");
+        if(!comparePasswords(patient.getPassword(), patient.getRepassword())) {
+            result.rejectValue("repassword", "error.patient", "Passwords do not match.");
             return "/form/register";
         }
         return null;
     }
 
-    private boolean checkPassword(String pass, String pass2) {
+    private boolean comparePasswords(String pass, String pass2) {
         return pass.equals(pass2);
     }
 

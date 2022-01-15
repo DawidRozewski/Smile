@@ -11,6 +11,7 @@ import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.exceptions.AppointmentNotFound;
 import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.repository.AppointmentRepository;
+import pl.smile.SmileApp.service.AppointmentService;
 import pl.smile.SmileApp.service.DoctorService;
 import pl.smile.SmileApp.service.PatientService;
 
@@ -24,6 +25,7 @@ public class D_ScheduleController {
     private final DoctorService doctorService;
     private final PatientService patientService;
     private final AppointmentRepository appointmentRepository;
+    private final AppointmentService appointmentService;
 
     @GetMapping("/schedule")
     public String showSchedule(Principal principal, Model model) {
@@ -46,13 +48,10 @@ public class D_ScheduleController {
 
     @PostMapping("/remove-appointment/{appID}/{patientID}")
     public String removeVisit(@PathVariable long appID, @RequestParam String confirmed) {
-        if ("yes".equals(confirmed)) {
-            appointmentRepository.deleteById(appID);
-        }
+        appointmentService.ifConfirmedDeleteApp(appID, confirmed);
 
         return "redirect:/app/doctor/schedule/";
     }
-
 
 
 

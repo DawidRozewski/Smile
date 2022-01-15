@@ -2,6 +2,7 @@ package pl.smile.SmileApp.service;
 
 
 
+import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Appointment;
 
 import java.time.LocalDate;
@@ -12,4 +13,6 @@ public interface AppointmentService{
 
     List<LocalTime> getAvailableHours(LocalDate appointmentDate);
     Appointment save(Appointment appointment);
+    void ifSundayThrowNotification(Appointment appointment, BindingResult result);
+    void ifConfirmedDeleteApp(long appID, String confirmed);
 }

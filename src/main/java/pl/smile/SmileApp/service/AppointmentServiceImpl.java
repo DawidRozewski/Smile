@@ -2,9 +2,11 @@ package pl.smile.SmileApp.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.repository.AppointmentRepository;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -40,6 +42,19 @@ public  class AppointmentServiceImpl implements AppointmentService {
         workingHours.removeAll(reservedHours);
 
         return workingHours;
+    }
+
+    @Override
+    public void ifSundayThrowNotification(Appointment appointment, BindingResult result) {
+        if(appointment.getDate().getDayOfWeek() == DayOfWeek.SUNDAY) {
+            result.rejectValue("date", "error.appointment", "We are not working on Sundays :)");
+        }
+    }
+    @Override
+    public void ifConfirmedDeleteApp(long appID, String confirmed) {
+        if ("yes".equals(confirmed)) {
+            appointmentRepository.deleteById(appID);
+        }
     }
 
     @Override

@@ -17,7 +17,7 @@ public class TreatmentPlan {
     private long id;
 
     @NotNull
-    @Min(value = 1, message = "Minimalna wartość to 1.")
+    @Min(value = 1, message = "Min. value 1.")
     private int visitNumber;
 
     @FutureOrPresent
@@ -27,7 +27,7 @@ public class TreatmentPlan {
     private String description;
 
     @NotNull
-    @Min(value = 0, message = "Cena nie może być poniżej 0.")
+    @Min(value = 0, message = "The price cannot be below zero.")
     private int price;
 
     @OneToOne

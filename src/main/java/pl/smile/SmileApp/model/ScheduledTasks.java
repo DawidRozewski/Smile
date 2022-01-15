@@ -23,19 +23,33 @@ public class ScheduledTasks {
     public void sendSMS() {
         List<Appointment> appointments = appointmentRepository.findAll();
 
-        List<Appointment> list = appointments.stream()
-                .filter(a -> !a.isFinished())
-                .filter(a -> a.getDate().minusDays(3).equals(LocalDate.now()))
-                .collect(Collectors.toList());
+        List<Appointment> appointmentsThreeDaysBeforeVisit = appointments.stream()
+                                                            .filter(a -> !a.isFinished())
+                                                            .filter(a -> a.getDate().minusDays(3).equals(LocalDate.now()))
+                                                            .collect(Collectors.toList());
 
-        for (Appointment a : list) {
-            Twilio.init(twilioAcc.getTWILIO_ACCOUNT_SID(),
-                        twilioAcc.getTWILIO_AUTH_TOKEN());
-            Message.creator(new PhoneNumber("+48" + a.getPatient().getPhoneNumber()),
-                            new PhoneNumber(twilioAcc.getTrialNumber()),
-                    "Przypominamy, że za 3 dni masz wizytę w naszym gabiniecie SMILE o godzinie: " + a.getTime() +
-                    ". W celu odwołania, prosimy o kontakt pod numerem: 789 024 803").create();
-
+        for (Appointment a : appointmentsThreeDaysBeforeVisit) {
+                    Twilio.init(twilioAcc.getTWILIO_ACCOUNT_SID(),
+                                twilioAcc.getTWILIO_AUTH_TOKEN());
+                    Message.creator(new PhoneNumber("+48" + a.getPatient().getPhoneNumber()),
+                                    new PhoneNumber(twilioAcc.getTrialNumber()),
+                                    prepareMessage(appointmentsThreeDaysBeforeVisit)).create();
         }
     }
+
+    private String prepareMessage(List<Appointment> list) {
+        String reminderMessage = "";
+        for (Appointment a : list) {
+            reminderMessage = String.format("Hello %s !. Dr. %s here. " +
+                            "Just wanted to send you a friendly reminder that you're scheduled to see me on date %s at %s ." +
+                            "If you need to cancel your visit, call 789 024 803",
+                    a.getPatient().getFirstName(),
+                    a.getDoctor().getFullName(),
+                    a.getDate(),
+                    a.getTime()
+            );
+        }
+        return reminderMessage;
+    }
 }
+

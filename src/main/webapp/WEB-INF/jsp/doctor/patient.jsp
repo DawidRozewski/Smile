@@ -14,15 +14,15 @@
 
     </style>
 </head>
-<h2>Dane pacjenta</h2>
+<h2>Patient details</h2>
 <table>
     <tr>
-        <th>Id</th>
-        <th>Imie i nazwisko</th>
-        <th>Pesel</th>
+        <th>ID</th>
+        <th>First name & last name</th>
+        <th>PESEL</th>
         <th>Email</th>
-        <th>Nr. kontaktowy</th>
-        <th>Historia wizyt</th>
+        <th>Phone number</th>
+        <th>History</th>
     </tr>
     <tr>
         <td>${patient.id}</td>
@@ -30,20 +30,20 @@
         <td>${patient.pesel}</td>
         <td>${patient.email}</td>
         <td>${patient.phoneNumber}</td>
-        <td><a href="/app/doctor/history/${patient.id}">Pokaż</a></td>
+        <td><a href="/app/doctor/history/${patient.id}">Show more</a></td>
     </tr>
 </table>
 
 
-<h2>Plan leczenia</h2>
+<h2>Treatment plan</h2>
 <table>
     <tr>
-        <th>Numer wizyty</th>
-        <th>Opis</th>
-        <th>Data wizyty</th>
-        <th>Cena</th>
-        <th>Edytuj</th>
-        <th>Usuń</th>
+        <th>Visit number</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Price</th>
+        <th>Edit visit</th>
+        <th>Delete visit</th>
     </tr>
     <c:forEach var="t" items="${treatmentList}">
         <tr>
@@ -51,22 +51,22 @@
             <td>${t.description}</td>
             <td>${t.visitDate}</td>
             <td>${t.price}</td>
-            <td><a href="/app/doctor/edit-treatment/${patient.id}/${t.id}">Edytuj</a></td>
-            <td><a href="/app/doctor/remove/${patient.id}/${t.id}">Usuń</a></td>
+            <td><a href="/app/doctor/edit-treatment/${patient.id}/${t.id}">Edit</a></td>
+            <td><a href="/app/doctor/remove/${patient.id}/${t.id}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
-<h4><a href="/app/doctor/add-treatment/${patient.id}">Dodaj plan</a></h4><br/>
+<h4><a href="/app/doctor/add-treatment/${patient.id}">Add a treatment plan</a></h4><br/>
 
-<h2>Nadchodzące wizyty</h2>
+<h2>Upcoming visits</h2>
 <table>
     <tr>
-        <th>Data wizyty</th>
-        <th>Godzina</th>
-        <th>Opis</th>
-        <th>Cena</th>
-        <th>Pliki</th>
-        <th>Zakończ</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Files</th>
+        <th>End the patient visit</th>
     </tr>
     <c:forEach var="a" items="${appointments}">
         <tr>
@@ -75,8 +75,8 @@
             <td>${a.time}</td>
             <td>${a.serviceDescription}</td>
             <td>${a.price}</td>
-            <td><a href="/app/doctor/uploadFiles/${a.id}/${patient.id}">Dodaj</a></td>
-            <td><a href="/app/doctor/endVisit/${a.id}">Zakończ wizytę</a></td>
+            <td><a href="/app/doctor/uploadFiles/${a.id}/${patient.id}">Add file</a></td>
+            <td><a href="/app/doctor/endVisit/${a.id}">End visit</a></td>
         </tr>
     </c:forEach>
 </table>

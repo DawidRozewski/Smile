@@ -9,19 +9,16 @@
             justify-content:space-between;
         }
 
-        .error {
-            color: red;
-        }
     </style>
 </head>
 
-<div id="menu"><strong><a href="/app" class="test">Strona główna</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
+<div id="menu"><strong><a href="/app" class="test">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
     <strong><a href="/app/patient/dashboard" class="test">Dashboard</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
-    <strong><a href="/app/patient/my-treatment"class="test">Plan leczenia</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
-    <strong><a href="/app/patient/history"class="test">Historia wizyt</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
-    <strong><a href="/app/patient/services" class="test">Cennik zabiegów</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
-    <strong><a href="/app/patient/edit"class="test">Edytuj dane</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
-    <strong><a href="/app/contact"class="test">Kontakt</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
-    <strong><a href="/logout"class="test">Wyloguj</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/patient/my-treatment"class="test">My treatment plan</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/patient/history"class="test">History of my visits</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/patient/services" class="test">Services</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/patient/edit"class="test">Edit profile</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
+    <strong><a href="/app/contact"class="test">Contact</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
+    <strong><a href="/logout"class="test">Logout</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 <hr/>

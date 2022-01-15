@@ -16,19 +16,19 @@
     </style>
 </head>
 <div id="menu">
-<strong><a href="/app" class="home">Strona główna</a></strong>
-<strong><a href="/app/services" class="home">Cennik zabiegów</a></strong>
-<strong><a href="/login" class="home">Zaloguj</a></strong>
-<strong><a href="/app/register" class="home">Zarejestruj</a></strong>
-<strong><a href="/app/about" class="home">O nas</a></strong>
-<strong><a href="/app/contact" class="home">Kontakt</a></strong>
-<strong><a href="/logout" class="home">Wyloguj</a></strong>
+<strong><a href="/app" class="home">Home</a></strong>
+<strong><a href="/app/services" class="home">Services</a></strong>
+<strong><a href="/login" class="home">Login</a></strong>
+<strong><a href="/app/register" class="home">Register</a></strong>
+<strong><a href="/app/about" class="home">About us</a></strong>
+<strong><a href="/app/contact" class="home">Contact</a></strong>
+<strong><a href="/logout" class="home">Logout</a></strong>
 </div>
 <hr/>
 <br/>
 <div id="users">
-<h3><a href="https://just-smile.herokuapp.com/app/patient/dashboard">Pacjent</a></h3><br/><br/>
-<h3><a href="https://just-smile.herokuapp.com/app/doctor/dashboard">Doktor</a></h3><br/><br/>
+<h3><a href="https://just-smile.herokuapp.com/app/patient/dashboard">Patient</a></h3><br/><br/>
+<h3><a href="https://just-smile.herokuapp.com/app/doctor/dashboard">Doctor</a></h3><br/><br/>
 <h3><a href="https://just-smile.herokuapp.com/app/admin/patients">Admin</a></h3>
 </div>
 

@@ -28,7 +28,7 @@ public class DentalService {
     private String RTG;
 
     @NotNull
-    @Min(value = 0, message = "Cena nie może być poniżej 0.")
+    @Min(value = 0, message = "The price cannot be below zero.")
     private int amount;
 
 }

@@ -32,7 +32,7 @@ public class DoctorServiceImpl implements DoctorService {
 
 
     @Override
-    public List<Doctor> findAll() {
+    public List<Doctor> findAllDoctors() {
         return doctorRepository.findAll();
     }
 
@@ -43,14 +43,14 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public String comparePasswords(Doctor doctor, BindingResult result) {
-        if (!checkPassword(doctor.getPassword(), doctor.getRepassword())) {
-            result.rejectValue("repassword", "error.doctor", "Podane hasła nie są zgodne.");
+        if (!comparePasswords(doctor.getPassword(), doctor.getRepassword())) {
+            result.rejectValue("repassword", "error.doctor", "Passwords do not match.");
             return "/admin/add";
         }
         return null;
     }
 
-    private boolean checkPassword(String pass, String pass2) {
+    private boolean comparePasswords(String pass, String pass2) {
         return pass.equals(pass2);
     }
 

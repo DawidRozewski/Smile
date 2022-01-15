@@ -10,7 +10,7 @@ public interface DoctorService  {
 
     String save(Doctor doctor);
     Doctor update(Doctor doctor);
-    List<Doctor> findAll();
+    List<Doctor> findAllDoctors();
     Doctor getDoctor(Principal principal);
     String comparePasswords(Doctor doctor, BindingResult result);
 

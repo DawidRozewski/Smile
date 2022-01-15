@@ -3,7 +3,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <head>
-    <title>Lista plików</title>
+    <title>My files</title>
     <style>
         table, th, td {
             border-collapse: collapse;
@@ -17,12 +17,12 @@
     </style>
 </head>
 
-<h2>Lista plików do wizyty z dnia ${appointment.date}</h2>
+<h2>List of files for the visit of ${appointment.date}</h2>
 <div>
     <table>
         <tr>
             <th>ID</th>
-            <th>Nazwa pliku</th>
+            <th>Filename</th>
             <th>Link</th>
         </tr>
 
@@ -30,7 +30,7 @@
             <tr>
                 <td>${d.id}</td>
                 <td>${d.name}</td>
-                <td><a href="/app/file/download/${d.id}">Pobierz</a></td>
+                <td><a href="/app/file/download/${d.id}">Download</a></td>
             </tr>
         </c:forEach>
     </table>

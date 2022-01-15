@@ -10,7 +10,7 @@
 <hr/>
 <br/>
 <head>
-    <title>Pacjenci</title>
+    <title>Patients</title>
     <style>
         table, th, td {
             border-collapse: collapse;
@@ -25,10 +25,10 @@
 <table>
     <tr>
         <th>Id</th>
-        <th>Imię i nazwisko</th>
+        <th>First name & last name</th>
         <th>Email</th>
         <th>PESEL</th>
-        <th>Nr.kontaktowy</th>
+        <th>Phone number</th>
     </tr>
 
     <c:forEach items="${patients}" var="p">

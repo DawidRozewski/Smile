@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="temps/header.jsp" %>
 <head>
-    <title>Cennik zabiegów</title>
+    <title>Services</title>
     <style>
         table, th, td {
             border-collapse: collapse;
@@ -17,11 +17,11 @@
 
 <table>
     <tr>
-        <th>Id</th>
-        <th>Opis zabiegu</th>
+        <th>ID</th>
+        <th>Description</th>
         <th>RTG</th>
-        <th>Cena</th>
-        <th>Zaplanuj wizyte</th>
+        <th>Price</th>
+        <th>Book an appointment</th>
     </tr>
 
     <c:forEach var="s" items="${services}">
@@ -30,7 +30,7 @@
             <td>${s.description}</td>
             <td>${s.RTG}</td>
             <td>${s.amount}</td>
-            <td><a href="/app/patient/appointment?serviceID=${s.id}">Zaplanuj wizyte</a></td>
+            <td><a href="/app/patient/appointment?serviceID=${s.id}">Book now</a></td>
         </tr>
     </c:forEach>
 </table>

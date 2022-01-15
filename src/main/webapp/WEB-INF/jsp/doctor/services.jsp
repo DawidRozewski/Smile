@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="temps/header.jsp" %>
 <head>
-    <title>Cennik zabiegów</title>
+    <title>Services</title>
     <style>
         table, th, td {
             border-collapse: collapse;
@@ -21,12 +21,12 @@
 
 <table>
     <tr>
-        <th>Id</th>
-        <th>Opis zabiegu</th>
+        <th>ID</th>
+        <th>Description</th>
         <th>RTG</th>
-        <th>Cena</th>
-        <th>Edytuj</th>
-        <th>Usuń</th>
+        <th>Price</th>
+        <th>Edit service</th>
+        <th>Delete service</th>
     </tr>
 
     <c:forEach var="s" items="${services}">
@@ -35,28 +35,28 @@
             <td>${s.description}</td>
             <td>${s.RTG}</td>
             <td>${s.amount}</td>
-            <td><a href="/app/doctor/edit-service/${s.id}">Edytuj</a></td>
-            <td><a href=/app/doctor/remove-service/${s.id}>Usuń</a></td>
+            <td><a href="/app/doctor/edit-service/${s.id}">Edit</a></td>
+            <td><a href=/app/doctor/remove-service/${s.id}>Delete</a></td>
         </tr>
 
     </c:forEach>
 </table>
 <br/>
-<h2>Dodaj zabieg</h2> <br/>
+<h2>Add a service</h2> <br/>
 
 <form:form modelAttribute="service">
     <form:hidden path="id"/>
 
-    Opis: <form:textarea path="description" cols="50" rows="10"/><br>
+    Description: <form:textarea path="description" cols="50" rows="10"/><br>
     <form:errors path="description" cssClass="error"/> <br>
-    RTG: <form:radiobutton path="RTG" value="Tak"/>Tak
-    <form:radiobutton path="RTG" value="Nie"/>Nie<br>
+    RTG: <form:radiobutton path="RTG" value="Yes"/>Yes
+    <form:radiobutton path="RTG" value="No"/>No<br>
     <form:errors path="RTG" cssClass="error"/> <br>
 
-    Cena: <form:input path="amount" type="number"/><br/>
+    Price: <form:input path="amount" type="number"/><br/>
     <form:errors path="amount" cssClass="error"/><br/>
 
-    <input type="submit" value="Dodaj">
+    <input type="submit" value="Add">
 </form:form>
 
 </body>

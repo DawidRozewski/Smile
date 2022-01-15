@@ -14,13 +14,13 @@
         }
     </style>
 </head>
-<h2>Nadchodzące wizyty</h2>
+<h2>Upcoming visits</h2>
 <table>
     <tr>
-        <th>Data</th>
-        <th>Godzina</th>
-        <th>Opis</th>
-        <th>Cena</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Service description</th>
+        <th>Price</th>
     </tr>
     <c:forEach var="a" items="${appointments}">
         <tr>

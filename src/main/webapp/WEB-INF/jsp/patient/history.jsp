@@ -14,20 +14,20 @@
     </style>
 </head>
 
-<h2>Historia wizyt</h2>
+<h2>History of my visits</h2>
 <table>
     <tr>
-        <th>Data wizyty</th>
-        <th>Godzina</th>
-        <th>Opis</th>
-        <th>Pliki</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Service description</th>
+        <th>Files</th>
     </tr>
     <c:forEach var="a" items="${appointments}">
         <tr>
             <td>${a.date}</td>
             <td>${a.time}</td>
             <td>${a.serviceDescription}</td>
-            <td><a href="/app/file/show/${a.id}/${patient.id}">Pokaż</a> </td>
+            <td><a href="/app/file/show/${a.id}/${patient.id}">Download</a> </td>
         </tr>
     </c:forEach>
 </table>

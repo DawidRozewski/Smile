@@ -24,8 +24,7 @@ public class P_HistoryController {
     public String history(Principal principal, Model model) {
         Patient patient = patientService.getPatient(principal);
         model.addAttribute("patient", patient);
-        model.addAttribute("appointments",
-                appointmentRepository.getPastAppointments(patient.getId()));
+        model.addAttribute("appointments", appointmentRepository.getPastAppointments(patient.getId()));
 
         return "/patient/history";
     }

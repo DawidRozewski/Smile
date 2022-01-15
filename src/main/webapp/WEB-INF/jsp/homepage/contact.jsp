@@ -12,10 +12,10 @@
 <body>
 <div id="contact">
 <address>
-    Możesz skontaktować się z nami mailowo <span style="color: green; ">justSmile@gmail.com</span><br>
-    lub też telefonicznie <span style="color: green; ">665 432 147</span><br>
+    You can contact us by e-mail <span style="color: green; ">justSmile@gmail.com</span><br>
+    or by phone <span style="color: green; ">665 432 147</span><br>
 
-    Nasz gabinet znajduję się pod adresem:<br>
+    Our office is located at:<br>
     Mozilla Foundation<br>
     331 E Evelyn Ave<br>
     Mountain View, CA 94041<br>

@@ -20,14 +20,14 @@ public class Doctor {
     private long id;
 
     @NotBlank
-    @Pattern(regexp = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$", message = "Wpisz poprawne imie.")
+    @Pattern(regexp = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$", message = "Enter a valid name.")
     private String firstName;
 
     @NotBlank
-    @Pattern(regexp = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$", message = "Wpisz poprawne nazwisko.")
+    @Pattern(regexp = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$", message = "Enter a valid last name.")
     private String lastName;
 
-    @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$", message = "Haslo musi posiadac przynajmniej 1 duza litere, 1 cyfre, 1 znak specjalny oraz minimum 8 znakow dlugosci.")
+    @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$", message = "The password must contain at least 8 characters, 1 uppercase, 1 digit and 1 special character.")
     private String password;
 
     @Transient
@@ -38,7 +38,7 @@ public class Doctor {
     @Column(unique = true)
     private String email;
 
-    @Pattern(regexp = "^[5-8]\\d{8}$", message = "Podaj prawidlowy numer telefonu.")
+    @Pattern(regexp = "^[5-8]\\d{8}$", message = "Enter a valid phone number.")
     @NotBlank
     @Min(9)
     private String phoneNumber;

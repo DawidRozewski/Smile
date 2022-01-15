@@ -27,7 +27,7 @@ public class AdminController {
 
     @GetMapping("/doctors")
     public String showDoctors(Model model) {
-        model.addAttribute("doctors", doctorService.findAll());
+        model.addAttribute("doctors", doctorService.findAllDoctors());
 
         return "/admin/doctors";
     }
