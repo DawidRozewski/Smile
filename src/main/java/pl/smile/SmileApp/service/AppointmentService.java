@@ -13,6 +13,6 @@ public interface AppointmentService{
 
     List<LocalTime> getAvailableHours(LocalDate appointmentDate);
     Appointment save(Appointment appointment);
-    void ifSundayThrowNotification(Appointment appointment, BindingResult result);
+    boolean isBookedDayIsSunday(Appointment appointment, BindingResult result);
     void ifConfirmedDeleteApp(long appID, String confirmed);
 }

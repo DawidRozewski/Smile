@@ -16,6 +16,7 @@ import pl.smile.SmileApp.repository.AppointmentRepository;
 import pl.smile.SmileApp.repository.TreatmentPlanRepository;
 import pl.smile.SmileApp.service.DoctorService;
 import pl.smile.SmileApp.service.PatientService;
+import pl.smile.SmileApp.service.TreatmentPlanService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -29,6 +30,7 @@ public class D_PatientController {
 
     private final DoctorService doctorService;
     private final PatientService patientService;
+    private final TreatmentPlanService treatmentPlanService;
     private final TreatmentPlanRepository treatmentRepository;
     private final AppointmentRepository appointmentRepository;
 
@@ -58,14 +60,12 @@ public class D_PatientController {
                                @Valid TreatmentPlan treatmentPlan,
                                BindingResult result,
                                @PathVariable long patientID) {
-        if(treatmentPlan.getVisitDate().getDayOfWeek() == DayOfWeek.SUNDAY || result.hasErrors()) {
-            result.rejectValue("visitDate", "error.treatment", "We are not working on Sundays :)");
+        if(treatmentPlanService.isBookedDayIsSunday(treatmentPlan, result)) {
             return "/doctor/treatment_plan";
         }
         if(result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
-
         treatmentRepository.save(treatmentPlan);
 
         return "redirect:/app/doctor/patient/" + patientID;
@@ -84,8 +84,7 @@ public class D_PatientController {
                                   @ModelAttribute("treatment")
                                   @Valid TreatmentPlan treatmentPlan,
                                   BindingResult result) {
-        if (treatmentPlan.getVisitDate().getDayOfWeek() == DayOfWeek.SUNDAY || result.hasErrors()) {
-            result.rejectValue("visitDate", "error.treatment", "We are not working on Sundays :)");
+        if (treatmentPlanService.isBookedDayIsSunday(treatmentPlan, result)) {
             return "/doctor/treatment_plan";
         }
         if(result.hasErrors()) {

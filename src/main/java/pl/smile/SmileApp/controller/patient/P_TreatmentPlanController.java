@@ -39,8 +39,9 @@ public class P_TreatmentPlanController {
     }
     @PostMapping("/appointment-by-plan")
     public String addAppByPLan(@ModelAttribute("appointment") @Valid Appointment appointment, BindingResult result) {
-        appointmentService.ifSundayThrowNotification(appointment, result);
-
+        if(appointmentService.isBookedDayIsSunday(appointment, result)) {
+            return "/patient/appointment_by_plan";
+        }
         if(result.hasErrors()) {
             return "/patient/appointment_by_plan";
         }

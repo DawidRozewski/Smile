@@ -45,10 +45,12 @@ public  class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public void ifSundayThrowNotification(Appointment appointment, BindingResult result) {
+    public boolean isBookedDayIsSunday(Appointment appointment, BindingResult result) {
         if(appointment.getDate().getDayOfWeek() == DayOfWeek.SUNDAY) {
             result.rejectValue("date", "error.appointment", "We are not working on Sundays :)");
+            return true;
         }
+        return false;
     }
     @Override
     public void ifConfirmedDeleteApp(long appID, String confirmed) {

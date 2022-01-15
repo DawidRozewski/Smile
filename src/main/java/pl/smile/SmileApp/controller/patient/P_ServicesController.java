@@ -42,8 +42,9 @@ public class P_ServicesController {
     }
     @PostMapping("/appointment")
     public String addAppointment(@ModelAttribute("appointment") @Valid Appointment appointment, BindingResult result) {
-        appointmentService.ifSundayThrowNotification(appointment, result);
-
+        if(appointmentService.isBookedDayIsSunday(appointment, result)) {
+            return "/patient/appointment";
+        }
         if(result.hasErrors()) {
             return "/patient/appointment";
         }
