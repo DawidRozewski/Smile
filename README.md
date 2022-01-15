@@ -44,7 +44,7 @@ An SMS reminder is also sent 3 days before the visit.
 
 ## Setup
 
-[Enter here](https://just-smile.herokuapp.com/app)
+-------------------------------> [Enter here](https://just-smile.herokuapp.com/app) <-------------------------------
 
 If you do not want to create a new account, you can use your existing account to log in:
 - **Patient**:
