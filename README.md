@@ -49,7 +49,7 @@ An SMS reminder is also sent 3 days before the visit.
 If you do not want to create a new account, you can use your existing account to log in:
 - **Patient**:
 - username: pacjent@gmail.com
-- password: Patient123!
+- password: Pacjent123!
 
 - **Doctor**: 
 - username: doktor@gmail.com
