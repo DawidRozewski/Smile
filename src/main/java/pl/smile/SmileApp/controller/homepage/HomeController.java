@@ -1,12 +1,9 @@
 package pl.smile.SmileApp.controller.homepage;
 
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pl.smile.SmileApp.entity.Admin;
 import pl.smile.SmileApp.entity.DentalService;
-import pl.smile.SmileApp.repository.AdminRepository;
 import pl.smile.SmileApp.repository.ServiceRepository;
 import java.util.List;
 

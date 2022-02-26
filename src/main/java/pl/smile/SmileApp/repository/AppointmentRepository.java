@@ -9,7 +9,6 @@ import pl.smile.SmileApp.entity.Appointment;
 import java.time.LocalDate;
 import java.util.List;
 
-@Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
     @Query("SELECT a FROM Appointment a WHERE a.patient.id = :patientID " +

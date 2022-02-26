@@ -21,9 +21,7 @@ import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.repository.AppointmentRepository;
 import pl.smile.SmileApp.repository.DocumentRepository;
 import pl.smile.SmileApp.service.DocumentService;
-import pl.smile.SmileApp.service.DocumentServiceImpl;
 import pl.smile.SmileApp.service.PatientService;
-import pl.smile.SmileApp.service.PatientServiceImpl;
 
 import java.util.List;
 
@@ -39,14 +37,13 @@ public class DocumentController {
     @GetMapping("/app/doctor/uploadFiles/{appID}/{patientID}")
     public String prepToAddFiles(@PathVariable Long appID,
                                  @PathVariable Long patientID,
-                                  Model model) {
+                                 Model model) {
         List<Document> documents = documentRepository.findAllByAppointment_IdAndPatient_Id(appID, patientID);
         model.addAttribute("documents", documents);
         Appointment appointment = appointmentRepository.findById(appID).orElseThrow(AppointmentNotFound::new);
         model.addAttribute("appointment", appointment);
         Patient patient = patientService.findById(patientID).orElseThrow(PatientNotFound::new);
         model.addAttribute("patient", patient);
-
         return "/doctor/uploadFile";
     }
 
@@ -57,8 +54,7 @@ public class DocumentController {
         for (MultipartFile file : files) {
             documentService.saveFile(file, appID, patientID);
         }
-
-        return "redirect:/app/doctor/uploadFiles/" + appID +"/" + patientID;
+        return "redirect:/app/doctor/uploadFiles/" + appID + "/" + patientID;
     }
 
     @GetMapping("/app/file/download/{fileID}")
@@ -75,7 +71,6 @@ public class DocumentController {
     public String prepToRemoveDocument(@PathVariable Long documentID, Model model) {
         Document document = documentRepository.findById(documentID).orElseThrow(DocumentNotFound::new);
         model.addAttribute("document", document);
-
         return "/doctor/remove_document";
     }
 
@@ -84,11 +79,10 @@ public class DocumentController {
                                  @PathVariable Long appID,
                                  @RequestParam String confirmed) {
         Appointment appointment = appointmentRepository.findById(appID).orElseThrow(AppointmentNotFound::new);
-            if ("yes".equals(confirmed)) {
-                documentRepository.deleteById(documentID);
-            }
-
-        return "redirect:/app/doctor/uploadFiles/" + appID +"/" + appointment.getPatient().getId();
+        if ("yes".equals(confirmed)) {
+            documentRepository.deleteById(documentID);
+        }
+        return "redirect:/app/doctor/uploadFiles/" + appID + "/" + appointment.getPatient().getId();
     }
 
     @GetMapping("/app/file/show/{appID}/{patientID}")
@@ -99,7 +93,6 @@ public class DocumentController {
         model.addAttribute("documents", documents);
         Appointment appointment = appointmentRepository.findById(appID).orElseThrow(AppointmentNotFound::new);
         model.addAttribute("appointment", appointment);
-
         return "/patient/showFiles";
     }
 

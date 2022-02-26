@@ -22,7 +22,6 @@ public class D_DentalServicesController {
     @GetMapping("/services")
     public String prepToAddService(Model model) {
         model.addAttribute("service", new DentalService());
-
         return "/doctor/services";
     }
 
@@ -31,8 +30,8 @@ public class D_DentalServicesController {
         if (result.hasErrors()) {
             return "/doctor/services";
         }
-        serviceRepository.save(dentalService);
 
+        serviceRepository.save(dentalService);
         return "redirect:/app/doctor/services";
     }
 
@@ -40,7 +39,6 @@ public class D_DentalServicesController {
     public String prepToEditService(@PathVariable long id, Model model) {
         DentalService dentalService = serviceRepository.findById(id).orElseThrow(ServiceNotFound::new);
         model.addAttribute("service", dentalService);
-
         return "/doctor/services";
     }
 
@@ -49,8 +47,8 @@ public class D_DentalServicesController {
         if (result.hasErrors()) {
             return "/doctor/services";
         }
-        serviceRepository.save(dentalService);
 
+        serviceRepository.save(dentalService);
         return "redirect:/app/doctor/services";
     }
 
@@ -58,7 +56,6 @@ public class D_DentalServicesController {
     public String prepToDeleteService(@PathVariable long id, Model model) {
         DentalService dentalService = serviceRepository.findById(id).orElseThrow(ServiceNotFound::new);
         model.addAttribute("service", dentalService);
-
         return "/doctor/remove_service";
     }
 

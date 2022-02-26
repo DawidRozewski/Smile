@@ -22,24 +22,29 @@ public class ScheduledTasks {
     @Scheduled(cron = "0 00 07 * * *")
     public void sendSMS() {
         List<Appointment> appointments = appointmentRepository.findAll();
-
-        List<Appointment> appointmentsThreeDaysBeforeVisit = appointments.stream()
-                                                            .filter(a -> !a.isFinished())
-                                                            .filter(a -> a.getDate().minusDays(3).equals(LocalDate.now()))
-                                                            .collect(Collectors.toList());
-
+        List<Appointment> appointmentsThreeDaysBeforeVisit = getAllAppointmentsThreeDaysBeforeVisit(appointments);
         for (Appointment a : appointmentsThreeDaysBeforeVisit) {
-                    Twilio.init(twilioAcc.getTWILIO_ACCOUNT_SID(),
-                                twilioAcc.getTWILIO_AUTH_TOKEN());
-                    Message.creator(new PhoneNumber("+48" + a.getPatient().getPhoneNumber()),
-                                    new PhoneNumber(twilioAcc.getTrialNumber()),
-                                    prepareMessage(appointmentsThreeDaysBeforeVisit)).create();
+            setTwilioConfig();
+            String message = prepareMessage(appointmentsThreeDaysBeforeVisit);
+            createMessage(message, a);
         }
     }
 
-    private String prepareMessage(List<Appointment> list) {
+    private List<Appointment> getAllAppointmentsThreeDaysBeforeVisit(List<Appointment> appointments) {
+        return appointments.stream()
+                .filter(a -> !a.isFinished())
+                .filter(a -> a.getDate().minusDays(3).equals(LocalDate.now()))
+                .collect(Collectors.toList());
+    }
+
+    private void setTwilioConfig() {
+        Twilio.init(twilioAcc.getTWILIO_ACCOUNT_SID(),
+                twilioAcc.getTWILIO_AUTH_TOKEN());
+    }
+
+    private String prepareMessage(List<Appointment> appointmentsThreeDaysBeforeVisit) {
         String reminderMessage = "";
-        for (Appointment a : list) {
+        for (Appointment a : appointmentsThreeDaysBeforeVisit) {
             reminderMessage = String.format("Hello %s !. Dr. %s here. " +
                             "Just wanted to send you a friendly reminder that you're scheduled to see me on date %s at %s ." +
                             "If you need to cancel your visit, call 789 024 803",
@@ -50,6 +55,12 @@ public class ScheduledTasks {
             );
         }
         return reminderMessage;
+    }
+
+    private void createMessage(String message, Appointment a) {
+        Message.creator(new PhoneNumber("+48" + a.getPatient().getPhoneNumber()),
+                new PhoneNumber(twilioAcc.getTrialNumber()),
+                message).create();
     }
 }
 

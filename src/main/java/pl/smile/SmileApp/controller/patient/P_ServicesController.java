@@ -14,7 +14,6 @@ import pl.smile.SmileApp.service.PatientService;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -37,7 +36,6 @@ public class P_ServicesController {
         model.addAttribute("patient", patient);
         model.addAttribute("service", serviceRepository.getById(serviceID));
         model.addAttribute("appointment", new Appointment());
-
         return "/patient/appointment";
     }
     @PostMapping("/appointment")
@@ -48,18 +46,15 @@ public class P_ServicesController {
         if(result.hasErrors()) {
             return "/patient/appointment";
         }
-        appointmentService.save(appointment);
 
+        appointmentService.save(appointment);
         return "redirect:/app/patient/dashboard";
     }
-
-
 
     @GetMapping("/services")
     public String services() {
         return "/patient/services";
     }
-
 
     @ModelAttribute("services")
     public List<DentalService> servicesList() {

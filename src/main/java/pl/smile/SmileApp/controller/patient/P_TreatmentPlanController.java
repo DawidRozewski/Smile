@@ -34,7 +34,6 @@ public class P_TreatmentPlanController {
         model.addAttribute("treatment", treatmentPlan);
         model.addAttribute("appointment", new Appointment());
         model.addAttribute("hoursDay", appointmentService.getAvailableHours(treatmentPlan.getVisitDate()));
-
         return "/patient/appointment_by_plan";
     }
     @PostMapping("/appointment-by-plan")
@@ -45,17 +44,15 @@ public class P_TreatmentPlanController {
         if(result.hasErrors()) {
             return "/patient/appointment_by_plan";
         }
-        appointmentService.save(appointment);
 
+        appointmentService.save(appointment);
         return "redirect:/app/patient/dashboard";
     }
-
 
     @GetMapping("/my-treatment")
     public String treatment(Principal principal, Model model) {
         Patient patient = patientService.getPatient(principal);
         model.addAttribute("treatmentPlan", treatmentPlanRepository.findAllByPatientId(patient.getId()));
-
         return "/patient/treatment";
     }
 

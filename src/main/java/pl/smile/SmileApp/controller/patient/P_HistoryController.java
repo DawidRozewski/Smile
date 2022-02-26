@@ -25,11 +25,6 @@ public class P_HistoryController {
         Patient patient = patientService.getPatient(principal);
         model.addAttribute("patient", patient);
         model.addAttribute("appointments", appointmentRepository.getPastAppointments(patient.getId()));
-
         return "/patient/history";
     }
-
-
-
-
 }

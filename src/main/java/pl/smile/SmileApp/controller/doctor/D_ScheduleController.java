@@ -31,9 +31,7 @@ public class D_ScheduleController {
     public String showSchedule(Principal principal, Model model) {
         Doctor doctor = doctorService.getDoctor(principal);
         model.addAttribute("appointment", appointmentRepository.findAllActiveAppointments(doctor.getId()));
-
         return "/doctor/schedule";
-
     }
 
     @GetMapping("/remove-appointment/{appID}/{patientID}")
@@ -49,11 +47,7 @@ public class D_ScheduleController {
     @PostMapping("/remove-appointment/{appID}/{patientID}")
     public String removeVisit(@PathVariable long appID, @RequestParam String confirmed) {
         appointmentService.ifConfirmedDeleteApp(appID, confirmed);
-
         return "redirect:/app/doctor/schedule/";
     }
-
-
-
 
 }

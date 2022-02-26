@@ -20,13 +20,9 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-
     private  String username;
     private  String password ;
-
     private final String ROLE = "ROLE_ADMIN";
-
 
 }
 

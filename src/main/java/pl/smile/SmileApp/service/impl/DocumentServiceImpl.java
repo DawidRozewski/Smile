@@ -1,4 +1,4 @@
-package pl.smile.SmileApp.service;
+package pl.smile.SmileApp.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,13 +7,14 @@ import pl.smile.SmileApp.entity.Document;
 import pl.smile.SmileApp.repository.AppointmentRepository;
 import pl.smile.SmileApp.repository.DocumentRepository;
 import pl.smile.SmileApp.repository.PatientRepository;
+import pl.smile.SmileApp.service.DocumentService;
 
 import java.io.IOException;
 
 
 @Service
 @AllArgsConstructor
-public class DocumentServiceImpl implements DocumentService{
+public class DocumentServiceImpl implements DocumentService {
 
     private final DocumentRepository documentRepository;
     private final AppointmentRepository appointmentRepository;

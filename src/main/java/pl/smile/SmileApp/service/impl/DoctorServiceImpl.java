@@ -1,4 +1,4 @@
-package pl.smile.SmileApp.service;
+package pl.smile.SmileApp.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.repository.DoctorRepository;
+import pl.smile.SmileApp.service.DoctorService;
 
 import java.security.Principal;
 import java.util.List;
@@ -21,7 +22,6 @@ public class DoctorServiceImpl implements DoctorService {
     public String save(Doctor doctor) {
         doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
         doctorRepository.save(doctor);
-
         return "/admin/doctors";
     }
 
@@ -29,7 +29,6 @@ public class DoctorServiceImpl implements DoctorService {
     public Doctor update(Doctor doctor) {
         return doctorRepository.save(doctor);
     }
-
 
     @Override
     public List<Doctor> findAllDoctors() {

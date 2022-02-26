@@ -21,33 +21,29 @@ public class AdminController {
     @GetMapping("/patients")
     public String showPatients(Model model) {
         model.addAttribute("patients", patientService.findAll());
-
         return "/admin/patients";
     }
 
     @GetMapping("/doctors")
     public String showDoctors(Model model) {
         model.addAttribute("doctors", doctorService.findAllDoctors());
-
         return "/admin/doctors";
     }
 
     @GetMapping("/doctors/add")
     public String prepareToSave(Model model) {
         model.addAttribute("doctor", new Doctor());
-
         return "/admin/add";
     }
 
     @PostMapping("/doctors/add")
     public String save(@ModelAttribute("doctor") @Valid Doctor doctor, BindingResult result) {
         doctorService.comparePasswords(doctor, result);
-
         if (result.hasErrors()) {
             return "/admin/add";
         }
-        doctorService.save(doctor);
 
+        doctorService.save(doctor);
         return "redirect:/app/admin/doctors";
     }
 

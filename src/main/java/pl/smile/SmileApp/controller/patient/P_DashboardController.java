@@ -20,7 +20,6 @@ public class P_DashboardController {
     private final AppointmentRepository appointmentRepository;
     private final PatientService patientService;
 
-
     @GetMapping("/dashboard")
     public String dashboard(Principal principal, Model model) {
         Patient patient = patientService.getPatient(principal);
@@ -29,7 +28,4 @@ public class P_DashboardController {
 
         return "/patient/dashboard";
     }
-
-
-
 }

@@ -20,7 +20,7 @@ import pl.smile.SmileApp.service.TreatmentPlanService;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.time.DayOfWeek;
+
 import java.time.LocalDate;
 
 @Controller
@@ -60,10 +60,10 @@ public class D_PatientController {
                                @Valid TreatmentPlan treatmentPlan,
                                BindingResult result,
                                @PathVariable long patientID) {
-        if(treatmentPlanService.isBookedDayIsSunday(treatmentPlan, result)) {
+        if (treatmentPlanService.ifSundayThrowMessage(treatmentPlan, result)) {
             return "/doctor/treatment_plan";
         }
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
         treatmentRepository.save(treatmentPlan);
@@ -84,10 +84,10 @@ public class D_PatientController {
                                   @ModelAttribute("treatment")
                                   @Valid TreatmentPlan treatmentPlan,
                                   BindingResult result) {
-        if (treatmentPlanService.isBookedDayIsSunday(treatmentPlan, result)) {
+        if (treatmentPlanService.ifSundayThrowMessage(treatmentPlan, result)) {
             return "/doctor/treatment_plan";
         }
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
         treatmentRepository.save(treatmentPlan);
@@ -143,10 +143,6 @@ public class D_PatientController {
 
         return "redirect:/app/doctor/patient/" + appointment.getPatient().getId();
     }
-
-
-
-
 
 
 }

@@ -1,4 +1,4 @@
-package pl.smile.SmileApp;
+package pl.smile.SmileApp.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

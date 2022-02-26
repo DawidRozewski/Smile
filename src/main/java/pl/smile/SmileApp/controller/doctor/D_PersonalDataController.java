@@ -25,7 +25,6 @@ public class D_PersonalDataController {
     public String prepToEditPD(Principal principal, Model model) {
         Doctor doctor = doctorService.getDoctor(principal);
         model.addAttribute("doctor", doctor);
-
         return "/doctor/edit";
     }
 
@@ -34,8 +33,8 @@ public class D_PersonalDataController {
         if(result.hasErrors()) {
             return "/doctor/edit";
         }
-        doctorService.update(doctor);
 
+        doctorService.update(doctor);
         return "redirect:/app/doctor/dashboard";
     }
 }

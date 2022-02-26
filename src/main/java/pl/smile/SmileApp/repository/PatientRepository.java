@@ -9,15 +9,11 @@ import pl.smile.SmileApp.entity.Patient;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+
 public interface PatientRepository extends JpaRepository<Patient, Long> {
-
     Patient getByEmail(String email);
-
     Patient findByPesel(String pesel);
-
     Optional<Patient> findById(long id);
-
     List<Patient> findAllByDoctor(Doctor doctorId);
     List<Patient> findAllByPesel(String pesel);
 

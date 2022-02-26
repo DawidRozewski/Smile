@@ -1,4 +1,4 @@
-package pl.smile.SmileApp;
+package pl.smile.SmileApp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

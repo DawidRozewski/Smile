@@ -27,19 +27,16 @@ public class RegisterController {
     @GetMapping("")
     public String prepareToAdd(Model model) {
         model.addAttribute("patient", new Patient());
-
         return "/form/register";
     }
 
     @PostMapping("")
     public String save(@ModelAttribute("patient") @Valid Patient patient, BindingResult result) {
         patientService.comparePasswords(patient, result);
-
         if (result.hasErrors()) {
             return "/form/register";
         }
         patientService.save(patient);
-
         return "redirect:/login";
     }
 

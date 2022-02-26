@@ -24,16 +24,12 @@ public class P_PersonalDataController {
     public String prepareToEdit(Principal principal, Model model) {
         Patient patient = patientService.getPatient(principal);
         model.addAttribute("patient", patient);
-
         return "/form/edit";
     }
 
     @PostMapping("/edit")
     public String updatePersonalData(@ModelAttribute("patient") Patient patient) {
         patientService.update(patient);
-
         return "redirect:/app/patient/dashboard";
     }
-
-
 }

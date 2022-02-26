@@ -1,35 +1,33 @@
-package pl.smile.SmileApp.service;
+package pl.smile.SmileApp.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
-import pl.smile.SmileApp.exceptions.PatientNotFound;
 import pl.smile.SmileApp.repository.PatientRepository;
-
+import pl.smile.SmileApp.service.PatientService;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
-
 public  class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
     private final PasswordEncoder passwordEncoder;
 
-    protected PatientServiceImpl(PatientRepository patientRepository, PasswordEncoder passwordEncoder) {
-        this.patientRepository = patientRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
-
     @Override
     public String save(Patient patient) {
-            patient.setPassword(passwordEncoder.encode(patient.getPassword()));
-            patientRepository.save(patient);
-
+        encodePassword(patient);
+        patientRepository.save(patient);
         return "/form/register";
+    }
+
+    private void encodePassword(Patient patient) {
+        patient.setPassword(passwordEncoder.encode(patient.getPassword()));
     }
 
     @Override
