@@ -20,13 +20,13 @@ public class AdminController {
 
     @GetMapping("/patients")
     public String showPatients(Model model) {
-        model.addAttribute("patients", patientService.findAll());
+        model.addAttribute("patients", patientService.getAllPatients());
         return "/admin/patients";
     }
 
     @GetMapping("/doctors")
     public String showDoctors(Model model) {
-        model.addAttribute("doctors", doctorService.findAllDoctors());
+        model.addAttribute("doctors", doctorService.getAllDoctors());
         return "/admin/doctors";
     }
 

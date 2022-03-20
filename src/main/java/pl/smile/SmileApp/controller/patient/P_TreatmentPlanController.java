@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.entity.TreatmentPlan;
-import pl.smile.SmileApp.exceptions.TreatmentPlanNotFound;
 import pl.smile.SmileApp.repository.TreatmentPlanRepository;
 import pl.smile.SmileApp.service.AppointmentService;
 import pl.smile.SmileApp.service.PatientService;
+import pl.smile.SmileApp.service.TreatmentPlanService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -22,13 +22,13 @@ import java.security.Principal;
 public class P_TreatmentPlanController {
 
         private final PatientService patientService;
-        private final TreatmentPlanRepository treatmentPlanRepository;
+        private final TreatmentPlanService treatmentPlanService;
         private final AppointmentService appointmentService;
 
     @GetMapping("/appointment-by-plan")
     public String prepToAppByPan(@RequestParam long planID, Model model, Principal principal) {
         Patient patient = patientService.getPatient(principal);
-        TreatmentPlan treatmentPlan = treatmentPlanRepository.findById(planID).orElseThrow(TreatmentPlanNotFound::new);
+        TreatmentPlan treatmentPlan = treatmentPlanService.getById(planID);
         model.addAttribute("doctor", patient.getDoctor());
         model.addAttribute("patient", patient);
         model.addAttribute("treatment", treatmentPlan);
@@ -52,7 +52,7 @@ public class P_TreatmentPlanController {
     @GetMapping("/my-treatment")
     public String treatment(Principal principal, Model model) {
         Patient patient = patientService.getPatient(principal);
-        model.addAttribute("treatmentPlan", treatmentPlanRepository.findAllByPatientId(patient.getId()));
+        model.addAttribute("treatmentPlan", treatmentPlanService.getAllByPatientId(patient.getId()));
         return "/patient/treatment";
     }
 

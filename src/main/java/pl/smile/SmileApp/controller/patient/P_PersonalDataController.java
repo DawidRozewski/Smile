@@ -1,6 +1,4 @@
 package pl.smile.SmileApp.controller.patient;
-
-
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

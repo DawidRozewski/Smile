@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
-import pl.smile.SmileApp.exceptions.AppointmentNotFound;
-import pl.smile.SmileApp.exceptions.PatientNotFound;
-import pl.smile.SmileApp.repository.AppointmentRepository;
 import pl.smile.SmileApp.service.AppointmentService;
 import pl.smile.SmileApp.service.DoctorService;
 import pl.smile.SmileApp.service.PatientService;
@@ -24,21 +21,20 @@ public class D_ScheduleController {
 
     private final DoctorService doctorService;
     private final PatientService patientService;
-    private final AppointmentRepository appointmentRepository;
     private final AppointmentService appointmentService;
 
     @GetMapping("/schedule")
     public String showSchedule(Principal principal, Model model) {
         Doctor doctor = doctorService.getDoctor(principal);
-        model.addAttribute("appointment", appointmentRepository.findAllActiveAppointments(doctor.getId()));
+        model.addAttribute("appointment", appointmentService.getAllActiveAppointments(doctor.getId()));
         return "/doctor/schedule";
     }
 
     @GetMapping("/remove-appointment/{appID}/{patientID}")
     public String prepToRemoveVisit(@PathVariable Long appID, @PathVariable Long patientID, Model model) {
-        Appointment appointment = appointmentRepository.findById(appID).orElseThrow(AppointmentNotFound::new);
+        Appointment appointment = appointmentService.getById(appID);
         model.addAttribute("appointment", appointment);
-        Patient patient = patientService.findById(patientID).orElseThrow(PatientNotFound::new);
+        Patient patient = patientService.getById(patientID);
         model.addAttribute("patient", patient.getFullName());
 
         return "/doctor/remove_appointment";

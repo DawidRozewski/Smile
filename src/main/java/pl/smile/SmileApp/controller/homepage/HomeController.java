@@ -3,8 +3,9 @@ package pl.smile.SmileApp.controller.homepage;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pl.smile.SmileApp.entity.DentalService;
-import pl.smile.SmileApp.repository.ServiceRepository;
+import pl.smile.SmileApp.entity.DentalTreatment;
+import pl.smile.SmileApp.service.DentalTreatmentService;
+
 import java.util.List;
 
 @Controller
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class HomeController {
 
-    private final ServiceRepository serviceRepository;
+    private final DentalTreatmentService dentalTreatmentService;
 
     @GetMapping("")
     public String homePage() {
@@ -35,8 +36,8 @@ public class HomeController {
     }
 
     @ModelAttribute("services")
-    public List<DentalService> servicesList() {
-        return serviceRepository.findAll();
+    public List<DentalTreatment> servicesList() {
+        return dentalTreatmentService.getAll();
     }
 
 

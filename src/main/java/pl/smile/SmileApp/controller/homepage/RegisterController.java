@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.repository.DoctorRepository;
+import pl.smile.SmileApp.service.DoctorService;
 import pl.smile.SmileApp.service.PatientService;
 
 import javax.validation.Valid;
@@ -21,7 +22,7 @@ import java.util.List;
 @RequestMapping("/app/register")
 public class RegisterController {
 
-    private final DoctorRepository doctorRepository;
+    private final DoctorService doctorService;
     private final PatientService patientService;
 
     @GetMapping("")
@@ -42,7 +43,7 @@ public class RegisterController {
 
     @ModelAttribute("doctors")
     public List<Doctor> doctorList() {
-        return doctorRepository.findAll();
+        return doctorService.getAllDoctors();
     }
 
 }

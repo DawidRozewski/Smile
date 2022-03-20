@@ -6,70 +6,86 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
+import pl.smile.SmileApp.exception.ResourceNotFound;
 import pl.smile.SmileApp.repository.PatientRepository;
+import pl.smile.SmileApp.service.ErrorMessageHandling;
 import pl.smile.SmileApp.service.PatientService;
+
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public  class PatientServiceImpl implements PatientService {
+public class PatientServiceImpl implements PatientService, ErrorMessageHandling {
 
     private final PatientRepository patientRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public String save(Patient patient) {
-        encodePassword(patient);
-        patientRepository.save(patient);
-        return "/form/register";
+    public Patient save(Patient patient) {
+        setEncodedPassword(patient);
+        return patientRepository.save(patient);
     }
 
-    private void encodePassword(Patient patient) {
+    private void setEncodedPassword(Patient patient) {
         patient.setPassword(passwordEncoder.encode(patient.getPassword()));
     }
 
     @Override
     public Patient getPatient(Principal principal) {
-        String email = principal.getName();
-        return patientRepository.getByEmail(email);
+        String patientEmail = getEmail(principal);
+        return patientRepository.getByEmail(patientEmail);
+    }
+
+    private String getEmail(Principal principal) {
+        return principal.getName();
     }
 
     @Override
     public List<Patient> listAll(String pesel, Doctor doctor) {
-        if (pesel != null) {
+        if (peselWasGiven(pesel)) {
             return patientRepository.findAllByPesel(pesel);
         }
         return patientRepository.findAllByDoctor(doctor);
     }
 
+    private boolean peselWasGiven(String pesel) {
+        return pesel != null;
+    }
+
     @Override
-    public List<Patient> findAll() {
+    public List<Patient> getAllPatients() {
         return patientRepository.findAll();
     }
 
     @Override
-    public Optional<Patient> findById(long id) {
-        return patientRepository.findById(id);
+    public Patient update(Patient patient) {
+        Patient updatedPatient = getById(patient.getId());
+        patientRepository.save(updatedPatient);
+        return updatedPatient;
     }
 
     @Override
-    public Patient update(Patient patient) {
-        return patientRepository.save(patient);
+    public Patient getById(long id) {
+        return patientRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Patient", id));
     }
 
     @Override
     public String comparePasswords(Patient patient, BindingResult result) {
-        if(!comparePasswords(patient.getPassword(), patient.getRepassword())) {
-            result.rejectValue("repassword", "error.patient", "Passwords do not match.");
+        if (passwordsDoesntMatch(patient.getPassword(), patient.getRepassword())) {
+            setErrorMessageToView(result);
             return "/form/register";
         }
         return null;
     }
 
-    private boolean comparePasswords(String pass, String pass2) {
-        return pass.equals(pass2);
+    private boolean passwordsDoesntMatch(String pass, String pass2) {
+        return !pass.equals(pass2);
+    }
+
+    @Override
+    public void setErrorMessageToView(BindingResult result) {
+        result.rejectValue("repassword", "error.patient", "Passwords do not match.");
     }
 
 

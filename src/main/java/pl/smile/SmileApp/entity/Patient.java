@@ -7,6 +7,7 @@ import pl.smile.SmileApp.validators.UniquePesel;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+@Builder
 @Entity
 @Getter
 @Setter

@@ -1,6 +1,4 @@
 package pl.smile.SmileApp.validators;
-
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.ElementType;
@@ -13,8 +11,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface UniqueEmail {
      String message() default "Podany adres e-mail już istnieje.";
-
      Class<?>[] groups() default {};
-
      Class<? extends Payload>[] payload() default{};
 }

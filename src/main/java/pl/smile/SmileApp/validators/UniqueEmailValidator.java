@@ -7,7 +7,6 @@ import javax.validation.ConstraintValidatorContext;
 
 @AllArgsConstructor
 public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, String> {
-
     private final PatientRepository patientRepository;
 
     @Override

@@ -7,14 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Smile" />
-        <module name="SmileApp" />
+        <module name="Refactoryzacja" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Refactoryzacja" target="8" />
+      <module name="SmileApp" target="8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Smile" options="-parameters" />
+      <module name="Refactoryzacja" options="-parameters" />
       <module name="SmileApp" options="-parameters" />
     </option>
   </component>

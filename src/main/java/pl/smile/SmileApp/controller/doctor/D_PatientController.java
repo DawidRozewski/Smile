@@ -9,18 +9,12 @@ import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.entity.Doctor;
 import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.entity.TreatmentPlan;
-import pl.smile.SmileApp.exceptions.AppointmentNotFound;
-import pl.smile.SmileApp.exceptions.PatientNotFound;
-import pl.smile.SmileApp.exceptions.TreatmentPlanNotFound;
-import pl.smile.SmileApp.repository.AppointmentRepository;
-import pl.smile.SmileApp.repository.TreatmentPlanRepository;
+import pl.smile.SmileApp.service.AppointmentService;
 import pl.smile.SmileApp.service.DoctorService;
 import pl.smile.SmileApp.service.PatientService;
 import pl.smile.SmileApp.service.TreatmentPlanService;
-
 import javax.validation.Valid;
 import java.security.Principal;
-
 import java.time.LocalDate;
 
 @Controller
@@ -31,16 +25,15 @@ public class D_PatientController {
     private final DoctorService doctorService;
     private final PatientService patientService;
     private final TreatmentPlanService treatmentPlanService;
-    private final TreatmentPlanRepository treatmentRepository;
-    private final AppointmentRepository appointmentRepository;
+    private final AppointmentService appointmentService;
 
     @GetMapping("/patient/{patientID}")
     public String showPatientInfoAndTreatmentPan(@PathVariable long patientID, Model model, Principal principal) {
         Doctor doctor = doctorService.getDoctor(principal);
-        Patient patient = patientService.findById(patientID).orElseThrow(PatientNotFound::new);
+        Patient patient = patientService.getById(patientID);
         model.addAttribute("patient", patient);
-        model.addAttribute("appointments", appointmentRepository.getFutureOrPresentPatientApp(patientID, doctor.getId(), LocalDate.now()));
-        model.addAttribute("treatmentList", treatmentRepository.findAllByPatientIdAndDoctor(patientID, doctor));
+        model.addAttribute("appointments", appointmentService.getFutureOrPresentPatientApp(patientID, doctor.getId(), LocalDate.now()));
+        model.addAttribute("treatmentList", treatmentPlanService.getAllByPatientIdAndDoctor(patientID, doctor));
 
         return "/doctor/patient";
     }
@@ -49,7 +42,7 @@ public class D_PatientController {
     public String prepToAddTreatment(@PathVariable long patientID, Principal principal, Model model) {
         Doctor doctor = doctorService.getDoctor(principal);
         model.addAttribute("doctor", doctor);
-        model.addAttribute("patient", patientService.findById(patientID).orElseThrow(PatientNotFound::new));
+        model.addAttribute("patient", patientService.getById(patientID));
         model.addAttribute("treatment", new TreatmentPlan());
 
         return "/doctor/treatment_plan";
@@ -60,20 +53,20 @@ public class D_PatientController {
                                @Valid TreatmentPlan treatmentPlan,
                                BindingResult result,
                                @PathVariable long patientID) {
-        if (treatmentPlanService.ifSundayThrowMessage(treatmentPlan, result)) {
-            return "/doctor/treatment_plan";
-        }
         if (result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
-        treatmentRepository.save(treatmentPlan);
+        if (treatmentPlanService.ifSundayThrowMessage(treatmentPlan, result)) {
+            return "/doctor/treatment_plan";
+        }
+        treatmentPlanService.save(treatmentPlan);
 
         return "redirect:/app/doctor/patient/" + patientID;
     }
 
     @GetMapping("/edit-treatment/{patientID}/{id}")
     public String prepToEditTreatment(@PathVariable long id, Model model) {
-        TreatmentPlan treatmentPlan = treatmentRepository.findById(id).orElseThrow(TreatmentPlanNotFound::new);
+        TreatmentPlan treatmentPlan = treatmentPlanService.getById(id);
         model.addAttribute("treatment", treatmentPlan);
 
         return "/doctor/treatment_plan";
@@ -90,14 +83,14 @@ public class D_PatientController {
         if (result.hasErrors()) {
             return "/doctor/treatment_plan";
         }
-        treatmentRepository.save(treatmentPlan);
+        treatmentPlanService.save(treatmentPlan);
 
         return "redirect:/app/doctor/patient/" + patientID;
     }
 
     @GetMapping("/remove/{patientID}/{id}")
     public String prepToRemoveTreatment(@PathVariable long id, Model model) {
-        TreatmentPlan treatmentPlan = treatmentRepository.findById(id).orElseThrow(TreatmentPlanNotFound::new);
+        TreatmentPlan treatmentPlan = treatmentPlanService.getById(id);
         model.addAttribute("treatment", treatmentPlan);
 
         return "/doctor/remove_treatment";
@@ -108,7 +101,7 @@ public class D_PatientController {
                                        @PathVariable long patientID,
                                        @RequestParam String confirmed) {
         if ("yes".equals(confirmed)) {
-            treatmentRepository.deleteById(id);
+            treatmentPlanService.delete(id);
         }
 
         return "redirect:/app/doctor/patient/" + patientID;
@@ -117,17 +110,17 @@ public class D_PatientController {
 
     @GetMapping("/history/{patientID}")
     public String showPatientHistory(@PathVariable long patientID, Model model, Principal principal) {
-        Patient patient = patientService.findById(patientID).orElseThrow(PatientNotFound::new);
+        Patient patient = patientService.getById(patientID);
         model.addAttribute("patient", patient);
         Doctor doctor = doctorService.getDoctor(principal);
-        model.addAttribute("appointments", appointmentRepository.getPatientHistoryApp(patientID, doctor.getId()));
+        model.addAttribute("appointments", appointmentService.getPatientHistoryApp(patientID, doctor.getId()));
 
         return "/doctor/history";
     }
 
     @GetMapping("/endVisit/{id}")
     public String prepToEndVisit(@PathVariable long id, Model model) {
-        Appointment appointment = appointmentRepository.findById(id).orElseThrow(AppointmentNotFound::new);
+        Appointment appointment = appointmentService.getById(id);
         model.addAttribute("appointment", appointment);
 
         return "/doctor/end_visit";
@@ -135,10 +128,10 @@ public class D_PatientController {
 
     @PostMapping("/endVisit/{id}")
     public String endVisit(@PathVariable long id, @RequestParam String confirmed) {
-        Appointment appointment = appointmentRepository.findById(id).orElseThrow(AppointmentNotFound::new);
+        Appointment appointment = appointmentService.getById(id);
         if ("yes".equals(confirmed)) {
             appointment.setFinished(true);
-            appointmentRepository.save(appointment);
+            appointmentService.save(appointment);
         }
 
         return "redirect:/app/doctor/patient/" + appointment.getPatient().getId();

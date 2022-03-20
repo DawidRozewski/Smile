@@ -10,13 +10,14 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@Builder
 @Entity
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class DentalService {
+public class DentalTreatment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

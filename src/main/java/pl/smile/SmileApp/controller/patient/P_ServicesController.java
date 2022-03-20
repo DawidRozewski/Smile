@@ -7,9 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.smile.SmileApp.entity.Appointment;
 import pl.smile.SmileApp.entity.Patient;
-import pl.smile.SmileApp.entity.DentalService;
-import pl.smile.SmileApp.repository.ServiceRepository;
+import pl.smile.SmileApp.entity.DentalTreatment;
+import pl.smile.SmileApp.repository.DentalTreatmentRepository;
 import pl.smile.SmileApp.service.AppointmentService;
+import pl.smile.SmileApp.service.DentalTreatmentService;
 import pl.smile.SmileApp.service.PatientService;
 
 import javax.validation.Valid;
@@ -24,7 +25,7 @@ public class P_ServicesController {
 
     private final AppointmentService appointmentService;
     private final PatientService patientService;
-    private final ServiceRepository serviceRepository;
+    private final DentalTreatmentService dentalTreatmentService;
 
     @GetMapping("/appointment")
     public String prepToAppointment(@RequestParam long serviceID, Model model, Principal principal) {
@@ -34,7 +35,7 @@ public class P_ServicesController {
         model.addAttribute("hoursDay", appointmentService.getAvailableHours(today));
         model.addAttribute("doctor", patient.getDoctor());
         model.addAttribute("patient", patient);
-        model.addAttribute("service", serviceRepository.getById(serviceID));
+        model.addAttribute("service", dentalTreatmentService.getById(serviceID));
         model.addAttribute("appointment", new Appointment());
         return "/patient/appointment";
     }
@@ -57,8 +58,8 @@ public class P_ServicesController {
     }
 
     @ModelAttribute("services")
-    public List<DentalService> servicesList() {
-        return serviceRepository.findAll();
+    public List<DentalTreatment> servicesList() {
+        return dentalTreatmentService.getAll();
     }
 
 }
