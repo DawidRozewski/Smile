@@ -12,6 +12,7 @@ import pl.smile.SmileApp.entity.Patient;
 import pl.smile.SmileApp.entity.TreatmentPlan;
 import pl.smile.SmileApp.exception.ResourceNotFound;
 import pl.smile.SmileApp.repository.TreatmentPlanRepository;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,6 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.times;
@@ -28,9 +28,9 @@ import static pl.smile.SmileApp.service.impl.ServiceHelper.*;
 
 @ExtendWith(MockitoExtension.class)
 class TreatmentPlanServiceImplTest {
-    public static final long TREATMENT_PLAN_ID = 1L;
-    public static final long PATIENT_ID = 1L;
+    public static final long TREATMENT_PLAN_ID = 0L;
     public static final long NON_EXISTING_ID = 99L;
+    public static final long PATIENT_ID = 0L;
     @Mock
     private TreatmentPlanRepository treatmentPlanRepository;
     @Mock
@@ -45,9 +45,9 @@ class TreatmentPlanServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        treatmentPlan = createTreatmentPlan();
-        patient = createPatient();
         doctor = createDoctor();
+        patient = createPatient(doctor);
+        treatmentPlan = createTreatmentPlan(doctor, patient, "description");
     }
 
     @Test

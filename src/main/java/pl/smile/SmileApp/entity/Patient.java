@@ -1,11 +1,14 @@
 package pl.smile.SmileApp.entity;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.pl.PESEL;
 import pl.smile.SmileApp.validators.UniqueEmail;
 import pl.smile.SmileApp.validators.UniquePesel;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Builder
 @Entity
@@ -52,6 +55,7 @@ public class Patient {
     private boolean processingOfPersonalData;
 
     @ManyToOne
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Doctor doctor;
 
     public String getFullName() {

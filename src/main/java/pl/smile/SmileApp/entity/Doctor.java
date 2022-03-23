@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Builder
 @Entity
@@ -42,7 +43,6 @@ public class Doctor {
     private String phoneNumber;
 
     private final String ROLE = "ROLE_DOCTOR";
-
 
     public String getFullName() {
         return firstName + " " + lastName;

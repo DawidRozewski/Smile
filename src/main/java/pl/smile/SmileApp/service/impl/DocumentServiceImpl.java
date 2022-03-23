@@ -24,10 +24,11 @@ public class DocumentServiceImpl implements DocumentService {
         String documentName = setDocumentName(file);
         try {
             Document document = createDocument(file, appointmentID, patientID, documentName);
-            documentRepository.save(document);
+             documentRepository.save(document);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private String setDocumentName(MultipartFile file) {

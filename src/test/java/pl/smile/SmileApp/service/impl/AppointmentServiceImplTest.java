@@ -28,7 +28,7 @@ import static pl.smile.SmileApp.service.impl.ServiceHelper.*;
 @ExtendWith(MockitoExtension.class)
 class AppointmentServiceImplTest {
     public static final LocalDate TODAY = LocalDate.now();
-    public static final long APPOINTMENT_ID = 1L;
+    public static final long APPOINTMENT_ID = 0L;
     public static final String CONFIRMED_BY_USER = "yes";
 
     @Mock
@@ -45,8 +45,8 @@ class AppointmentServiceImplTest {
     @BeforeEach
     void setUp() {
         doctor = createDoctor();
-        patient = createPatient();
-        appointment = createAppointment();
+        patient = createPatient(doctor);
+        appointment = createAppointment(patient, doctor);
     }
 
     @Test

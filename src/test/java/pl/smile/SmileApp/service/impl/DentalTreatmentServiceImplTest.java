@@ -21,8 +21,7 @@ import static pl.smile.SmileApp.service.impl.ServiceHelper.createDentalTreatment
 
 @ExtendWith(MockitoExtension.class)
 class DentalTreatmentServiceImplTest {
-
-    public static final long DENTAL_TREATMENT_ID = 1L;
+    public static final long DENTAL_TREATMENT_ID = 0L;
     public static final long NON_EXISTING_ID = 99L;
     @Mock
     private DentalTreatmentRepository dentalTreatmentRepository;

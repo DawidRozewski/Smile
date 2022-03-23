@@ -10,7 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import pl.smile.SmileApp.entity.Doctor;
@@ -22,13 +21,12 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
-import static org.mockito.Mockito.*;
 import static pl.smile.SmileApp.service.impl.ServiceHelper.createDoctor;
 
 @ExtendWith(MockitoExtension.class)
 class DoctorServiceImplTest {
-    public static final long DOCTOR_ID = 1L;
     public static final long NON_EXISTING_DOCTOR_ID = 999L;
+    public static final long DOCTOR_ID = 0L;
     @Mock
     private DoctorRepository doctorRepository;
     @Mock
@@ -41,8 +39,6 @@ class DoctorServiceImplTest {
     private DoctorServiceImpl doctorService;
 
     private Doctor doctor;
-
-
 
     @BeforeEach
     void setUp() {
@@ -64,7 +60,6 @@ class DoctorServiceImplTest {
     public void givenDoctorObject_whenUpdate_thenReturnUpdatedDoctorObject() {
         // given
         Doctor updatedDoctor = Doctor.builder()
-                .id(1L)
                 .firstName("JanEDITED")
                 .lastName("KowalskiEDITED")
                 .password("test")
@@ -98,7 +93,6 @@ class DoctorServiceImplTest {
     public void given_whenGetAllDoctors_thenReturnListOfDoctors() {
         // given
         Doctor doctor1 = Doctor.builder()
-                .id(1L)
                 .firstName("JanEDITED")
                 .lastName("KowalskiEDITED")
                 .password("test")

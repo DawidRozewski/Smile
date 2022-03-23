@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Builder
 @Entity
@@ -41,6 +42,5 @@ public class Appointment {
 
     @ManyToOne
     private Doctor doctor;
-
 
 }

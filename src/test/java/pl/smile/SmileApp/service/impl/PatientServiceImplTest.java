@@ -21,8 +21,6 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static pl.smile.SmileApp.service.impl.ServiceHelper.createDoctor;
@@ -30,9 +28,9 @@ import static pl.smile.SmileApp.service.impl.ServiceHelper.createPatient;
 
 @ExtendWith(MockitoExtension.class)
 class PatientServiceImplTest {
-    public static final long PATIENT_ID = 1L;
-    public static final String PATIENT_PESEL = "94102910617";
+    public static final String PATIENT_PESEL = "87021318486";
     public static final long NON_EXISTING_ID = 99L;
+    public static final long PATIENT_ID = 0L;
     @Mock
     private PatientRepository patientRepository;
     @Mock
@@ -48,12 +46,10 @@ class PatientServiceImplTest {
     private Patient patient;
     private Doctor doctor;
 
-
     @BeforeEach
     void setUp() {
         doctor = createDoctor();
-        patient = createPatient();
-
+        patient = createPatient(doctor);
     }
 
     @Test
@@ -64,7 +60,7 @@ class PatientServiceImplTest {
         Patient savedPatient = patientService.save(patient);
         // then
         assertThat(savedPatient).isNotNull();
-        assertThat(savedPatient.getId()).isEqualTo(PATIENT_ID);
+        assertThat(savedPatient.getId()).isEqualTo(patient.getId());
     }
 
     @Test
@@ -83,7 +79,6 @@ class PatientServiceImplTest {
     public void givenDoctor_whenListAll_thenReturnListOfPatientsByDoctor() {
         // given
         Patient patient1 = patient = Patient.builder()
-                .id(PATIENT_ID)
                 .firstName("Ivan")
                 .lastName("Zaporozec")
                 .pesel("7891042151")
@@ -142,7 +137,6 @@ class PatientServiceImplTest {
     public void givenPatientList_whenGetAllPatients_thenListOfPatients() {
         // given
         Patient patient1 = patient = Patient.builder()
-                .id(PATIENT_ID)
                 .firstName("Ivan")
                 .lastName("Zaporozec")
                 .pesel("7891042151")
