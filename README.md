@@ -8,6 +8,8 @@
 * [Inspiration](#inspiration)
 
 ## General info
+Created as a final project for IT school, my first project before I started working as a programmer.
+
 It is a web application for booking and managing dental appointments.
 An SMS reminder is also sent 3 days before the visit.
 
